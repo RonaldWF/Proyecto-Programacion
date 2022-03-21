@@ -14,10 +14,13 @@ import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
+	private JMenuItem mntmNewMenuItem_2;
 
 	/**
 	 * Launch the application.
@@ -59,13 +62,37 @@ public class Principal extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		panel_1.add(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("New menu");
+		JMenu mnNewMenu = new JMenu("Prismas");
 		menuBar.add(mnNewMenu);
 		
-		JMenu mnNewMenu_1 = new JMenu("New menu");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Lista de prismas");
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Crear Prisma");
+		mnNewMenu.add(mntmNewMenuItem_4);
+		
+		JMenu mnNewMenu_3 = new JMenu("Grupo");
+		menuBar.add(mnNewMenu_3);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Lista de Prismas");
+		mnNewMenu_3.add(mntmNewMenuItem_3);
+		
+		JMenu mnNewMenu_1 = new JMenu("Estudiante");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenu mnNewMenu_2 = new JMenu("New menu");
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Lista de Prismas");
+		mnNewMenu_1.add(mntmNewMenuItem_1);
+		
+		JMenu mnNewMenu_2 = new JMenu("Profesor");
 		menuBar.add(mnNewMenu_2);
+		
+		mntmNewMenuItem_2 = new JMenuItem("Lista de Prismas");
+		mntmNewMenuItem_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
+		mnNewMenu_2.add(mntmNewMenuItem_2);
 	}
 }
