@@ -16,6 +16,9 @@ import javax.swing.JRadioButton;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.border.MatteBorder;
 
 public class CrearPrisma extends JDialog {
 
@@ -24,6 +27,14 @@ public class CrearPrisma extends JDialog {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JRadioButton rdbEstudiante;
+	private JRadioButton rdbProfesor;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JPanel panelProfesor;
+	private JPanel panelEstudiante;
 
 	/**
 	 * Launch the application.
@@ -42,7 +53,7 @@ public class CrearPrisma extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearPrisma() {
-		setBounds(100, 100, 860, 693);
+		setBounds(100, 100, 866, 759);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -56,88 +67,175 @@ public class CrearPrisma extends JDialog {
 			{
 				JPanel panel_1 = new JPanel();
 				panel_1.setBorder(new TitledBorder(null, "Cuadrado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_1.setBounds(12, 351, 809, 232);
+				panel_1.setBounds(12, 422, 809, 232);
 				panel.add(panel_1);
 				panel_1.setLayout(null);
 			}
 			{
-				JPanel panel_1 = new JPanel();
-				panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-				panel_1.setBounds(12, 158, 809, 180);
-				panel.add(panel_1);
-				panel_1.setLayout(null);
+				panelEstudiante = new JPanel();
+				panelEstudiante.setBorder(new LineBorder(new Color(0, 0, 0)));
+				panelEstudiante.setBounds(12, 158, 809, 180);
+				panel.add(panelEstudiante);
+				panelEstudiante.setLayout(null);
 				{
 					JLabel lblNewLabel = new JLabel("Nomrbe:");
 					lblNewLabel.setBounds(43, 13, 70, 16);
-					panel_1.add(lblNewLabel);
+					panelEstudiante.add(lblNewLabel);
 				}
 				{
 					textField = new JTextField();
 					textField.setBounds(125, 10, 241, 22);
-					panel_1.add(textField);
+					panelEstudiante.add(textField);
 					textField.setColumns(10);
 				}
 				{
 					textField_1 = new JTextField();
 					textField_1.setBounds(125, 66, 241, 22);
-					panel_1.add(textField_1);
+					panelEstudiante.add(textField_1);
 					textField_1.setColumns(10);
 				}
 				{
 					textField_2 = new JTextField();
 					textField_2.setColumns(10);
 					textField_2.setBounds(125, 128, 241, 22);
-					panel_1.add(textField_2);
+					panelEstudiante.add(textField_2);
 				}
 				{
 					JLabel lblNewLabel_1 = new JLabel("Apellido:");
 					lblNewLabel_1.setBounds(43, 69, 56, 16);
-					panel_1.add(lblNewLabel_1);
+					panelEstudiante.add(lblNewLabel_1);
 				}
 				{
 					JLabel lblEdad = new JLabel("Edad:");
 					lblEdad.setBounds(43, 131, 56, 16);
-					panel_1.add(lblEdad);
+					panelEstudiante.add(lblEdad);
 				}
 				{
 					textField_3 = new JTextField();
 					textField_3.setBounds(538, 66, 116, 22);
-					panel_1.add(textField_3);
+					panelEstudiante.add(textField_3);
 					textField_3.setColumns(10);
 				}
 				{
 					JLabel lblNewLabel_2 = new JLabel("Matricula:");
 					lblNewLabel_2.setBounds(446, 69, 70, 16);
-					panel_1.add(lblNewLabel_2);
+					panelEstudiante.add(lblNewLabel_2);
 				}
 				{
 					JButton btnNewButton = new JButton("Registrar");
 					btnNewButton.setBounds(685, 142, 97, 25);
-					panel_1.add(btnNewButton);
+					panelEstudiante.add(btnNewButton);
 				}
 				{
 					JButton btnNewButton_1 = new JButton("Buscar");
 					btnNewButton_1.setBounds(557, 142, 97, 25);
-					panel_1.add(btnNewButton_1);
+					panelEstudiante.add(btnNewButton_1);
 				}
 			}
 			{
-				JRadioButton rdbtnNewRadioButton = new JRadioButton("Estudiante");
-				rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				rdbtnNewRadioButton.setBounds(193, 68, 145, 25);
-				panel.add(rdbtnNewRadioButton);
+				rdbEstudiante = new JRadioButton("Estudiante");
+				rdbEstudiante.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						rdbProfesor.setSelected(false);
+						panelEstudiante.setVisible(true);
+						panelProfesor.setVisible(false);
+						
+					}
+					
+				});
+				rdbEstudiante.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				rdbEstudiante.setBounds(182, 68, 145, 25);
+				panel.add(rdbEstudiante);
 			}
 			{
-				JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Profesor");
-				rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				rdbtnNewRadioButton_1.setBounds(495, 68, 145, 25);
-				panel.add(rdbtnNewRadioButton_1);
+				rdbProfesor = new JRadioButton("Profesor");
+				rdbProfesor.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						rdbEstudiante.setSelected(false);
+						panelProfesor.setVisible(true);
+						panelEstudiante.setVisible(false);
+					}
+				});
+				rdbProfesor.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				rdbProfesor.setBounds(509, 68, 145, 25);
+				panel.add(rdbProfesor);
 			}
+			
+			panelProfesor = new JPanel();
+			panelProfesor.setLayout(null);
+			panelProfesor.setBorder(new LineBorder(new Color(0, 0, 0)));
+			panelProfesor.setBounds(12, 158, 809, 180);
+			panel.add(panelProfesor);
+			
+			JLabel label = new JLabel("Nomrbe:");
+			label.setBounds(43, 13, 70, 16);
+			panelProfesor.add(label);
+			
+			textField_4 = new JTextField();
+			textField_4.setColumns(10);
+			textField_4.setBounds(125, 10, 241, 22);
+			panelProfesor.add(textField_4);
+			
+			textField_5 = new JTextField();
+			textField_5.setColumns(10);
+			textField_5.setBounds(125, 66, 241, 22);
+			panelProfesor.add(textField_5);
+			
+			textField_6 = new JTextField();
+			textField_6.setColumns(10);
+			textField_6.setBounds(125, 128, 241, 22);
+			panelProfesor.add(textField_6);
+			
+			JLabel label_1 = new JLabel("Apellido:");
+			label_1.setBounds(43, 69, 56, 16);
+			panelProfesor.add(label_1);
+			
+			JLabel label_2 = new JLabel("Edad:");
+			label_2.setBounds(43, 131, 56, 16);
+			panelProfesor.add(label_2);
+			
+			textField_7 = new JTextField();
+			textField_7.setColumns(10);
+			textField_7.setBounds(538, 66, 116, 22);
+			panelProfesor.add(textField_7);
+			
+			JLabel lblCedula = new JLabel("Cedula:");
+			lblCedula.setBounds(446, 69, 70, 16);
+			panelProfesor.add(lblCedula);
+			
+			JButton button = new JButton("Registrar");
+			button.setBounds(685, 142, 97, 25);
+			panelProfesor.add(button);
+			
+			JButton button_1 = new JButton("Buscar");
+			button_1.setBounds(557, 142, 97, 25);
+			panelProfesor.add(button_1);
+			
+			JRadioButton rdbtnNewRadioButton = new JRadioButton("Cuadrado");
+			rdbtnNewRadioButton.setBounds(35, 377, 127, 25);
+			panel.add(rdbtnNewRadioButton);
+			
+			JRadioButton rdbtnRectangulo = new JRadioButton("Rectangulo");
+			rdbtnRectangulo.setBounds(197, 377, 127, 25);
+			panel.add(rdbtnRectangulo);
+			
+			JRadioButton rdbtnTrapecio = new JRadioButton("Trapecio");
+			rdbtnTrapecio.setBounds(359, 377, 127, 25);
+			panel.add(rdbtnTrapecio);
+			
+			JRadioButton rdbtnRombo = new JRadioButton("Rombo");
+			rdbtnRombo.setBounds(521, 377, 127, 25);
+			panel.add(rdbtnRombo);
+			
+			JRadioButton rdbtnTriangulo = new JRadioButton("Triangulo");
+			rdbtnTriangulo.setBounds(683, 377, 127, 25);
+			panel.add(rdbtnTriangulo);
 			{
 				JPanel panel_1 = new JPanel();
-				panel_1.setBackground(Color.LIGHT_GRAY);
-				panel_1.setForeground(Color.WHITE);
-				panel_1.setBounds(148, 38, 536, 88);
+				panel_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+				panel_1.setBounds(138, 37, 544, 85);
 				panel.add(panel_1);
 			}
 		}
@@ -157,5 +255,4 @@ public class CrearPrisma extends JDialog {
 			}
 		}
 	}
-
 }

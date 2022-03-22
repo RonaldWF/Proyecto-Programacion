@@ -85,6 +85,7 @@ public class Inicio extends JDialog {
 						if(use.getPassword().equalsIgnoreCase(textContra.getText())) {
 							Principal frame = new Principal();
 							frame.setVisible(true);
+							dispose();
 						}
 						
 					}

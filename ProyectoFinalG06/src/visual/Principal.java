@@ -16,6 +16,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.GridBagConstraints;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.border.BevelBorder;
 
 public class Principal extends JFrame {
 
@@ -56,8 +59,9 @@ public class Principal extends JFrame {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel.add(panel_1, BorderLayout.NORTH);
-		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JMenuBar menuBar = new JMenuBar();
 		panel_1.add(menuBar);
