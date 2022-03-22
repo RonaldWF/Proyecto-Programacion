@@ -23,10 +23,10 @@ import javax.swing.border.MatteBorder;
 public class CrearPrisma extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textNombreEstudiante;
+	private JTextField textApellidoEstudiante;
+	private JTextField textEdadEstudiante;
+	private JTextField textMatricula;
 	private JRadioButton rdbEstudiante;
 	private JRadioButton rdbProfesor;
 	private JTextField textField_4;
@@ -35,6 +35,7 @@ public class CrearPrisma extends JDialog {
 	private JTextField textField_7;
 	private JPanel panelProfesor;
 	private JPanel panelEstudiante;
+	private JButton btnRegistrarEstudiante;
 
 	/**
 	 * Launch the application.
@@ -83,22 +84,22 @@ public class CrearPrisma extends JDialog {
 					panelEstudiante.add(lblNewLabel);
 				}
 				{
-					textField = new JTextField();
-					textField.setBounds(125, 10, 241, 22);
-					panelEstudiante.add(textField);
-					textField.setColumns(10);
+					textNombreEstudiante = new JTextField();
+					textNombreEstudiante.setBounds(125, 10, 241, 22);
+					panelEstudiante.add(textNombreEstudiante);
+					textNombreEstudiante.setColumns(10);
 				}
 				{
-					textField_1 = new JTextField();
-					textField_1.setBounds(125, 66, 241, 22);
-					panelEstudiante.add(textField_1);
-					textField_1.setColumns(10);
+					textApellidoEstudiante = new JTextField();
+					textApellidoEstudiante.setBounds(125, 66, 241, 22);
+					panelEstudiante.add(textApellidoEstudiante);
+					textApellidoEstudiante.setColumns(10);
 				}
 				{
-					textField_2 = new JTextField();
-					textField_2.setColumns(10);
-					textField_2.setBounds(125, 128, 241, 22);
-					panelEstudiante.add(textField_2);
+					textEdadEstudiante = new JTextField();
+					textEdadEstudiante.setColumns(10);
+					textEdadEstudiante.setBounds(125, 128, 241, 22);
+					panelEstudiante.add(textEdadEstudiante);
 				}
 				{
 					JLabel lblNewLabel_1 = new JLabel("Apellido:");
@@ -111,10 +112,10 @@ public class CrearPrisma extends JDialog {
 					panelEstudiante.add(lblEdad);
 				}
 				{
-					textField_3 = new JTextField();
-					textField_3.setBounds(538, 66, 116, 22);
-					panelEstudiante.add(textField_3);
-					textField_3.setColumns(10);
+					textMatricula = new JTextField();
+					textMatricula.setBounds(538, 66, 116, 22);
+					panelEstudiante.add(textMatricula);
+					textMatricula.setColumns(10);
 				}
 				{
 					JLabel lblNewLabel_2 = new JLabel("Matricula:");
@@ -122,14 +123,23 @@ public class CrearPrisma extends JDialog {
 					panelEstudiante.add(lblNewLabel_2);
 				}
 				{
-					JButton btnNewButton = new JButton("Registrar");
-					btnNewButton.setBounds(685, 142, 97, 25);
-					panelEstudiante.add(btnNewButton);
+					btnRegistrarEstudiante = new JButton("Registrar");
+					btnRegistrarEstudiante.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						//	Estudiante est = new Estudiante(textNombreEstudiante.getText(),text)
+							
+						}
+					});
+					btnRegistrarEstudiante.addMouseListener(new MouseAdapter() {
+						
+					});
+					btnRegistrarEstudiante.setBounds(685, 142, 97, 25);
+					panelEstudiante.add(btnRegistrarEstudiante);
 				}
 				{
-					JButton btnNewButton_1 = new JButton("Buscar");
-					btnNewButton_1.setBounds(557, 142, 97, 25);
-					panelEstudiante.add(btnNewButton_1);
+					JButton btnBuscarEstudiante = new JButton("Buscar");
+					btnBuscarEstudiante.setBounds(557, 142, 97, 25);
+					panelEstudiante.add(btnBuscarEstudiante);
 				}
 			}
 			{
