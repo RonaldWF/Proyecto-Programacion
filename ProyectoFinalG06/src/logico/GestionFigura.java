@@ -6,11 +6,13 @@ public class GestionFigura {
 private ArrayList<Prisma>prismas;
 private ArrayList<Usuario> usuarios;
 private ArrayList<Grupo> grupos;
+private ArrayList<Estudiante> estudiantes;
 private ArrayList<UsuarioGestion> usuariosGest;
 private int cantPrismas;
 private int cantUsuarios;
 private int cantGrupos;
 private int cantUsuariosGestion;
+private int cantEstudiantes;
 public static GestionFigura gestion;
 public GestionFigura() {
 	setPrismas(new ArrayList<Prisma>(100));
@@ -21,6 +23,8 @@ public GestionFigura() {
 	setCantUsuarios(0);
 	setCantGrupos(0);
 	setCantUsuariosGestion(0);
+	setEstudiantes(new ArrayList<Estudiante>(100));
+	setCantEstudiantes(0);
 }
 public int getCantGrupos() {
 	return cantGrupos;
@@ -43,6 +47,26 @@ public UsuarioGestion buscarUsuarioGestion(String user) {
 public void CrearUsuarioGestion(UsuarioGestion usuario) {
 	usuariosGest.add(usuario);
 	cantUsuariosGestion++;
+}
+public Estudiante BuscarEstudianteBymatricula(String matricula) {
+	Estudiante aux = null;
+	for(int i = 0; i < cantUsuarios;i++)
+	{
+		if(estudiantes.get(i).getMatricula().equalsIgnoreCase(matricula)) {
+			aux = estudiantes.get(i);
+		}
+	}
+	return aux;
+}
+public void RegistrarEstudiante(Estudiante estudiante) {
+	estudiantes.add(estudiante);
+	cantEstudiantes++;
+}
+public ArrayList<Estudiante> getEstudiantes() {
+	return estudiantes;
+}
+public void setEstudiantes(ArrayList<Estudiante> estudiantes) {
+	this.estudiantes = estudiantes;
 }
 public int getCantUsuariosGestion() {
 	return cantUsuariosGestion;
@@ -97,5 +121,11 @@ public boolean ExisteUsuarioGestion(String b) {
 		}
 	}
 		return encontrado;
+}
+public int getCantEstudiantes() {
+	return cantEstudiantes;
+}
+public void setCantEstudiantes(int cantEstudiantes) {
+	this.cantEstudiantes = cantEstudiantes;
 }
 }

@@ -8,6 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import logico.Estudiante;
+import logico.GestionFigura;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -126,8 +130,9 @@ public class CrearPrisma extends JDialog {
 					btnRegistrarEstudiante = new JButton("Registrar");
 					btnRegistrarEstudiante.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-						//	Estudiante est = new Estudiante(textNombreEstudiante.getText(),text)
-							
+							int edad = Integer.parseInt(textEdadEstudiante.getText());
+							Estudiante est = new Estudiante(textNombreEstudiante.getText(),textApellidoEstudiante.getText(),edad,textMatricula.getText());
+							GestionFigura.getInstance().RegistrarEstudiante(est);
 						}
 					});
 					btnRegistrarEstudiante.addMouseListener(new MouseAdapter() {
@@ -138,6 +143,17 @@ public class CrearPrisma extends JDialog {
 				}
 				{
 					JButton btnBuscarEstudiante = new JButton("Buscar");
+					btnBuscarEstudiante.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							if (GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText())!= null) {
+								Estudiante aux = GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText());
+								textNombreEstudiante.setText(aux.getNombre());
+								textApellidoEstudiante.setText(aux.getApellido());
+								textEdadEstudiante.setText(Integer.toString(aux.getEdad()));
+								textMatricula.setText(aux.getMatricula());
+							}
+						}
+					});
 					btnBuscarEstudiante.setBounds(557, 142, 97, 25);
 					panelEstudiante.add(btnBuscarEstudiante);
 				}

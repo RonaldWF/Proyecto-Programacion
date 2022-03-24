@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Estudiante extends Usuario {
 private ArrayList<Prisma>prismas;
 private String matricula;
-	public Estudiante(String nombre, String apellido, int edad,ArrayList<Prisma> prismas,String matricula) {
+	public Estudiante(String nombre, String apellido, int edad,String matricula) {
 		super(nombre, apellido, edad);
 		this.setPrismas(prismas);
 		this.setMatricula(matricula);
