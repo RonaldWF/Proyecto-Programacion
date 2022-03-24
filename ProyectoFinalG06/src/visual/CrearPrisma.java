@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import java.awt.Font;
 import java.awt.Color;
@@ -84,46 +85,46 @@ public class CrearPrisma extends JDialog {
 				panelEstudiante.setLayout(null);
 				{
 					JLabel lblNewLabel = new JLabel("Nomrbe:");
-					lblNewLabel.setBounds(43, 13, 70, 16);
+					lblNewLabel.setBounds(43, 69, 70, 16);
 					panelEstudiante.add(lblNewLabel);
 				}
 				{
 					textNombreEstudiante = new JTextField();
-					textNombreEstudiante.setBounds(125, 10, 241, 22);
+					textNombreEstudiante.setBounds(125, 66, 241, 22);
 					panelEstudiante.add(textNombreEstudiante);
 					textNombreEstudiante.setColumns(10);
 				}
 				{
 					textApellidoEstudiante = new JTextField();
-					textApellidoEstudiante.setBounds(125, 66, 241, 22);
+					textApellidoEstudiante.setBounds(125, 114, 241, 22);
 					panelEstudiante.add(textApellidoEstudiante);
 					textApellidoEstudiante.setColumns(10);
 				}
 				{
 					textEdadEstudiante = new JTextField();
 					textEdadEstudiante.setColumns(10);
-					textEdadEstudiante.setBounds(125, 128, 241, 22);
+					textEdadEstudiante.setBounds(539, 66, 170, 22);
 					panelEstudiante.add(textEdadEstudiante);
 				}
 				{
 					JLabel lblNewLabel_1 = new JLabel("Apellido:");
-					lblNewLabel_1.setBounds(43, 69, 56, 16);
+					lblNewLabel_1.setBounds(43, 114, 56, 16);
 					panelEstudiante.add(lblNewLabel_1);
 				}
 				{
 					JLabel lblEdad = new JLabel("Edad:");
-					lblEdad.setBounds(43, 131, 56, 16);
+					lblEdad.setBounds(471, 69, 56, 16);
 					panelEstudiante.add(lblEdad);
 				}
 				{
 					textMatricula = new JTextField();
-					textMatricula.setBounds(538, 66, 116, 22);
+					textMatricula.setBounds(125, 10, 241, 22);
 					panelEstudiante.add(textMatricula);
 					textMatricula.setColumns(10);
 				}
 				{
 					JLabel lblNewLabel_2 = new JLabel("Matricula:");
-					lblNewLabel_2.setBounds(446, 69, 70, 16);
+					lblNewLabel_2.setBounds(39, 13, 70, 16);
 					panelEstudiante.add(lblNewLabel_2);
 				}
 				{
@@ -133,7 +134,10 @@ public class CrearPrisma extends JDialog {
 							int edad = Integer.parseInt(textEdadEstudiante.getText());
 							Estudiante est = new Estudiante(textNombreEstudiante.getText(),textApellidoEstudiante.getText(),edad,textMatricula.getText());
 							GestionFigura.getInstance().RegistrarEstudiante(est);
+							JOptionPane.showMessageDialog(panel, "Registro con Exito");
+							clear();
 						}
+
 					});
 					btnRegistrarEstudiante.addMouseListener(new MouseAdapter() {
 						
@@ -196,39 +200,39 @@ public class CrearPrisma extends JDialog {
 			panel.add(panelProfesor);
 			
 			JLabel label = new JLabel("Nomrbe:");
-			label.setBounds(43, 13, 70, 16);
+			label.setBounds(43, 69, 70, 16);
 			panelProfesor.add(label);
 			
 			textField_4 = new JTextField();
 			textField_4.setColumns(10);
-			textField_4.setBounds(125, 10, 241, 22);
+			textField_4.setBounds(125, 66, 241, 22);
 			panelProfesor.add(textField_4);
 			
 			textField_5 = new JTextField();
 			textField_5.setColumns(10);
-			textField_5.setBounds(125, 66, 241, 22);
+			textField_5.setBounds(125, 114, 241, 22);
 			panelProfesor.add(textField_5);
 			
 			textField_6 = new JTextField();
 			textField_6.setColumns(10);
-			textField_6.setBounds(125, 128, 241, 22);
+			textField_6.setBounds(539, 66, 170, 22);
 			panelProfesor.add(textField_6);
 			
 			JLabel label_1 = new JLabel("Apellido:");
-			label_1.setBounds(43, 69, 56, 16);
+			label_1.setBounds(43, 114, 56, 16);
 			panelProfesor.add(label_1);
 			
 			JLabel label_2 = new JLabel("Edad:");
-			label_2.setBounds(43, 131, 56, 16);
+			label_2.setBounds(471, 69, 56, 16);
 			panelProfesor.add(label_2);
 			
 			textField_7 = new JTextField();
 			textField_7.setColumns(10);
-			textField_7.setBounds(538, 66, 116, 22);
+			textField_7.setBounds(125, 10, 241, 22);
 			panelProfesor.add(textField_7);
 			
 			JLabel lblCedula = new JLabel("Cedula:");
-			lblCedula.setBounds(446, 69, 70, 16);
+			lblCedula.setBounds(39, 13, 70, 16);
 			panelProfesor.add(lblCedula);
 			
 			JButton button = new JButton("Registrar");
@@ -280,5 +284,12 @@ public class CrearPrisma extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	private void clear() {
+		textNombreEstudiante.setText("");
+		textApellidoEstudiante.setText("");
+		textMatricula.setText("");
+		textEdadEstudiante.setText("");
+		
 	}
 }

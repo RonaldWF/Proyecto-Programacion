@@ -50,7 +50,7 @@ public void CrearUsuarioGestion(UsuarioGestion usuario) {
 }
 public Estudiante BuscarEstudianteBymatricula(String matricula) {
 	Estudiante aux = null;
-	for(int i = 0; i < cantUsuarios;i++)
+	for(int i = 0; i < cantEstudiantes;i++)
 	{
 		if(estudiantes.get(i).getMatricula().equalsIgnoreCase(matricula)) {
 			aux = estudiantes.get(i);
@@ -61,6 +61,7 @@ public Estudiante BuscarEstudianteBymatricula(String matricula) {
 public void RegistrarEstudiante(Estudiante estudiante) {
 	estudiantes.add(estudiante);
 	cantEstudiantes++;
+	cantUsuarios++;
 }
 public ArrayList<Estudiante> getEstudiantes() {
 	return estudiantes;
