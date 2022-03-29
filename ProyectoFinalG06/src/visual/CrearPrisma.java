@@ -71,7 +71,7 @@ public class CrearPrisma extends JDialog {
 	private JPanel pnlTriangulo;
 	private JPanel pnlTrapecio;
 	private JPanel pnlCuadrado;
-	private int hola;
+	private int hola=50;
 
 	/**
 	 * Launch the application.
