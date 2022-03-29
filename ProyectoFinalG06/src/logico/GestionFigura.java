@@ -8,11 +8,13 @@ private ArrayList<Usuario> usuarios;
 private ArrayList<Grupo> grupos;
 private ArrayList<Estudiante> estudiantes;
 private ArrayList<UsuarioGestion> usuariosGest;
+private ArrayList<Profesor>profesores;
 private int cantPrismas;
 private int cantUsuarios;
 private int cantGrupos;
 private int cantUsuariosGestion;
 private int cantEstudiantes;
+private int cantProfesores;
 public static GestionFigura gestion;
 public GestionFigura() {
 	setPrismas(new ArrayList<Prisma>(100));
@@ -63,6 +65,24 @@ public void RegistrarEstudiante(Estudiante estudiante) {
 	cantEstudiantes++;
 	cantUsuarios++;
 }
+
+public Profesor BuscarProfesorByCedula(String cedula) {
+	Profesor aux = null;
+	for(int i = 0; i < cantProfesores;i++)
+	{
+		if(profesores.get(i).getCedula().equalsIgnoreCase(cedula)) {
+			aux = profesores.get(i);
+		}
+	}
+	return aux;
+}
+
+public void RegistrarProfesor(Profesor profesor) {
+	profesores.add(profesor);
+	cantProfesores++;
+	cantUsuarios++;
+}
+
 public ArrayList<Estudiante> getEstudiantes() {
 	return estudiantes;
 }

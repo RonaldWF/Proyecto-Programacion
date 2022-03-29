@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 
 import logico.Estudiante;
 import logico.GestionFigura;
+import logico.Profesor;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,7 @@ import javax.swing.border.MatteBorder;
 
 public class CrearPrisma extends JDialog {
 
+	protected static final int ArrayList = 0;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textNombreEstudiante;
 	private JTextField textApellidoEstudiante;
@@ -34,13 +36,13 @@ public class CrearPrisma extends JDialog {
 	private JTextField textMatricula;
 	private JRadioButton rdbEstudiante;
 	private JRadioButton rdbProfesor;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
 	private JPanel panelProfesor;
 	private JPanel panelEstudiante;
 	private JButton btnRegistrarEstudiante;
+	private JTextField textNombreProfesor;
+	private JTextField textCedula;
+	private JTextField textApellidoProfesor;
+	private JTextField textEdadProfesor;
 
 	/**
 	 * Launch the application.
@@ -84,7 +86,7 @@ public class CrearPrisma extends JDialog {
 				panel.add(panelEstudiante);
 				panelEstudiante.setLayout(null);
 				{
-					JLabel lblNewLabel = new JLabel("Nomrbe:");
+					JLabel lblNewLabel = new JLabel("Nombre:");
 					lblNewLabel.setBounds(43, 69, 70, 16);
 					panelEstudiante.add(lblNewLabel);
 				}
@@ -199,24 +201,24 @@ public class CrearPrisma extends JDialog {
 			panelProfesor.setBounds(12, 158, 809, 180);
 			panel.add(panelProfesor);
 			
-			JLabel label = new JLabel("Nomrbe:");
-			label.setBounds(43, 69, 70, 16);
-			panelProfesor.add(label);
+			JLabel lblNombre = new JLabel("Nombre:");
+			lblNombre.setBounds(43, 69, 70, 16);
+			panelProfesor.add(lblNombre);
 			
-			textField_4 = new JTextField();
-			textField_4.setColumns(10);
-			textField_4.setBounds(125, 66, 241, 22);
-			panelProfesor.add(textField_4);
+			textNombreProfesor = new JTextField();
+			textNombreProfesor.setColumns(10);
+			textNombreProfesor.setBounds(125, 66, 241, 22);
+			panelProfesor.add(textNombreProfesor);
 			
-			textField_5 = new JTextField();
-			textField_5.setColumns(10);
-			textField_5.setBounds(125, 114, 241, 22);
-			panelProfesor.add(textField_5);
+			textApellidoProfesor = new JTextField();
+			textApellidoProfesor.setColumns(10);
+			textApellidoProfesor.setBounds(125, 114, 241, 22);
+			panelProfesor.add(textApellidoProfesor);
 			
-			textField_6 = new JTextField();
-			textField_6.setColumns(10);
-			textField_6.setBounds(539, 66, 170, 22);
-			panelProfesor.add(textField_6);
+			textEdadProfesor = new JTextField();
+			textEdadProfesor.setColumns(10);
+			textEdadProfesor.setBounds(539, 66, 170, 22);
+			panelProfesor.add(textEdadProfesor);
 			
 			JLabel label_1 = new JLabel("Apellido:");
 			label_1.setBounds(43, 114, 56, 16);
@@ -226,22 +228,42 @@ public class CrearPrisma extends JDialog {
 			label_2.setBounds(471, 69, 56, 16);
 			panelProfesor.add(label_2);
 			
-			textField_7 = new JTextField();
-			textField_7.setColumns(10);
-			textField_7.setBounds(125, 10, 241, 22);
-			panelProfesor.add(textField_7);
+			textCedula = new JTextField();
+			textCedula.setColumns(10);
+			textCedula.setBounds(125, 10, 241, 22);
+			panelProfesor.add(textCedula);
 			
 			JLabel lblCedula = new JLabel("Cedula:");
 			lblCedula.setBounds(39, 13, 70, 16);
 			panelProfesor.add(lblCedula);
 			
-			JButton button = new JButton("Registrar");
-			button.setBounds(685, 142, 97, 25);
-			panelProfesor.add(button);
+			JButton btnRegistrarProfesor = new JButton("Registrar");   //Se necesita agregar algo en el campo prismas, no se que meter ahi
+			btnRegistrarProfesor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int edad = Integer.parseInt(textEdadProfesor.getText()); 
+					//Profesor pro = new Profesor(textNombreProfesor.getText(), textApellidoProfesor.getText(), edad, prismas, textCedula.getText());
+					//GestionFigura.getInstance().RegistrarProfesor(pro);
+					JOptionPane.showMessageDialog(panel, "Registro con Exito");
+					clear();
+				}
+			});
+			btnRegistrarProfesor.setBounds(685, 142, 97, 25);
+			panelProfesor.add(btnRegistrarProfesor);
 			
-			JButton button_1 = new JButton("Buscar");
-			button_1.setBounds(557, 142, 97, 25);
-			panelProfesor.add(button_1);
+			JButton btnBuscarProfesor = new JButton("Buscar");
+			btnBuscarProfesor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText())!= null) {
+						Profesor aux = GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText());
+						textNombreProfesor.setText(aux.getNombre());
+						textApellidoProfesor.setText(aux.getApellido());
+						textEdadProfesor.setText(Integer.toString(aux.getEdad()));
+						textCedula.setText(aux.getCedula());
+					}
+				}
+			});
+			btnBuscarProfesor.setBounds(557, 142, 97, 25);
+			panelProfesor.add(btnBuscarProfesor);
 			
 			JRadioButton rdbtnNewRadioButton = new JRadioButton("Cuadrado");
 			rdbtnNewRadioButton.setBounds(35, 377, 127, 25);
@@ -290,6 +312,9 @@ public class CrearPrisma extends JDialog {
 		textApellidoEstudiante.setText("");
 		textMatricula.setText("");
 		textEdadEstudiante.setText("");
-		
+		textNombreProfesor.setText("");
+		textApellidoProfesor.setText("");
+		textCedula.setText("");
+		textEdadProfesor.setText("");
 	}
 }
