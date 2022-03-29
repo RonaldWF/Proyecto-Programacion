@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -43,6 +44,34 @@ public class CrearPrisma extends JDialog {
 	private JTextField textCedula;
 	private JTextField textApellidoProfesor;
 	private JTextField textEdadProfesor;
+	private JRadioButton rdbtnCuadrado;
+	private JRadioButton rdbtnRectangulo;
+	private JRadioButton rdbtnTrapecio;
+	private JRadioButton rdbtnRombo;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTextField textField_12;
+	private JTextField textField_13;
+	private JTextField textField_14;
+	private JTextField textField_15;
+	private JTextField textField_16;
+	private JRadioButton rdbtnTriangulo;
+	private JPanel pnlRectangulo;
+	private JPanel pnlRombo;
+	private JPanel pnlTriangulo;
+	private JPanel pnlTrapecio;
+	private JPanel pnlCuadrado;
+	private int hola;
 
 	/**
 	 * Launch the application.
@@ -73,11 +102,37 @@ public class CrearPrisma extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
-				JPanel panel_1 = new JPanel();
-				panel_1.setBorder(new TitledBorder(null, "Cuadrado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_1.setBounds(12, 422, 809, 232);
-				panel.add(panel_1);
-				panel_1.setLayout(null);
+				pnlCuadrado = new JPanel();
+				pnlCuadrado.setBorder(new TitledBorder(null, "Cuadrado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				pnlCuadrado.setBounds(12, 422, 809, 232);
+				panel.add(pnlCuadrado);
+				pnlCuadrado.setLayout(null);
+				
+				JLabel lblNewLabel_3 = new JLabel("Vertice X:");
+				lblNewLabel_3.setBounds(10, 41, 81, 14);
+				pnlCuadrado.add(lblNewLabel_3);
+				
+				JLabel lblNewLabel_4 = new JLabel("Vertice Y:");
+				lblNewLabel_4.setBounds(10, 80, 81, 14);
+				pnlCuadrado.add(lblNewLabel_4);
+				
+				textField = new JTextField();
+				textField.setBounds(107, 38, 221, 20);
+				pnlCuadrado.add(textField);
+				textField.setColumns(10);
+				
+				textField_1 = new JTextField();
+				textField_1.setBounds(107, 77, 221, 20);
+				pnlCuadrado.add(textField_1);
+				textField_1.setColumns(10);
+				
+				JButton btnNewButton = new JButton("Buscar");
+				btnNewButton.setBounds(557, 198, 97, 23);
+				pnlCuadrado.add(btnNewButton);
+				
+				JButton btnNewButton_1 = new JButton("Registrar");
+				btnNewButton_1.setBounds(685, 198, 97, 23);
+				pnlCuadrado.add(btnNewButton_1);
 			}
 			{
 				panelEstudiante = new JPanel();
@@ -265,31 +320,275 @@ public class CrearPrisma extends JDialog {
 			btnBuscarProfesor.setBounds(557, 142, 97, 25);
 			panelProfesor.add(btnBuscarProfesor);
 			
-			JRadioButton rdbtnNewRadioButton = new JRadioButton("Cuadrado");
-			rdbtnNewRadioButton.setBounds(35, 377, 127, 25);
-			panel.add(rdbtnNewRadioButton);
+			rdbtnCuadrado = new JRadioButton("Cuadrado");
+			rdbtnCuadrado.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					pnlCuadrado.setVisible(true);
+					pnlRectangulo.setVisible(false);
+					pnlRombo.setVisible(false);
+					pnlTrapecio.setVisible(false);
+					pnlTriangulo.setVisible(false);
+					rdbtnCuadrado.setSelected(true);
+					rdbtnRectangulo.setSelected(false);
+					rdbtnRombo.setSelected(false);
+					rdbtnTrapecio.setSelected(false);
+					rdbtnTriangulo.setSelected(false);
+					
+					
+					
+					
+				}
+			});
 			
-			JRadioButton rdbtnRectangulo = new JRadioButton("Rectangulo");
+			
+			rdbtnCuadrado.setBounds(35, 377, 127, 25);
+			panel.add(rdbtnCuadrado);
+			
+			rdbtnRectangulo = new JRadioButton("Rectangulo");
+			rdbtnRectangulo.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					pnlCuadrado.setVisible(false);
+					pnlRectangulo.setVisible(true);
+					pnlRombo.setVisible(false);
+					pnlTrapecio.setVisible(false);
+					pnlTriangulo.setVisible(false);
+					rdbtnCuadrado.setSelected(false);
+					rdbtnRectangulo.setSelected(true);
+					rdbtnRombo.setSelected(false);
+					rdbtnTrapecio.setSelected(false);
+					rdbtnTriangulo.setSelected(false);
+					
+					
+				}
+			});
 			rdbtnRectangulo.setBounds(197, 377, 127, 25);
 			panel.add(rdbtnRectangulo);
 			
-			JRadioButton rdbtnTrapecio = new JRadioButton("Trapecio");
+			rdbtnTrapecio = new JRadioButton("Trapecio");
+			rdbtnTrapecio.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					pnlCuadrado.setVisible(false);
+					pnlRectangulo.setVisible(false);
+					pnlRombo.setVisible(false);
+					pnlTrapecio.setVisible(true);
+					pnlTriangulo.setVisible(false);
+					rdbtnCuadrado.setSelected(false);
+					rdbtnRectangulo.setSelected(false);
+					rdbtnRombo.setSelected(false);
+					rdbtnTrapecio.setSelected(true);
+					rdbtnTriangulo.setSelected(false);
+					
+				}
+			});
 			rdbtnTrapecio.setBounds(359, 377, 127, 25);
 			panel.add(rdbtnTrapecio);
 			
-			JRadioButton rdbtnRombo = new JRadioButton("Rombo");
+			rdbtnRombo = new JRadioButton("Rombo");
 			rdbtnRombo.setBounds(521, 377, 127, 25);
 			panel.add(rdbtnRombo);
 			
-			JRadioButton rdbtnTriangulo = new JRadioButton("Triangulo");
+			rdbtnTriangulo = new JRadioButton("Triangulo");
 			rdbtnTriangulo.setBounds(683, 377, 127, 25);
 			panel.add(rdbtnTriangulo);
 			{
-				JPanel panel_1 = new JPanel();
-				panel_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-				panel_1.setBounds(138, 37, 544, 85);
-				panel.add(panel_1);
+				JPanel pnlEstudianteProfe = new JPanel();
+				pnlEstudianteProfe.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+				pnlEstudianteProfe.setBounds(138, 37, 544, 85);
+				panel.add(pnlEstudianteProfe);
 			}
+			
+			pnlRectangulo = new JPanel();
+			pnlRectangulo.setBounds(12, 422, 809, 232);
+			panel.add(pnlRectangulo);
+			pnlRectangulo.setLayout(null);
+			
+			JLabel lblNewLabel_5 = new JLabel("Vertice X:");
+			lblNewLabel_5.setBounds(10, 41, 81, 14);
+			pnlRectangulo.add(lblNewLabel_5);
+			
+			textField_2 = new JTextField();
+			textField_2.setBounds(107, 38, 221, 20);
+			pnlRectangulo.add(textField_2);
+			textField_2.setColumns(10);
+			
+			textField_3 = new JTextField();
+			textField_3.setBounds(107, 77, 221, 20);
+			pnlRectangulo.add(textField_3);
+			textField_3.setColumns(10);
+			
+			JButton btnNewButton_2 = new JButton("Buscar");
+			btnNewButton_2.setBounds(557, 198, 97, 23);
+			pnlRectangulo.add(btnNewButton_2);
+			
+			JButton btnNewButton_3 = new JButton("Registrar");
+			btnNewButton_3.setBounds(685, 198, 97, 23);
+			pnlRectangulo.add(btnNewButton_3);
+			
+			JLabel lblNewLabel_7 = new JLabel("Vertice Y:");
+			lblNewLabel_7.setBounds(10, 80, 81, 14);
+			pnlRectangulo.add(lblNewLabel_7);
+			
+			JLabel lblNewLabel_8 = new JLabel("Vertice Z:");
+			lblNewLabel_8.setBounds(10, 110, 81, 14);
+			pnlRectangulo.add(lblNewLabel_8);
+			
+			textField_16 = new JTextField();
+			textField_16.setBounds(107, 110, 221, 20);
+			pnlRectangulo.add(textField_16);
+			textField_16.setColumns(10);
+			
+			pnlTrapecio = new JPanel();
+			pnlTrapecio.setBounds(12, 422, 809, 232);
+			panel.add(pnlTrapecio);
+			pnlTrapecio.setLayout(null);
+			
+			JLabel lblNewLabel_6 = new JLabel(" Vertice TX:");
+			lblNewLabel_6.setSize(81, 14);
+			lblNewLabel_6.setLocation(10, 41);
+			pnlTrapecio.add(lblNewLabel_6);
+			
+			JLabel lblNewLabel_9 = new JLabel("Vertice TY:");
+			lblNewLabel_9.setBounds(10, 80, 81, 14);
+			pnlTrapecio.add(lblNewLabel_9);
+			
+			JLabel lblNewLabel_10 = new JLabel("Vertice TZ:");
+			lblNewLabel_10.setBounds(10, 110, 81, 14);
+			pnlTrapecio.add(lblNewLabel_10);
+			
+			JLabel lblNewLabel_11 = new JLabel("Vertice T:");
+			lblNewLabel_11.setBounds(10, 130, 81, 14);
+			pnlTrapecio.add(lblNewLabel_11);
+			
+			JLabel lblNewLabel_12 = new JLabel("Altura T:");
+			lblNewLabel_12.setBounds(10, 160, 81, 14);
+			pnlTrapecio.add(lblNewLabel_12);
+			
+			textField_4 = new JTextField();
+			textField_4.setBounds(107, 38, 221, 20);
+			pnlTrapecio.add(textField_4);
+			textField_4.setColumns(10);
+			
+			textField_5 = new JTextField();
+			textField_5.setBounds(107, 77, 221, 20);
+			pnlTrapecio.add(textField_5);
+			textField_5.setColumns(10);
+			
+			textField_6 = new JTextField();
+			textField_6.setBounds(107, 104, 221, 20);
+			pnlTrapecio.add(textField_6);
+			textField_6.setColumns(10);
+			
+			textField_7 = new JTextField();
+			textField_7.setBounds(107, 130, 221, 20);
+			pnlTrapecio.add(textField_7);
+			textField_7.setColumns(10);
+			
+			textField_8 = new JTextField();
+			textField_8.setBounds(107, 160, 221, 20);
+			pnlTrapecio.add(textField_8);
+			textField_8.setColumns(10);
+			
+			JButton btnNewButton_4 = new JButton("Buscar");
+			btnNewButton_4.setBounds(557, 198, 97, 23);
+			pnlTrapecio.add(btnNewButton_4);
+			
+			JButton btnNewButton_5 = new JButton("Registrar");
+			btnNewButton_5.setBounds(685, 198, 97, 23);
+			pnlTrapecio.add(btnNewButton_5);
+			
+			pnlRombo = new JPanel();
+			pnlRombo.setBounds(0, 0, 809, 232);
+			panel.add(pnlRombo);
+			pnlRombo.setLayout(null);
+			
+			JLabel label_3 = new JLabel("New label");
+			label_3.setBounds(22, 463, 81, 14);
+			pnlRombo.add(label_3);
+			
+			JLabel label_4 = new JLabel("New label");
+			label_4.setBounds(22, 502, 81, 14);
+			pnlRombo.add(label_4);
+			
+			JLabel label_5 = new JLabel("New label");
+			label_5.setBounds(22, 532, 81, 14);
+			pnlRombo.add(label_5);
+			
+			JLabel label_6 = new JLabel("New label");
+			label_6.setBounds(22, 557, 81, 14);
+			pnlRombo.add(label_6);
+			
+			textField_9 = new JTextField();
+			textField_9.setBounds(119, 460, 221, 20);
+			textField_9.setColumns(10);
+			pnlRombo.add(textField_9);
+			
+			textField_10 = new JTextField();
+			textField_10.setBounds(119, 499, 221, 20);
+			textField_10.setColumns(10);
+			pnlRombo.add(textField_10);
+			
+			textField_11 = new JTextField();
+			textField_11.setBounds(119, 532, 221, 20);
+			textField_11.setColumns(10);
+			pnlRombo.add(textField_11);
+			
+			textField_12 = new JTextField();
+			textField_12.setBounds(119, 577, 221, 20);
+			textField_12.setColumns(10);
+			pnlRombo.add(textField_12);
+			
+			JButton button = new JButton("New button");
+			button.setBounds(569, 620, 97, 23);
+			pnlRombo.add(button);
+			
+			JButton button_1 = new JButton("New button");
+			button_1.setBounds(697, 620, 97, 23);
+			pnlRombo.add(button_1);
+			
+			pnlTriangulo = new JPanel();
+			pnlTriangulo.setLayout(null);
+			pnlTriangulo.setBounds(0, 0, 809, 232);
+			panel.add(pnlTriangulo);
+			
+			JLabel label = new JLabel("Vertice X:");
+			label.setBounds(22, 463, 81, 14);
+			pnlTriangulo.add(label);
+			
+			textField_13 = new JTextField();
+			textField_13.setColumns(10);
+			textField_13.setBounds(119, 460, 221, 20);
+			pnlTriangulo.add(textField_13);
+			
+			textField_14 = new JTextField();
+			textField_14.setColumns(10);
+			textField_14.setBounds(107, 499, 86, 20);
+			pnlTriangulo.add(textField_14);
+			
+			JButton button_2 = new JButton("New button");
+			button_2.setBounds(569, 620, 97, 23);
+			pnlTriangulo.add(button_2);
+			
+			JButton button_3 = new JButton("New button");
+			button_3.setBounds(697, 620, 97, 23);
+			pnlTriangulo.add(button_3);
+			
+			JLabel label_7 = new JLabel("New label");
+			label_7.setBounds(22, 502, 81, 14);
+			pnlTriangulo.add(label_7);
+			
+			JLabel label_8 = new JLabel("New label");
+			label_8.setBounds(22, 532, 81, 14);
+			pnlTriangulo.add(label_8);
+			
+			textField_15 = new JTextField();
+			textField_15.setBounds(119, 532, 221, 20);
+			pnlTriangulo.add(textField_15);
+			textField_15.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
