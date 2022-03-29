@@ -19,6 +19,8 @@ import java.awt.event.MouseEvent;
 import java.awt.GridBagConstraints;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
@@ -73,6 +75,12 @@ public class Principal extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Crear Prisma");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			CrearPrisma dialog = new CrearPrisma();
+			dialog.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_4);
 		
 		JMenu mnNewMenu_3 = new JMenu("Grupo");
@@ -87,6 +95,15 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Lista de Prismas");
 		mnNewMenu_1.add(mntmNewMenuItem_1);
 		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Lista de Estudiantes");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaEstudiantes dialog = new ListaEstudiantes();
+				dialog.setVisible(true);
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_5);
+		
 		JMenu mnNewMenu_2 = new JMenu("Profesor");
 		menuBar.add(mnNewMenu_2);
 		
@@ -98,5 +115,14 @@ public class Principal extends JFrame {
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Lista de profesores");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaProfesores dialog = new ListaProfesores();
+				dialog.setVisible(true);
+			}
+		});
+		mnNewMenu_2.add(mntmNewMenuItem_6);
 	}
 }

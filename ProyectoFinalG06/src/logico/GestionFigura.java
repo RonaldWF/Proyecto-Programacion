@@ -26,6 +26,7 @@ public GestionFigura() {
 	setCantGrupos(0);
 	setCantUsuariosGestion(0);
 	setEstudiantes(new ArrayList<Estudiante>(100));
+	setProfesores(new ArrayList<Profesor>(100));
 	setCantEstudiantes(0);
 }
 public int getCantGrupos() {
@@ -46,6 +47,7 @@ public UsuarioGestion buscarUsuarioGestion(String user) {
 	}
 	return usuario;
 }
+
 public void CrearUsuarioGestion(UsuarioGestion usuario) {
 	usuariosGest.add(usuario);
 	cantUsuariosGestion++;
@@ -81,6 +83,18 @@ public void RegistrarProfesor(Profesor profesor) {
 	profesores.add(profesor);
 	cantProfesores++;
 	cantUsuarios++;
+}
+public ArrayList<Profesor> getProfesores() {
+	return profesores;
+}
+public void setProfesores(ArrayList<Profesor> profesores) {
+	this.profesores = profesores;
+}
+public int getCantProfesores() {
+	return cantProfesores;
+}
+public void setCantProfesores(int cantProfesores) {
+	this.cantProfesores = cantProfesores;
 }
 
 public ArrayList<Estudiante> getEstudiantes() {

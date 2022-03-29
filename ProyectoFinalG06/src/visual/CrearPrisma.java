@@ -241,8 +241,8 @@ public class CrearPrisma extends JDialog {
 			btnRegistrarProfesor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int edad = Integer.parseInt(textEdadProfesor.getText()); 
-					//Profesor pro = new Profesor(textNombreProfesor.getText(), textApellidoProfesor.getText(), edad, prismas, textCedula.getText());
-					//GestionFigura.getInstance().RegistrarProfesor(pro);
+					Profesor pro = new Profesor(textNombreProfesor.getText(), textApellidoProfesor.getText(), edad, textCedula.getText());
+					GestionFigura.getInstance().RegistrarProfesor(pro);
 					JOptionPane.showMessageDialog(panel, "Registro con Exito");
 					clear();
 				}
