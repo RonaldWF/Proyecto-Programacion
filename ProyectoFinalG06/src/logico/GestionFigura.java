@@ -16,6 +16,7 @@ private int cantUsuariosGestion;
 private int cantEstudiantes;
 private int cantProfesores;
 public static GestionFigura gestion;
+private int hola;
 public GestionFigura() {
 	setPrismas(new ArrayList<Prisma>(100));
 	setUsuarios(new ArrayList<Usuario>(100));
