@@ -26,6 +26,7 @@ import javax.swing.border.LineBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.MatteBorder;
+import javax.swing.ImageIcon;
 
 public class CrearPrisma extends JDialog {
 
@@ -35,8 +36,6 @@ public class CrearPrisma extends JDialog {
 	private JTextField textApellidoEstudiante;
 	private JTextField textEdadEstudiante;
 	private JTextField textMatricula;
-	private JRadioButton rdbEstudiante;
-	private JRadioButton rdbProfesor;
 	private JPanel panelProfesor;
 	private JPanel panelEstudiante;
 	private JButton btnRegistrarEstudiante;
@@ -219,36 +218,6 @@ public class CrearPrisma extends JDialog {
 					panelEstudiante.add(btnBuscarEstudiante);
 				}
 			}
-			{
-				rdbEstudiante = new JRadioButton("Estudiante");
-				rdbEstudiante.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						rdbProfesor.setSelected(false);
-						panelEstudiante.setVisible(true);
-						panelProfesor.setVisible(false);
-						
-					}
-					
-				});
-				rdbEstudiante.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				rdbEstudiante.setBounds(182, 68, 145, 25);
-				panel.add(rdbEstudiante);
-			}
-			{
-				rdbProfesor = new JRadioButton("Profesor");
-				rdbProfesor.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent arg0) {
-						rdbEstudiante.setSelected(false);
-						panelProfesor.setVisible(true);
-						panelEstudiante.setVisible(false);
-					}
-				});
-				rdbProfesor.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				rdbProfesor.setBounds(509, 68, 145, 25);
-				panel.add(rdbProfesor);
-			}
 			
 			panelProfesor = new JPanel();
 			panelProfesor.setLayout(null);
@@ -395,12 +364,6 @@ public class CrearPrisma extends JDialog {
 			rdbtnTriangulo = new JRadioButton("Triangulo");
 			rdbtnTriangulo.setBounds(683, 377, 127, 25);
 			panel.add(rdbtnTriangulo);
-			{
-				JPanel pnlEstudianteProfe = new JPanel();
-				pnlEstudianteProfe.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-				pnlEstudianteProfe.setBounds(138, 37, 544, 85);
-				panel.add(pnlEstudianteProfe);
-			}
 			
 			pnlRectangulo = new JPanel();
 			pnlRectangulo.setBounds(12, 422, 809, 232);
@@ -501,8 +464,48 @@ public class CrearPrisma extends JDialog {
 			btnNewButton_5.setBounds(685, 198, 97, 23);
 			pnlTrapecio.add(btnNewButton_5);
 			
+			pnlTriangulo = new JPanel();
+			pnlTriangulo.setLayout(null);
+			pnlTriangulo.setBounds(12, 422, 809, 232);
+			panel.add(pnlTriangulo);
+			
+			JLabel label = new JLabel("Vertice X:");
+			label.setBounds(22, 463, 81, 14);
+			pnlTriangulo.add(label);
+			
+			textField_13 = new JTextField();
+			textField_13.setColumns(10);
+			textField_13.setBounds(119, 460, 221, 20);
+			pnlTriangulo.add(textField_13);
+			
+			textField_14 = new JTextField();
+			textField_14.setColumns(10);
+			textField_14.setBounds(107, 499, 86, 20);
+			pnlTriangulo.add(textField_14);
+			
+			JButton button_2 = new JButton("New button");
+			button_2.setBounds(569, 620, 97, 23);
+			pnlTriangulo.add(button_2);
+			
+			JButton button_3 = new JButton("New button");
+			button_3.setBounds(697, 620, 97, 23);
+			pnlTriangulo.add(button_3);
+			
+			JLabel label_7 = new JLabel("New label");
+			label_7.setBounds(22, 502, 81, 14);
+			pnlTriangulo.add(label_7);
+			
+			JLabel label_8 = new JLabel("New label");
+			label_8.setBounds(22, 532, 81, 14);
+			pnlTriangulo.add(label_8);
+			
+			textField_15 = new JTextField();
+			textField_15.setBounds(119, 532, 221, 20);
+			pnlTriangulo.add(textField_15);
+			textField_15.setColumns(10);
+			
 			pnlRombo = new JPanel();
-			pnlRombo.setBounds(0, 0, 809, 232);
+			pnlRombo.setBounds(12, 422, 809, 232);
 			panel.add(pnlRombo);
 			pnlRombo.setLayout(null);
 			
@@ -550,45 +553,10 @@ public class CrearPrisma extends JDialog {
 			button_1.setBounds(697, 620, 97, 23);
 			pnlRombo.add(button_1);
 			
-			pnlTriangulo = new JPanel();
-			pnlTriangulo.setLayout(null);
-			pnlTriangulo.setBounds(0, 0, 809, 232);
-			panel.add(pnlTriangulo);
-			
-			JLabel label = new JLabel("Vertice X:");
-			label.setBounds(22, 463, 81, 14);
-			pnlTriangulo.add(label);
-			
-			textField_13 = new JTextField();
-			textField_13.setColumns(10);
-			textField_13.setBounds(119, 460, 221, 20);
-			pnlTriangulo.add(textField_13);
-			
-			textField_14 = new JTextField();
-			textField_14.setColumns(10);
-			textField_14.setBounds(107, 499, 86, 20);
-			pnlTriangulo.add(textField_14);
-			
-			JButton button_2 = new JButton("New button");
-			button_2.setBounds(569, 620, 97, 23);
-			pnlTriangulo.add(button_2);
-			
-			JButton button_3 = new JButton("New button");
-			button_3.setBounds(697, 620, 97, 23);
-			pnlTriangulo.add(button_3);
-			
-			JLabel label_7 = new JLabel("New label");
-			label_7.setBounds(22, 502, 81, 14);
-			pnlTriangulo.add(label_7);
-			
-			JLabel label_8 = new JLabel("New label");
-			label_8.setBounds(22, 532, 81, 14);
-			pnlTriangulo.add(label_8);
-			
-			textField_15 = new JTextField();
-			textField_15.setBounds(119, 532, 221, 20);
-			pnlTriangulo.add(textField_15);
-			textField_15.setColumns(10);
+			JLabel lblNewLabel_13 = new JLabel("");
+			lblNewLabel_13.setIcon(new ImageIcon("C:\\Users\\ronal\\Downloads\\Prisma-Logo-1 (1).png"));
+			lblNewLabel_13.setBounds(277, 38, 283, 88);
+			panel.add(lblNewLabel_13);
 		}
 		{
 			JPanel buttonPane = new JPanel();

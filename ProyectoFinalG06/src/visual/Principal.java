@@ -63,7 +63,7 @@ public class Principal extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel.add(panel_1, BorderLayout.NORTH);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JMenuBar menuBar = new JMenuBar();
 		panel_1.add(menuBar);
@@ -88,6 +88,9 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Lista de Prismas");
 		mnNewMenu_3.add(mntmNewMenuItem_3);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Crear Grupo");
+		mnNewMenu_3.add(mntmNewMenuItem_7);
 		
 		JMenu mnNewMenu_1 = new JMenu("Estudiante");
 		menuBar.add(mnNewMenu_1);
