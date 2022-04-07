@@ -44,25 +44,25 @@ public class CrearGrupo extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(65, 205, 269, 220);
-			panel.add(scrollPane);
+			JScrollPane scrollPaneEst = new JScrollPane();
+			scrollPaneEst.setBounds(65, 205, 269, 220);
+			panel.add(scrollPaneEst);
 			
 			JList list = new JList();
-			scrollPane.setViewportView(list);
+			scrollPaneEst.setViewportView(list);
 			
 			JLabel lblNewLabel = new JLabel("Disponibles");
-			scrollPane.setColumnHeaderView(lblNewLabel);
+			scrollPaneEst.setColumnHeaderView(lblNewLabel);
 			
-			JScrollPane scrollPane_1 = new JScrollPane();
-			scrollPane_1.setBounds(420, 205, 269, 220);
-			panel.add(scrollPane_1);
+			JScrollPane scrollPaneGrup = new JScrollPane();
+			scrollPaneGrup.setBounds(420, 205, 269, 220);
+			panel.add(scrollPaneGrup);
 			
 			JList list_1 = new JList();
-			scrollPane_1.setViewportView(list_1);
+			scrollPaneGrup.setViewportView(list_1);
 			
 			JLabel lblNewLabel_1 = new JLabel("Grupo");
-			scrollPane_1.setColumnHeaderView(lblNewLabel_1);
+			scrollPaneGrup.setColumnHeaderView(lblNewLabel_1);
 			
 			JPanel panel_1 = new JPanel();
 			panel_1.setBorder(new TitledBorder(null, "Creacion de Grupo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -85,19 +85,26 @@ public class CrearGrupo extends JDialog {
 			JRadioButton rdbtnProfesores = new JRadioButton("Profesores");
 			rdbtnProfesores.setBounds(176, 50, 127, 25);
 			panel_1.add(rdbtnProfesores);
+			
+			JScrollPane scrollPanePro = new JScrollPane();
+			scrollPanePro.setBounds(65, 205, 269, 220);
+			panel.add(scrollPanePro);
+			
+			JList list_2 = new JList();
+			scrollPanePro.setViewportView(list_2);
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Crear");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
