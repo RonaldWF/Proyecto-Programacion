@@ -3,10 +3,12 @@ package logico;
 public class UsuarioGestion {
 	private String NombreUsuario;
 	private String password;
-	public UsuarioGestion(String nombreUsuario, String password) {
+	private String tipo;
+	public UsuarioGestion(String nombreUsuario, String password,String tipo) {
 		super();
 		setNombreUsuario(nombreUsuario);
 		this.setPassword(password);
+		this.setTipo(tipo);
 	}
 	public String getPassword() {
 		return password;
@@ -19,6 +21,12 @@ public class UsuarioGestion {
 	}
 	public void setNombreUsuario(String nombreUsuario) {
 		NombreUsuario = nombreUsuario;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 }

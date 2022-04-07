@@ -63,8 +63,8 @@ public class Inicio extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					//if(textUsuario.getText() != " " && textContra.getText()!= " ") {
 					//if 
-					UsuarioGestion usuario = new UsuarioGestion(textUsuario.getText(),textContra.getText());
-					GestionFigura.getInstance().CrearUsuarioGestion(usuario);
+					//UsuarioGestion usuario = new UsuarioGestion(textUsuario.getText(),textContra.getText());
+					//GestionFigura.getInstance().CrearUsuarioGestion(usuario);
 					
 				    textContra.setText("");
 					textUsuario.setText("");
