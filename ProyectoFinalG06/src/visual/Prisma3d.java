@@ -1,8 +1,8 @@
 package visual;
 
 import java.awt.BorderLayout;
-import java.awt.GraphicsConfiguration;
 
+import java.awt.GraphicsConfiguration;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
 import javax.swing.JFrame;
@@ -15,7 +15,9 @@ public class Prisma3d extends JPanel {
 
 	/**
 	 * Create the panel.
-	 */
+	 /*
+	  * 
+	  */
 	public Prisma3d() {
 		GraphicsConfiguration config = SimpleUniverse.getPreferredConfiguration();
 		
@@ -53,3 +55,5 @@ public class Prisma3d extends JPanel {
 
 	}
 }
+
+
