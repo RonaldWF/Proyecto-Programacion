@@ -91,6 +91,7 @@ public class Inicio extends JDialog {
 	public Inicio() {
 		setBounds(100, 100, 572, 491);
 		getContentPane().setLayout(new BorderLayout());
+		setLocationRelativeTo(null);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));

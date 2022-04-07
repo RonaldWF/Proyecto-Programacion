@@ -99,8 +99,8 @@ public class Principal extends JFrame {
 		JMenu mnNewMenu = new JMenu("Prismas");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Lista de prismas");
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem MenuItemListaPrismas = new JMenuItem("Lista de prismas");
+		mnNewMenu.add(MenuItemListaPrismas);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Crear Prisma");
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
@@ -111,32 +111,38 @@ public class Principal extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem_4);
 		
-		JMenu mnNewMenu_3 = new JMenu("Grupo");
-		menuBar.add(mnNewMenu_3);
+		JMenu MenuGrupo = new JMenu("Grupo");
+		menuBar.add(MenuGrupo);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Lista de Prismas");
-		mnNewMenu_3.add(mntmNewMenuItem_3);
+		MenuGrupo.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Crear Grupo");
-		mnNewMenu_3.add(mntmNewMenuItem_7);
+		MenuGrupo.add(mntmNewMenuItem_7);
 		
-		JMenu mnNewMenu_1 = new JMenu("Estudiante");
-		menuBar.add(mnNewMenu_1);
+		JMenu MenuEstudiante = new JMenu("Estudiante");
+		menuBar.add(MenuEstudiante);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Lista de Prismas");
-		mnNewMenu_1.add(mntmNewMenuItem_1);
+		MenuEstudiante.add(mntmNewMenuItem_1);
 		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Lista de Estudiantes");
-		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+		JMenuItem MenuItemEstudiantes = new JMenuItem("Lista de Estudiantes");
+		MenuItemEstudiantes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListaEstudiantes dialog = new ListaEstudiantes();
 				dialog.setVisible(true);
 			}
 		});
-		mnNewMenu_1.add(mntmNewMenuItem_5);
+		MenuEstudiante.add(MenuItemEstudiantes);
 		
-		JMenu mnNewMenu_2 = new JMenu("Profesor");
-		menuBar.add(mnNewMenu_2);
+		JMenu MenuProfesor = new JMenu("Profesor");
+		if(!GestionFigura.getLoginUser().getTipo().equalsIgnoreCase("Profesor")) {
+			MenuProfesor.setEnabled(false);
+			MenuGrupo.setEnabled(false);
+			MenuItemEstudiantes.setEnabled(false);
+			MenuItemListaPrismas.setEnabled(false);
+		}
+		menuBar.add(MenuProfesor);
 		
 		mntmNewMenuItem_2 = new JMenuItem("Lista de Prismas");
 		mntmNewMenuItem_2.addMouseListener(new MouseAdapter() {
@@ -145,7 +151,7 @@ public class Principal extends JFrame {
 				
 			}
 		});
-		mnNewMenu_2.add(mntmNewMenuItem_2);
+		MenuProfesor.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Lista de profesores");
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
@@ -154,10 +160,10 @@ public class Principal extends JFrame {
 				dialog.setVisible(true);
 			}
 		});
-		mnNewMenu_2.add(mntmNewMenuItem_6);
+		MenuProfesor.add(mntmNewMenuItem_6);
 		
-		JMenu mnNewMenu_4 = new JMenu("Usuario");
-		menuBar.add(mnNewMenu_4);
+		JMenu MenuUsuario = new JMenu("Usuario");
+		menuBar.add(MenuUsuario);
 		
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Registrarse");
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
@@ -167,6 +173,6 @@ public class Principal extends JFrame {
 				
 			}
 		});
-		mnNewMenu_4.add(mntmNewMenuItem_8);
+		MenuUsuario.add(mntmNewMenuItem_8);
 	}
 }

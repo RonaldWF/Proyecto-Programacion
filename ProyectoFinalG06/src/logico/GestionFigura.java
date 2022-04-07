@@ -50,6 +50,7 @@ public UsuarioGestion buscarUsuarioGestion(String user) {
 	for(int i = 0; i < cantUsuariosGestion;i++) {
 		if(usuariosGest.get(i).getNombreUsuario().equalsIgnoreCase(user)) {
 			usuario = usuariosGest.get(i);
+			loginUser = usuariosGest.get(i);
 		}
 	}
 	return usuario;
