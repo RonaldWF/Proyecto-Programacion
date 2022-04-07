@@ -27,7 +27,6 @@ public class Inicio extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textContra;
 	private JTextField textUsuario;
-	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 
 	/**
@@ -58,25 +57,35 @@ public class Inicio extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
-			btnNewButton = new JButton("Registrarse");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					//if(textUsuario.getText() != " " && textContra.getText()!= " ") {
-					//if 
-					//UsuarioGestion usuario = new UsuarioGestion(textUsuario.getText(),textContra.getText());
-					//GestionFigura.getInstance().CrearUsuarioGestion(usuario);
-					
-				    textContra.setText("");
-					textUsuario.setText("");
-				//}
-					//else
-						//JOptionPane.showMessageDialog(getComponent(0), "Asegure llenar todos los campos");
-				}
-			});
-			btnNewButton.setBounds(128, 283, 120, 42);
-			panel.add(btnNewButton);
+			JPanel panel_1 = new JPanel();
+			panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panel_1.setBounds(104, 44, 347, 342);
+			panel.add(panel_1);
+			panel_1.setLayout(null);
+			
+			JLabel lblContrasen = new JLabel("contrase\u00F1a:");
+			lblContrasen.setBounds(126, 142, 95, 22);
+			panel_1.add(lblContrasen);
+			lblContrasen.setFont(new Font("Rockwell", Font.PLAIN, 18));
+			
+			JLabel lblNewLabel = new JLabel("Usuario:");
+			lblNewLabel.setBounds(126, 38, 94, 16);
+			panel_1.add(lblNewLabel);
+			lblNewLabel.setFont(new Font("Rockwell", Font.PLAIN, 18));
+			
+			textUsuario = new JTextField();
+			textUsuario.setBounds(32, 67, 283, 33);
+			panel_1.add(textUsuario);
+			textUsuario.setColumns(10);
+			
+			textContra = new JTextField();
+			textContra.setBounds(32, 177, 282, 33);
+			panel_1.add(textContra);
+			textContra.setColumns(10);
 			
 			btnNewButton_1 = new JButton("Iniciar Seccion");
+			btnNewButton_1.setBounds(113, 244, 120, 42);
+			panel_1.add(btnNewButton_1);
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String aux = textUsuario.getText();
@@ -94,34 +103,6 @@ public class Inicio extends JDialog {
 					
 				}
 			});
-			btnNewButton_1.setBounds(295, 283, 120, 42);
-			panel.add(btnNewButton_1);
-			
-			JPanel panel_1 = new JPanel();
-			panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panel_1.setBounds(104, 44, 347, 342);
-			panel.add(panel_1);
-			panel_1.setLayout(null);
-			
-			JLabel lblContrasen = new JLabel("contrase\u00F1a:");
-			lblContrasen.setBounds(29, 126, 95, 22);
-			panel_1.add(lblContrasen);
-			lblContrasen.setFont(new Font("Rockwell", Font.PLAIN, 18));
-			
-			JLabel lblNewLabel = new JLabel("Usuario:");
-			lblNewLabel.setBounds(30, 28, 94, 16);
-			panel_1.add(lblNewLabel);
-			lblNewLabel.setFont(new Font("Rockwell", Font.PLAIN, 18));
-			
-			textUsuario = new JTextField();
-			textUsuario.setBounds(172, 21, 139, 33);
-			panel_1.add(textUsuario);
-			textUsuario.setColumns(10);
-			
-			textContra = new JTextField();
-			textContra.setBounds(172, 122, 139, 33);
-			panel_1.add(textContra);
-			textContra.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
