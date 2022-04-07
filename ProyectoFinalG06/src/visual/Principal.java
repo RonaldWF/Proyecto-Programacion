@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logico.GestionFigura;
+
 import java.awt.FlowLayout;
 import javax.swing.JMenuBar;
 import javax.swing.BoxLayout;
@@ -16,6 +19,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.awt.GridBagConstraints;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.border.BevelBorder;
@@ -47,6 +56,25 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("empresa.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(GestionFigura.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 965, 677);
 		this.setExtendedState(this.MAXIMIZED_BOTH);
@@ -127,5 +155,18 @@ public class Principal extends JFrame {
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_6);
+		
+		JMenu mnNewMenu_4 = new JMenu("Usuario");
+		menuBar.add(mnNewMenu_4);
+		
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Registrarse");
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistroUsuario dialog = new RegistroUsuario();
+				dialog.setVisible(true);
+				
+			}
+		});
+		mnNewMenu_4.add(mntmNewMenuItem_8);
 	}
 }

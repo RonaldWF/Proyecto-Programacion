@@ -1,8 +1,13 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GestionFigura {
+public class GestionFigura implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private ArrayList<Prisma>prismas;
 private ArrayList<Usuario> usuarios;
 private ArrayList<Grupo> grupos;
@@ -16,6 +21,7 @@ private int cantUsuariosGestion;
 private int cantEstudiantes;
 private int cantProfesores;
 public static GestionFigura gestion;
+public static UsuarioGestion loginUser;
 private int hola;
 public GestionFigura() {
 	setPrismas(new ArrayList<Prisma>(100));
@@ -68,6 +74,12 @@ public void RegistrarEstudiante(Estudiante estudiante) {
 	cantEstudiantes++;
 	cantUsuarios++;
 }
+public static UsuarioGestion getLoginUser() {
+	return loginUser;
+}
+public static void setLoginUser(UsuarioGestion loginUser) {
+	GestionFigura.loginUser = loginUser;
+}
 
 public Profesor BuscarProfesorByCedula(String cedula) {
 	Profesor aux = null;
@@ -96,6 +108,12 @@ public int getCantProfesores() {
 }
 public void setCantProfesores(int cantProfesores) {
 	this.cantProfesores = cantProfesores;
+}
+public static GestionFigura getGestion() {
+	return gestion;
+}
+public static void setGestion(GestionFigura gestion) {
+	GestionFigura.gestion = gestion;
 }
 
 public ArrayList<Estudiante> getEstudiantes() {
