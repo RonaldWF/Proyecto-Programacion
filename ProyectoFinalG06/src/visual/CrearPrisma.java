@@ -62,7 +62,6 @@ public class CrearPrisma extends JDialog {
 	private JTextField textField_12;
 	private JTextField textField_13;
 	private JTextField textField_14;
-	private JTextField textField_15;
 	private JTextField textField_16;
 	private JRadioButton rdbtnTriangulo;
 	private JPanel pnlRectangulo;
@@ -519,26 +518,17 @@ public class CrearPrisma extends JDialog {
 			textField_14.setBounds(107, 77, 221, 20);
 			pnlTriangulo.add(textField_14);
 			
-			JButton button_2 = new JButton("New button");
-			button_2.setBounds(569, 620, 97, 23);
-			pnlTriangulo.add(button_2);
-			
-			JButton button_3 = new JButton("New button");
-			button_3.setBounds(697, 620, 97, 23);
-			pnlTriangulo.add(button_3);
-			
 			JLabel lblVerticeY_1 = new JLabel("Vertice Y:");
 			lblVerticeY_1.setBounds(10, 80, 81, 14);
 			pnlTriangulo.add(lblVerticeY_1);
 			
-			JLabel lblVerticeAltura = new JLabel("Vertice Altura:");
-			lblVerticeAltura.setBounds(107, 44, 221, 20);
-			pnlTriangulo.add(lblVerticeAltura);
+			JButton button = new JButton("Buscar");
+			button.setBounds(557, 198, 97, 23);
+			pnlTriangulo.add(button);
 			
-			textField_15 = new JTextField();
-			textField_15.setBounds(107, 104, 221, 20);
-			pnlTriangulo.add(textField_15);
-			textField_15.setColumns(10);
+			JButton button_1 = new JButton("Registrar");
+			button_1.setBounds(685, 198, 97, 23);
+			pnlTriangulo.add(button_1);
 			
 			pnlRombo = new JPanel();
 			pnlRombo.setBorder(new TitledBorder(null, "Rombo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
