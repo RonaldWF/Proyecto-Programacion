@@ -2,31 +2,20 @@ package logico;
 
 public class Cuadrado extends Prisma {
 
-	private float verticeX;
-	private float verticeY;
+	private float profundidad;
 	
-	public Cuadrado(float base, float altura, float verticeX, float verticeY) {
+	public Cuadrado(float base, float altura, float profundidad) {
 		super(base,altura);
 		
-		this.verticeX = verticeX;
-		this.verticeY = verticeY;
+	this.profundidad = profundidad;
 	}
 
-	public float getVerticeX() {
-		return verticeX;
+	public float getProfundidad() {
+		return profundidad;
 	}
 
-	public void setVerticeX(float verticeX) {
-		this.verticeX = verticeX;
+	public void setProfundidad(float profundidad) {
+		this.profundidad = profundidad;
 	}
-
-	public float getVerticeY() {
-		return verticeY;
-	}
-
-	public void setVerticeY(float verticeY) {
-		this.verticeY = verticeY;
-	}
-	
-	
 }
+

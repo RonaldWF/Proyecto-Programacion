@@ -22,7 +22,7 @@ private int cantEstudiantes;
 private int cantProfesores;
 public static GestionFigura gestion;
 public static UsuarioGestion loginUser;
-private int hola;
+private static Prisma prismaMomento;
 public GestionFigura() {
 	setPrismas(new ArrayList<Prisma>(100));
 	setUsuarios(new ArrayList<Usuario>(100));
@@ -74,6 +74,11 @@ public void RegistrarEstudiante(Estudiante estudiante) {
 	estudiantes.add(estudiante);
 	cantEstudiantes++;
 	cantUsuarios++;
+}
+public void CrearPrisma(Prisma prisma) {
+	prismas.add(prisma);
+	prismaMomento = prisma;
+	cantPrismas++;
 }
 public static UsuarioGestion getLoginUser() {
 	return loginUser;
@@ -182,5 +187,11 @@ public int getCantEstudiantes() {
 }
 public void setCantEstudiantes(int cantEstudiantes) {
 	this.cantEstudiantes = cantEstudiantes;
+}
+public static Prisma getPrismaMomento() {
+	return prismaMomento;
+}
+public static void setPrismaMomento(Prisma prismaMomento) {
+	GestionFigura.prismaMomento = prismaMomento;
 }
 }
