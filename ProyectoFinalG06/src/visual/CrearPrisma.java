@@ -16,6 +16,7 @@ import logico.Estudiante;
 import logico.GestionFigura;
 import logico.Prisma;
 import logico.Profesor;
+import logico.Triangulo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -63,8 +64,8 @@ public class CrearPrisma extends JDialog {
 	private JTextField textField_10;
 	private JTextField textField_11;
 	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
+	private JTextField textBaseTriangulo;
+	private JTextField textAlturaTriangulo;
 	private JTextField textField_16;
 	private JRadioButton rdbtnTriangulo;
 	private JPanel pnlRectangulo;
@@ -108,7 +109,6 @@ public class CrearPrisma extends JDialog {
 				pnlCuadrado.setBorder(new TitledBorder(null, "Cuadrado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				pnlCuadrado.setBounds(12, 422, 809, 232);
 				panel.add(pnlCuadrado);
-				pnlCuadrado.setLayout(null);
 				
 				JLabel lblNewLabel_3 = new JLabel("Ancho:");
 				lblNewLabel_3.setBounds(10, 41, 81, 14);
@@ -139,14 +139,14 @@ public class CrearPrisma extends JDialog {
 							Prisma aux = new Cuadrado(Float.parseFloat(textAnchoCuadrado.getText()),Float.parseFloat(textAlturaCuadrado.getText()),
 									Float.parseFloat(textProfundidadCuadrado.getText()));
 							GestionFigura.getInstance().CrearPrisma(aux);
-							JFrame ventana = new JFrame("Pisma 3D");
-							Prisma3d panel = new Prisma3d();
-							ventana.add(panel);
+						    Prisma3d dialog = new Prisma3d();
+						    dialog.setVisible(true);
+							/*ventana.add(panel);
 							ventana.setVisible(true);
 							ventana.setSize(700,700);
 							ventana.setVisible(true);
 							ventana.setLocationRelativeTo(null);
-							ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 						}
 					}
 				});
@@ -319,6 +319,7 @@ public class CrearPrisma extends JDialog {
 			panelProfesor.add(btnBuscarProfesor);
 			
 			rdbtnCuadrado = new JRadioButton("Cuadrado");
+			rdbtnCuadrado.setSelected(true);
 			rdbtnCuadrado.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -534,21 +535,21 @@ public class CrearPrisma extends JDialog {
 			pnlTriangulo.setBounds(12, 422, 809, 232);
 			panel.add(pnlTriangulo);
 			
-			JLabel label = new JLabel("Vertice X:");
-			label.setBounds(10, 41, 81, 14);
-			pnlTriangulo.add(label);
+			JLabel lblBase = new JLabel("Base:");
+			lblBase.setBounds(10, 41, 81, 14);
+			pnlTriangulo.add(lblBase);
 			
-			textField_13 = new JTextField();
-			textField_13.setColumns(10);
-			textField_13.setBounds(107, 38, 221, 20);
-			pnlTriangulo.add(textField_13);
+			textBaseTriangulo = new JTextField();
+			textBaseTriangulo.setColumns(10);
+			textBaseTriangulo.setBounds(107, 38, 561, 20);
+			pnlTriangulo.add(textBaseTriangulo);
 			
-			textField_14 = new JTextField();
-			textField_14.setColumns(10);
-			textField_14.setBounds(107, 77, 221, 20);
-			pnlTriangulo.add(textField_14);
+			textAlturaTriangulo = new JTextField();
+			textAlturaTriangulo.setColumns(10);
+			textAlturaTriangulo.setBounds(107, 77, 561, 20);
+			pnlTriangulo.add(textAlturaTriangulo);
 			
-			JLabel lblVerticeY_1 = new JLabel("Vertice Y:");
+			JLabel lblVerticeY_1 = new JLabel("Altura:");
 			lblVerticeY_1.setBounds(10, 80, 81, 14);
 			pnlTriangulo.add(lblVerticeY_1);
 			
@@ -557,6 +558,14 @@ public class CrearPrisma extends JDialog {
 			pnlTriangulo.add(button);
 			
 			JButton button_1 = new JButton("Registrar");
+			button_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Prisma aux = new Triangulo(Float.parseFloat(textBaseTriangulo.getText()),Float.parseFloat(textAlturaTriangulo.getText()));
+					GestionFigura.getInstance().CrearPrisma(aux);
+					Prisma3d dialog = new Prisma3d();
+					dialog.setVisible(true);
+				}
+			});
 			button_1.setBounds(685, 198, 97, 23);
 			pnlTriangulo.add(button_1);
 			
@@ -630,6 +639,11 @@ public class CrearPrisma extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		pnlCuadrado.setLayout(null);
+		pnlRombo.setVisible(false);
+		pnlTriangulo.setVisible(false);
+		pnlRectangulo.setVisible(false);
+		pnlTrapecio.setVisible(false);
 	}
 	private void clear() {
 		textNombreEstudiante.setText("");
