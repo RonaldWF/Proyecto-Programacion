@@ -73,7 +73,7 @@ public class CrearPrisma extends JDialog {
 	private JPanel pnlTriangulo;
 	private JPanel pnlTrapecio;
 	private JPanel pnlCuadrado;
-	private int hola=50;
+	private int hola=5000;
 	private JTextField textProfundidadCuadrado;
 
 	/**
