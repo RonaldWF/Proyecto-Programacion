@@ -53,8 +53,8 @@ public class CrearPrisma extends JDialog {
 	private JRadioButton rdbtnRombo;
 	private JTextField textAnchoCuadrado;
 	private JTextField textAlturaCuadrado;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textAnchoRectangulo;
+	private JTextField textAlturaRectangulo;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
@@ -66,7 +66,7 @@ public class CrearPrisma extends JDialog {
 	private JTextField textField_12;
 	private JTextField textBaseTriangulo;
 	private JTextField textAlturaTriangulo;
-	private JTextField textField_16;
+	private JTextField textProfundidadRectangulo;
 	private JRadioButton rdbtnTriangulo;
 	private JPanel pnlRectangulo;
 	private JPanel pnlRombo;
@@ -114,7 +114,7 @@ public class CrearPrisma extends JDialog {
 				lblNewLabel_3.setBounds(10, 41, 81, 14);
 				pnlCuadrado.add(lblNewLabel_3);
 				
-				JLabel lblNewLabel_4 = new JLabel("Alto:");
+				JLabel lblNewLabel_4 = new JLabel("Altura:");
 				lblNewLabel_4.setBounds(10, 80, 81, 14);
 				pnlCuadrado.add(lblNewLabel_4);
 				
@@ -128,25 +128,21 @@ public class CrearPrisma extends JDialog {
 				pnlCuadrado.add(textAlturaCuadrado);
 				textAlturaCuadrado.setColumns(10);
 				
-				JButton btnNewButton = new JButton("Buscar");
-				btnNewButton.setBounds(557, 198, 97, 23);
-				pnlCuadrado.add(btnNewButton);
-				
-				JButton btnNewButton_1 = new JButton("Registrar");
+				JButton btnNewButton_1 = new JButton("Crear");
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						if(!textAnchoCuadrado.getText().equalsIgnoreCase("")&& !textAlturaCuadrado.getText().equalsIgnoreCase("") && !textProfundidadCuadrado.getText().equalsIgnoreCase("")) {
-							Prisma aux = new Cuadrado(Float.parseFloat(textAnchoCuadrado.getText()),Float.parseFloat(textAlturaCuadrado.getText()),
-									Float.parseFloat(textProfundidadCuadrado.getText()));
+							float ancho = Float.parseFloat(textAnchoCuadrado.getText());
+							float altura = Float.parseFloat(textAlturaCuadrado.getText());
+							float profundidad = Float.parseFloat(textProfundidadCuadrado.getText());
+							if(ancho > altura || altura > ancho) {
+								JOptionPane.showConfirmDialog(contentPanel, "El Cuadrado debe tener todos los lados iguales.");
+								
+							}
+							Prisma aux = new Cuadrado(ancho,altura,profundidad);
 							GestionFigura.getInstance().CrearPrisma(aux);
 						    Prisma3d dialog = new Prisma3d();
 						    dialog.setVisible(true);
-							/*ventana.add(panel);
-							ventana.setVisible(true);
-							ventana.setSize(700,700);
-							ventana.setVisible(true);
-							ventana.setLocationRelativeTo(null);
-							ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 						}
 					}
 				});
@@ -434,40 +430,36 @@ public class CrearPrisma extends JDialog {
 			panel.add(pnlRectangulo);
 			pnlRectangulo.setLayout(null);
 			
-			JLabel lblNewLabel_5 = new JLabel("Vertice X:");
+			JLabel lblNewLabel_5 = new JLabel("Ancho:");
 			lblNewLabel_5.setBounds(10, 41, 81, 14);
 			pnlRectangulo.add(lblNewLabel_5);
 			
-			textField_2 = new JTextField();
-			textField_2.setBounds(107, 38, 221, 20);
-			pnlRectangulo.add(textField_2);
-			textField_2.setColumns(10);
+			textAnchoRectangulo = new JTextField();
+			textAnchoRectangulo.setBounds(107, 38, 561, 20);
+			pnlRectangulo.add(textAnchoRectangulo);
+			textAnchoRectangulo.setColumns(10);
 			
-			textField_3 = new JTextField();
-			textField_3.setBounds(107, 77, 221, 20);
-			pnlRectangulo.add(textField_3);
-			textField_3.setColumns(10);
+			textAlturaRectangulo = new JTextField();
+			textAlturaRectangulo.setBounds(107, 77, 561, 20);
+			pnlRectangulo.add(textAlturaRectangulo);
+			textAlturaRectangulo.setColumns(10);
 			
-			JButton btnNewButton_2 = new JButton("Buscar");
-			btnNewButton_2.setBounds(557, 198, 97, 23);
-			pnlRectangulo.add(btnNewButton_2);
-			
-			JButton btnNewButton_3 = new JButton("Registrar");
+			JButton btnNewButton_3 = new JButton("Crear");
 			btnNewButton_3.setBounds(685, 198, 97, 23);
 			pnlRectangulo.add(btnNewButton_3);
 			
-			JLabel lblNewLabel_7 = new JLabel("Vertice Y:");
+			JLabel lblNewLabel_7 = new JLabel("Altura:");
 			lblNewLabel_7.setBounds(10, 80, 81, 14);
 			pnlRectangulo.add(lblNewLabel_7);
 			
-			JLabel lblNewLabel_8 = new JLabel("Vertice Z:");
-			lblNewLabel_8.setBounds(10, 110, 81, 14);
+			JLabel lblNewLabel_8 = new JLabel("Profundidad:");
+			lblNewLabel_8.setBounds(10, 127, 81, 14);
 			pnlRectangulo.add(lblNewLabel_8);
 			
-			textField_16 = new JTextField();
-			textField_16.setBounds(107, 110, 221, 20);
-			pnlRectangulo.add(textField_16);
-			textField_16.setColumns(10);
+			textProfundidadRectangulo = new JTextField();
+			textProfundidadRectangulo.setBounds(107, 123, 561, 20);
+			pnlRectangulo.add(textProfundidadRectangulo);
+			textProfundidadRectangulo.setColumns(10);
 			
 			pnlTrapecio = new JPanel();
 			pnlTrapecio.setBorder(new TitledBorder(null, "Trapecio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -521,11 +513,7 @@ public class CrearPrisma extends JDialog {
 			pnlTrapecio.add(textField_8);
 			textField_8.setColumns(10);
 			
-			JButton btnNewButton_4 = new JButton("Buscar");
-			btnNewButton_4.setBounds(557, 198, 97, 23);
-			pnlTrapecio.add(btnNewButton_4);
-			
-			JButton btnNewButton_5 = new JButton("Registrar");
+			JButton btnNewButton_5 = new JButton("Crear");
 			btnNewButton_5.setBounds(685, 198, 97, 23);
 			pnlTrapecio.add(btnNewButton_5);
 			
@@ -553,12 +541,8 @@ public class CrearPrisma extends JDialog {
 			lblVerticeY_1.setBounds(10, 80, 81, 14);
 			pnlTriangulo.add(lblVerticeY_1);
 			
-			JButton button = new JButton("Buscar");
-			button.setBounds(557, 198, 97, 23);
-			pnlTriangulo.add(button);
-			
-			JButton button_1 = new JButton("Registrar");
-			button_1.addActionListener(new ActionListener() {
+			JButton btnCrear = new JButton("Crear");
+			btnCrear.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					Prisma aux = new Triangulo(Float.parseFloat(textBaseTriangulo.getText()),Float.parseFloat(textAlturaTriangulo.getText()));
 					GestionFigura.getInstance().CrearPrisma(aux);
@@ -566,8 +550,8 @@ public class CrearPrisma extends JDialog {
 					dialog.setVisible(true);
 				}
 			});
-			button_1.setBounds(685, 198, 97, 23);
-			pnlTriangulo.add(button_1);
+			btnCrear.setBounds(685, 198, 97, 23);
+			pnlTriangulo.add(btnCrear);
 			
 			pnlRombo = new JPanel();
 			pnlRombo.setBorder(new TitledBorder(null, "Rombo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -611,11 +595,7 @@ public class CrearPrisma extends JDialog {
 			textField_12.setColumns(10);
 			pnlRombo.add(textField_12);
 			
-			JButton btnBuscar = new JButton("Buscar");
-			btnBuscar.setBounds(557, 198, 97, 23);
-			pnlRombo.add(btnBuscar);
-			
-			JButton btnRegistrar = new JButton("Registrar");
+			JButton btnRegistrar = new JButton("Crear");
 			btnRegistrar.setBounds(685, 198, 97, 23);
 			pnlRombo.add(btnRegistrar);
 			
