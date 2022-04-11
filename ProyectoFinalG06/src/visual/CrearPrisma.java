@@ -17,6 +17,8 @@ import logico.GestionFigura;
 import logico.Prisma;
 import logico.Profesor;
 import logico.Triangulo;
+import logico.Usuario;
+import java.util.ArrayList;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -132,18 +134,39 @@ public class CrearPrisma extends JDialog {
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						if(!textAnchoCuadrado.getText().equalsIgnoreCase("")&& !textAlturaCuadrado.getText().equalsIgnoreCase("") && !textProfundidadCuadrado.getText().equalsIgnoreCase("")) {
+							
 							float ancho = Float.parseFloat(textAnchoCuadrado.getText());
 							float altura = Float.parseFloat(textAlturaCuadrado.getText());
 							float profundidad = Float.parseFloat(textProfundidadCuadrado.getText());
 							if(ancho > altura || altura > ancho) {
-								JOptionPane.showConfirmDialog(contentPanel, "El Cuadrado debe tener todos los lados iguales.");
+								JOptionPane.showMessageDialog(contentPanel, "El Cuadrado debe tener todos los lados iguales.");
 								
 							}
+							else {
 							Prisma aux = new Cuadrado(ancho,altura,profundidad);
+							ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
+							prismasUser.add(aux);
 							GestionFigura.getInstance().CrearPrisma(aux);
+							if(!textCedula.getText().equalsIgnoreCase("")) {
+								  
+									if(GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText())!= null) {
+										Profesor au3 = GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText());
+										au3.setPrismas(prismasUser);
+									}
+								}
+							else if(!textMatricula.getText().equalsIgnoreCase("")) {
+								if (GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText())!= null) {
+									Estudiante au4 = GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText());
+									au4.setPrismas(prismasUser);
+								}
+							}
 						    Prisma3d dialog = new Prisma3d();
 						    dialog.setVisible(true);
+						    
+							}
+						
 						}
+							
 					}
 				});
 				btnNewButton_1.setBounds(685, 198, 97, 23);
@@ -213,7 +236,8 @@ public class CrearPrisma extends JDialog {
 					btnRegistrarEstudiante.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							int edad = Integer.parseInt(textEdadEstudiante.getText());
-							Estudiante est = new Estudiante(textNombreEstudiante.getText(),textApellidoEstudiante.getText(),edad,textMatricula.getText());
+							Usuario est = new Estudiante(textNombreEstudiante.getText(),textApellidoEstudiante.getText(),edad,textMatricula.getText());
+						//	UsuarioActual = est;
 							GestionFigura.getInstance().RegistrarEstudiante(est);
 							JOptionPane.showMessageDialog(panel, "Registro con Exito");
 							clear();
@@ -290,7 +314,7 @@ public class CrearPrisma extends JDialog {
 			btnRegistrarProfesor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int edad = Integer.parseInt(textEdadProfesor.getText()); 
-					Profesor pro = new Profesor(textNombreProfesor.getText(), textApellidoProfesor.getText(), edad, textCedula.getText());
+					Usuario pro = new Profesor(textNombreProfesor.getText(), textApellidoProfesor.getText(), edad, textCedula.getText());
 					GestionFigura.getInstance().RegistrarProfesor(pro);
 					JOptionPane.showMessageDialog(panel, "Registro con Exito");
 					clear();

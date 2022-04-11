@@ -23,6 +23,7 @@ private int cantProfesores;
 public static GestionFigura gestion;
 public static UsuarioGestion loginUser;
 private static Prisma prismaMomento;
+private static Usuario usuarioActual;
 public GestionFigura() {
 	setPrismas(new ArrayList<Prisma>(100));
 	setUsuarios(new ArrayList<Usuario>(100));
@@ -70,8 +71,8 @@ public Estudiante BuscarEstudianteBymatricula(String matricula) {
 	}
 	return aux;
 }
-public void RegistrarEstudiante(Estudiante estudiante) {
-	estudiantes.add(estudiante);
+public void RegistrarEstudiante(Usuario estudiante) {
+	estudiantes.add((Estudiante) estudiante);
 	cantEstudiantes++;
 	cantUsuarios++;
 }
@@ -98,8 +99,8 @@ public Profesor BuscarProfesorByCedula(String cedula) {
 	return aux;
 }
 
-public void RegistrarProfesor(Profesor profesor) {
-	profesores.add(profesor);
+public void RegistrarProfesor(Usuario pro) {
+	profesores.add((Profesor) pro);
 	cantProfesores++;
 	cantUsuarios++;
 }
@@ -193,5 +194,11 @@ public static Prisma getPrismaMomento() {
 }
 public static void setPrismaMomento(Prisma prismaMomento) {
 	GestionFigura.prismaMomento = prismaMomento;
+}
+public static Usuario getUsuarioActual() {
+	return usuarioActual;
+}
+public static void setUsuarioActual(Usuario usuarioActual) {
+	GestionFigura.usuarioActual = usuarioActual;
 }
 }
