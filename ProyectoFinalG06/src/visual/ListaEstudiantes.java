@@ -72,7 +72,8 @@ public class ListaEstudiantes extends JDialog {
 						table.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
-								if(table.getSelectedRow()>-1) {
+								int selected = table.getSelectedColumn();
+								if(selected > -1) {
 									//okButton.setEnabled(true);
 								}
 							}
