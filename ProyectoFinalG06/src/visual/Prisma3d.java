@@ -107,6 +107,11 @@ public class Prisma3d extends JDialog {
 		objetogiro.addChild(cubo);
 		}
 		else if(aux instanceof Rectangulo) {
+			float alto = aux.getAltura();
+			float ancho = aux.getBase();
+			float profundidad = ((Rectangulo) GestionFigura.getPrismaMomento()).getProfundidad();
+			Box cubo = new Box(alto,ancho,profundidad,AparienciaRoja);
+			objetogiro.addChild(cubo);
 			
 		}
 		else if(aux instanceof Rombo) {

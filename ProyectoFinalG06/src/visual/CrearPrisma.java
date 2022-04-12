@@ -16,6 +16,7 @@ import logico.Estudiante;
 import logico.GestionFigura;
 import logico.Prisma;
 import logico.Profesor;
+import logico.Rectangulo;
 import logico.Triangulo;
 import logico.Usuario;
 import java.util.ArrayList;
@@ -408,7 +409,7 @@ public class CrearPrisma extends JDialog {
 			rdbtnRectangulo.setBounds(197, 377, 127, 25);
 			panel.add(rdbtnRectangulo);
 			
-			rdbtnTrapecio = new JRadioButton("Trapecio");
+			rdbtnTrapecio = new JRadioButton("Esfera");
 			rdbtnTrapecio.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -428,7 +429,7 @@ public class CrearPrisma extends JDialog {
 			rdbtnTrapecio.setBounds(359, 377, 127, 25);
 			panel.add(rdbtnTrapecio);
 			
-			rdbtnRombo = new JRadioButton("Rombo");
+			rdbtnRombo = new JRadioButton("Cilindro");
 			rdbtnRombo.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -490,6 +491,30 @@ public class CrearPrisma extends JDialog {
 			textAlturaRectangulo.setColumns(10);
 			
 			JButton btnNewButton_3 = new JButton("Crear");
+			btnNewButton_3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					float ancho =  Float.parseFloat(textAnchoRectangulo.getText());
+					float altura = Float.parseFloat(textAlturaRectangulo.getText());
+					float profundidad = Float.parseFloat(textProfundidadRectangulo.getText());
+					Prisma aux2 = new Rectangulo(ancho,altura,profundidad);
+					GestionFigura.getInstance().CrearPrisma(aux2);
+					ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
+					prismasUser.add(aux2);
+					if(GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText())!= null) {
+						Profesor au3 = GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText());
+						au3.setPrismas(prismasUser);
+					}
+				
+			else if(!textMatricula.getText().equalsIgnoreCase("")) {
+				if (GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText())!= null) {
+					Estudiante au4 = GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText());
+					au4.setPrismas(prismasUser);
+				}
+			}
+					Prisma3d dialog = new Prisma3d();
+					dialog.setVisible(true);
+				}
+			});
 			btnNewButton_3.setBounds(685, 198, 97, 23);
 			pnlRectangulo.add(btnNewButton_3);
 			
