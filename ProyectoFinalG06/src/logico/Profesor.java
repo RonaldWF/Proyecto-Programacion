@@ -2,7 +2,7 @@ package logico;
 
 import java.util.ArrayList;
 
-public class Profesor extends Usuario {
+public class Profesor extends Usuario  {
 private ArrayList<Prisma>prismas;
 private String cedula;
 	public Profesor(String nombre, String apellido, int edad, String cedula) {

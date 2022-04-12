@@ -166,6 +166,10 @@ public class CrearPrisma extends JDialog {
 							}
 						
 						}
+						else 
+						{
+							JOptionPane.showMessageDialog(contentPanel, "Algun campo vacio, por favor llenar todos los campos.");
+						}
 							
 					}
 				});
@@ -233,8 +237,11 @@ public class CrearPrisma extends JDialog {
 				}
 				{
 					btnRegistrarEstudiante = new JButton("Registrar");
+					btnRegistrarEstudiante.setEnabled(false);
 					btnRegistrarEstudiante.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							if(!textMatricula.getText().equalsIgnoreCase("") && !textNombreEstudiante.getText().equalsIgnoreCase("") && !textApellidoEstudiante.getText().equalsIgnoreCase("")
+									&& !textEdadEstudiante.getText().equalsIgnoreCase("")) {
 							int edad = Integer.parseInt(textEdadEstudiante.getText());
 							Usuario est = new Estudiante(textNombreEstudiante.getText(),textApellidoEstudiante.getText(),edad,textMatricula.getText());
 						//	UsuarioActual = est;
@@ -242,6 +249,11 @@ public class CrearPrisma extends JDialog {
 							JOptionPane.showMessageDialog(panel, "Registro con Exito");
 							clear();
 						}
+							else {
+								JOptionPane.showMessageDialog(contentPanel, "Asegurese de llenar todos los datos.");
+							}
+						}
+						
 
 					});
 					btnRegistrarEstudiante.addMouseListener(new MouseAdapter() {
@@ -260,6 +272,10 @@ public class CrearPrisma extends JDialog {
 								textApellidoEstudiante.setText(aux.getApellido());
 								textEdadEstudiante.setText(Integer.toString(aux.getEdad()));
 								textMatricula.setText(aux.getMatricula());
+							}
+							else {
+								JOptionPane.showMessageDialog(contentPanel, "Usuario no encontrado.");
+								btnRegistrarEstudiante.setEnabled(true);
 							}
 						}
 					});
@@ -324,6 +340,7 @@ public class CrearPrisma extends JDialog {
 			panelProfesor.add(btnRegistrarProfesor);
 			
 			JButton btnBuscarProfesor = new JButton("Buscar");
+			btnRegistrarProfesor.setEnabled(false);
 			btnBuscarProfesor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText())!= null) {
@@ -332,6 +349,10 @@ public class CrearPrisma extends JDialog {
 						textApellidoProfesor.setText(aux.getApellido());
 						textEdadProfesor.setText(Integer.toString(aux.getEdad()));
 						textCedula.setText(aux.getCedula());
+					}
+					else {
+						JOptionPane.showMessageDialog(contentPanel, "Usuario no encontrado.");
+						btnRegistrarProfesor.setEnabled(true);
 					}
 				}
 			});
@@ -648,6 +669,11 @@ public class CrearPrisma extends JDialog {
 		pnlTriangulo.setVisible(false);
 		pnlRectangulo.setVisible(false);
 		pnlTrapecio.setVisible(false);
+		
+		if(GestionFigura.getLoginUser().getTipo().equalsIgnoreCase("Profesor")) {
+			panelEstudiante.setVisible(false);
+			panelProfesor.setVisible(true);
+		}
 	}
 	private void clear() {
 		textNombreEstudiante.setText("");

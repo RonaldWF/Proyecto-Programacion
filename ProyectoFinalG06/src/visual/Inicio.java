@@ -57,7 +57,7 @@ public class Inicio extends JDialog {
 					try {
 						empresa2 = new  FileOutputStream("empresa.dat");
 						empresaWrite = new ObjectOutputStream(empresa2);
-						UsuarioGestion aux = new UsuarioGestion("Admin", "Admin", "Profesor");
+						UsuarioGestion aux = new UsuarioGestion("admin", "admin", "Profesor");
 						GestionFigura.getInstance().CrearUsuarioGestion(aux);
 						empresaWrite.writeObject(GestionFigura.getInstance());
 						empresa2.close();

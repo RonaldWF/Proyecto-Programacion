@@ -27,7 +27,6 @@ public class RegistroUsuario extends JDialog {
 	private JRadioButton rdbProfesor;
 	private JRadioButton rdbEstudiante;
 	private String tipo;
-	private char hola;
 
 	/**
 	 * Launch the application.

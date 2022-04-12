@@ -118,6 +118,12 @@ public class Principal extends JFrame {
 		MenuGrupo.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Crear Grupo");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CrearGrupo dialog = new CrearGrupo();
+				dialog.setVisible(true);
+			}
+		});
 		MenuGrupo.add(mntmNewMenuItem_7);
 		
 		JMenu MenuEstudiante = new JMenu("Estudiante");
