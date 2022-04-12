@@ -132,7 +132,7 @@ public class CrearPrisma extends JDialog {
 				
 				JButton btnNewButton_1 = new JButton("Crear");
 				btnNewButton_1.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
+					 public void actionPerformed(ActionEvent arg0) {
 						if(!textAnchoCuadrado.getText().equalsIgnoreCase("")&& !textAlturaCuadrado.getText().equalsIgnoreCase("") && !textProfundidadCuadrado.getText().equalsIgnoreCase("")) {
 							
 							float ancho = Float.parseFloat(textAnchoCuadrado.getText());
