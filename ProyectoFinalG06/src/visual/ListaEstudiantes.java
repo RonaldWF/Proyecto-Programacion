@@ -7,15 +7,21 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logic.Puerto;
 import logico.GestionFigura;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListaEstudiantes extends JDialog {
 
@@ -23,6 +29,9 @@ public class ListaEstudiantes extends JDialog {
 	private JTable table;
 	private DefaultTableModel model;
 	private Object row[];
+	private JButton EliminarButton;
+	private JButton ModificarButton;
+	//private  selected = null;
 
 	/**
 	 * Launch the application.
@@ -52,6 +61,7 @@ public class ListaEstudiantes extends JDialog {
 			panel.setLayout(new BorderLayout(0, 0));
 			{
 				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					{
@@ -59,6 +69,7 @@ public class ListaEstudiantes extends JDialog {
 					    model = new DefaultTableModel();
 						model.setColumnIdentifiers(headers);
 						table = new JTable();
+						table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 						table.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
@@ -79,13 +90,27 @@ public class ListaEstudiantes extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				ModificarButton = new JButton("Modificar");
+				buttonPane.add(ModificarButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				EliminarButton = new JButton("Eliminar");
+				EliminarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						 int option =	JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?","Confirmación",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
+						// if(option == JOptionPane.YES_OPTION ) {
+							//  Puerto.getInstance().eliminarAlquiler(selected);
+					//		  loadTable();
+						//  }	  
+					}
+				});
+				EliminarButton.setActionCommand("OK");
+				buttonPane.add(EliminarButton);
+				getRootPane().setDefaultButton(EliminarButton);
+			}
+			{
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
