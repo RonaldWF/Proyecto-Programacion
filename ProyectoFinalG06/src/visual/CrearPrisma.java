@@ -11,7 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import logico.Cilindro;
 import logico.Cuadrado;
+import logico.Esfera;
 import logico.Estudiante;
 import logico.GestionFigura;
 import logico.Prisma;
@@ -34,6 +36,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.MatteBorder;
 import javax.swing.ImageIcon;
+import javax.swing.border.BevelBorder;
 
 public class CrearPrisma extends JDialog {
 
@@ -58,26 +61,21 @@ public class CrearPrisma extends JDialog {
 	private JTextField textAlturaCuadrado;
 	private JTextField textAnchoRectangulo;
 	private JTextField textAlturaRectangulo;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
+	private JTextField textEsfera;
+	private JTextField textAnchoCilindro;
+	private JTextField textAlturaCilindro;
 	private JTextField textBaseTriangulo;
 	private JTextField textAlturaTriangulo;
 	private JTextField textProfundidadRectangulo;
 	private JRadioButton rdbtnTriangulo;
 	private JPanel pnlRectangulo;
-	private JPanel pnlRombo;
+	private JPanel pnlCilindro;
 	private JPanel pnlTriangulo;
-	private JPanel pnlTrapecio;
+	private JPanel pnlEsfera;
 	private JPanel pnlCuadrado;
 	private int hola=5000;
 	private JTextField textProfundidadCuadrado;
+	private JButton btnColor;
 
 	/**
 	 * Launch the application.
@@ -144,7 +142,24 @@ public class CrearPrisma extends JDialog {
 								
 							}
 							else {
-							Prisma aux = new Cuadrado(ancho,altura,profundidad);
+								int color = 1;
+								if(btnColor.getBackground() == Color.RED) {
+									color = 1;
+								}
+								if(btnColor.getBackground() == Color.BLUE) {
+									color = 2;
+								}
+								if(btnColor.getBackground() == Color.GREEN) {
+									color = 3;
+								}
+								if(btnColor.getBackground() == Color.YELLOW) {
+									color = 4;
+								}
+								if(btnColor.getBackground() == Color.WHITE) {
+									color = 5;
+								}
+								
+							Prisma aux = new Cuadrado(ancho,altura,profundidad,color);
 							ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
 							prismasUser.add(aux);
 							GestionFigura.getInstance().CrearPrisma(aux);
@@ -369,8 +384,8 @@ public class CrearPrisma extends JDialog {
 					rdbtnCuadrado.setSelected(true);
 					pnlCuadrado.setVisible(true);
 					pnlRectangulo.setVisible(false);
-					pnlRombo.setVisible(false);
-					pnlTrapecio.setVisible(false);
+					pnlCilindro.setVisible(false);
+					pnlEsfera.setVisible(false);
 					pnlTriangulo.setVisible(false);
 					rdbtnRectangulo.setSelected(false);
 					rdbtnRombo.setSelected(false);
@@ -394,8 +409,8 @@ public class CrearPrisma extends JDialog {
 					
 					pnlCuadrado.setVisible(false);
 					pnlRectangulo.setVisible(true);
-					pnlRombo.setVisible(false);
-					pnlTrapecio.setVisible(false);
+					pnlCilindro.setVisible(false);
+					pnlEsfera.setVisible(false);
 					pnlTriangulo.setVisible(false);
 					rdbtnCuadrado.setSelected(false);
 					rdbtnRectangulo.setSelected(true);
@@ -415,8 +430,8 @@ public class CrearPrisma extends JDialog {
 				public void mouseClicked(MouseEvent e) {
 					pnlCuadrado.setVisible(false);
 					pnlRectangulo.setVisible(false);
-					pnlRombo.setVisible(false);
-					pnlTrapecio.setVisible(true);
+					pnlCilindro.setVisible(false);
+					pnlEsfera.setVisible(true);
 					pnlTriangulo.setVisible(false);
 					rdbtnCuadrado.setSelected(false);
 					rdbtnRectangulo.setSelected(false);
@@ -435,8 +450,8 @@ public class CrearPrisma extends JDialog {
 				public void mouseClicked(MouseEvent e) {
 					pnlCuadrado.setVisible(false);
 					pnlRectangulo.setVisible(false);
-					pnlRombo.setVisible(true);
-					pnlTrapecio.setVisible(false);
+					pnlCilindro.setVisible(true);
+					pnlEsfera.setVisible(false);
 					pnlTriangulo.setVisible(false);
 					rdbtnCuadrado.setSelected(false);
 					rdbtnRectangulo.setSelected(false);
@@ -456,8 +471,8 @@ public class CrearPrisma extends JDialog {
 				public void mouseClicked(MouseEvent e) {
 					pnlCuadrado.setVisible(false);
 					pnlRectangulo.setVisible(false);
-					pnlRombo.setVisible(false);
-					pnlTrapecio.setVisible(false);
+					pnlCilindro.setVisible(false);
+					pnlEsfera.setVisible(false);
 					pnlTriangulo.setVisible(true);
 					rdbtnCuadrado.setSelected(false);
 					rdbtnRectangulo.setSelected(false);
@@ -493,10 +508,26 @@ public class CrearPrisma extends JDialog {
 			JButton btnNewButton_3 = new JButton("Crear");
 			btnNewButton_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					int color = 1;
+					if(btnColor.getBackground() == Color.RED) {
+						color = 1;
+					}
+					if(btnColor.getBackground() == Color.BLUE) {
+						color = 2;
+					}
+					if(btnColor.getBackground() == Color.GREEN) {
+						color = 3;
+					}
+					if(btnColor.getBackground() == Color.YELLOW) {
+						color = 4;
+					}
+					if(btnColor.getBackground() == Color.WHITE) {
+						color = 5;
+					}
 					float ancho =  Float.parseFloat(textAnchoRectangulo.getText());
 					float altura = Float.parseFloat(textAlturaRectangulo.getText());
 					float profundidad = Float.parseFloat(textProfundidadRectangulo.getText());
-					Prisma aux2 = new Rectangulo(ancho,altura,profundidad);
+					Prisma aux2 = new Rectangulo(ancho,altura,profundidad,color);
 					GestionFigura.getInstance().CrearPrisma(aux2);
 					ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
 					prismasUser.add(aux2);
@@ -531,61 +562,65 @@ public class CrearPrisma extends JDialog {
 			pnlRectangulo.add(textProfundidadRectangulo);
 			textProfundidadRectangulo.setColumns(10);
 			
-			pnlTrapecio = new JPanel();
-			pnlTrapecio.setBorder(new TitledBorder(null, "Trapecio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			pnlTrapecio.setBounds(12, 422, 809, 232);
-			panel.add(pnlTrapecio);
-			pnlTrapecio.setLayout(null);
+			pnlEsfera = new JPanel();
+			pnlEsfera.setBorder(new TitledBorder(null, "Trapecio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			pnlEsfera.setBounds(12, 422, 809, 232);
+			panel.add(pnlEsfera);
+			pnlEsfera.setLayout(null);
 			
-			JLabel lblNewLabel_6 = new JLabel(" Vertice TX:");
+			JLabel lblNewLabel_6 = new JLabel("Tama\u00F1o:");
 			lblNewLabel_6.setSize(81, 14);
 			lblNewLabel_6.setLocation(10, 41);
-			pnlTrapecio.add(lblNewLabel_6);
+			pnlEsfera.add(lblNewLabel_6);
 			
-			JLabel lblNewLabel_9 = new JLabel("Vertice TY:");
-			lblNewLabel_9.setBounds(10, 80, 81, 14);
-			pnlTrapecio.add(lblNewLabel_9);
-			
-			JLabel lblNewLabel_10 = new JLabel("Vertice TZ:");
-			lblNewLabel_10.setBounds(10, 110, 81, 14);
-			pnlTrapecio.add(lblNewLabel_10);
-			
-			JLabel lblNewLabel_11 = new JLabel("Vertice T:");
-			lblNewLabel_11.setBounds(10, 130, 81, 14);
-			pnlTrapecio.add(lblNewLabel_11);
-			
-			JLabel lblNewLabel_12 = new JLabel("Altura T:");
-			lblNewLabel_12.setBounds(10, 160, 81, 14);
-			pnlTrapecio.add(lblNewLabel_12);
-			
-			textField_4 = new JTextField();
-			textField_4.setBounds(107, 38, 221, 20);
-			pnlTrapecio.add(textField_4);
-			textField_4.setColumns(10);
-			
-			textField_5 = new JTextField();
-			textField_5.setBounds(107, 77, 221, 20);
-			pnlTrapecio.add(textField_5);
-			textField_5.setColumns(10);
-			
-			textField_6 = new JTextField();
-			textField_6.setBounds(107, 104, 221, 20);
-			pnlTrapecio.add(textField_6);
-			textField_6.setColumns(10);
-			
-			textField_7 = new JTextField();
-			textField_7.setBounds(107, 130, 221, 20);
-			pnlTrapecio.add(textField_7);
-			textField_7.setColumns(10);
-			
-			textField_8 = new JTextField();
-			textField_8.setBounds(107, 160, 221, 20);
-			pnlTrapecio.add(textField_8);
-			textField_8.setColumns(10);
+			textEsfera = new JTextField();
+			textEsfera.setBounds(107, 38, 561, 20);
+			pnlEsfera.add(textEsfera);
+			textEsfera.setColumns(10);
 			
 			JButton btnNewButton_5 = new JButton("Crear");
+			btnNewButton_5.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int color = 1;
+					if(btnColor.getBackground() == Color.RED) {
+						color = 1;
+					}
+					if(btnColor.getBackground() == Color.BLUE) {
+						color = 2;
+					}
+					if(btnColor.getBackground() == Color.GREEN) {
+						color = 3;
+					}
+					if(btnColor.getBackground() == Color.YELLOW) {
+						color = 4;
+					}
+					if(btnColor.getBackground() == Color.WHITE) {
+						color = 5;
+					}
+					Prisma aux = new Esfera(Float.parseFloat(textEsfera.getText()),color);
+					GestionFigura.getInstance().CrearPrisma(aux);
+					ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
+					prismasUser.add(aux);
+					GestionFigura.getInstance().CrearPrisma(aux);
+					if(!textCedula.getText().equalsIgnoreCase("")) {
+						  
+							if(GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText())!= null) {
+								Profesor au3 = GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText());
+								au3.setPrismas(prismasUser);
+							}
+						}
+					else if(!textMatricula.getText().equalsIgnoreCase("")) {
+						if (GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText())!= null) {
+							Estudiante au4 = GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText());
+							au4.setPrismas(prismasUser);
+						}
+					}
+				    Prisma3d dialog = new Prisma3d();
+				    dialog.setVisible(true);
+				}
+			});
 			btnNewButton_5.setBounds(685, 198, 97, 23);
-			pnlTrapecio.add(btnNewButton_5);
+			pnlEsfera.add(btnNewButton_5);
 			
 			pnlTriangulo = new JPanel();
 			pnlTriangulo.setBorder(new TitledBorder(null, "Triangulo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -614,7 +649,23 @@ public class CrearPrisma extends JDialog {
 			JButton btnCrear = new JButton("Crear");
 			btnCrear.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Prisma aux = new Triangulo(Float.parseFloat(textBaseTriangulo.getText()),Float.parseFloat(textAlturaTriangulo.getText()));
+					int color = 1;
+					if(btnColor.getBackground() == Color.RED) {
+						color = 1;
+					}
+					if(btnColor.getBackground() == Color.BLUE) {
+						color = 2;
+					}
+					if(btnColor.getBackground() == Color.GREEN) {
+						color = 3;
+					}
+					if(btnColor.getBackground() == Color.YELLOW) {
+						color = 4;
+					}
+					if(btnColor.getBackground() == Color.WHITE) {
+						color = 5;
+					}
+					Prisma aux = new Triangulo(Float.parseFloat(textBaseTriangulo.getText()),Float.parseFloat(textAlturaTriangulo.getText()),color);
 					GestionFigura.getInstance().CrearPrisma(aux);
 					Prisma3d dialog = new Prisma3d();
 					dialog.setVisible(true);
@@ -623,77 +674,132 @@ public class CrearPrisma extends JDialog {
 			btnCrear.setBounds(685, 198, 97, 23);
 			pnlTriangulo.add(btnCrear);
 			
-			pnlRombo = new JPanel();
-			pnlRombo.setBorder(new TitledBorder(null, "Rombo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			pnlRombo.setBounds(12, 422, 809, 232);
-			panel.add(pnlRombo);
-			pnlRombo.setLayout(null);
+			pnlCilindro = new JPanel();
+			pnlCilindro.setBorder(new TitledBorder(null, "Rombo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			pnlCilindro.setBounds(12, 422, 809, 232);
+			panel.add(pnlCilindro);
+			pnlCilindro.setLayout(null);
 			
-			JLabel lblVereticeX = new JLabel("Vertice X");
+			JLabel lblVereticeX = new JLabel("Ancho:");
 			lblVereticeX.setBounds(10, 41, 81, 14);
-			pnlRombo.add(lblVereticeX);
+			pnlCilindro.add(lblVereticeX);
 			
-			JLabel lblVerticeY = new JLabel("Vertice Y:");
+			JLabel lblVerticeY = new JLabel("Altura:");
 			lblVerticeY.setBounds(10, 80, 81, 14);
-			pnlRombo.add(lblVerticeY);
+			pnlCilindro.add(lblVerticeY);
 			
-			JLabel lblVerticeZ = new JLabel("Vertice Z:");
-			lblVerticeZ.setBounds(10, 110, 81, 14);
-			pnlRombo.add(lblVerticeZ);
+			textAnchoCilindro = new JTextField();
+			textAnchoCilindro.setBounds(107, 38, 561, 20);
+			textAnchoCilindro.setColumns(10);
+			pnlCilindro.add(textAnchoCilindro);
 			
-			JLabel lblVerticeR = new JLabel("Vertice R:");
-			lblVerticeR.setBounds(10, 130, 81, 14);
-			pnlRombo.add(lblVerticeR);
-			
-			textField_9 = new JTextField();
-			textField_9.setBounds(107, 38, 221, 20);
-			textField_9.setColumns(10);
-			pnlRombo.add(textField_9);
-			
-			textField_10 = new JTextField();
-			textField_10.setBounds(107, 77, 221, 20);
-			textField_10.setColumns(10);
-			pnlRombo.add(textField_10);
-			
-			textField_11 = new JTextField();
-			textField_11.setBounds(107, 104, 221, 20);
-			textField_11.setColumns(10);
-			pnlRombo.add(textField_11);
-			
-			textField_12 = new JTextField();
-			textField_12.setBounds(107, 130, 221, 20);
-			textField_12.setColumns(10);
-			pnlRombo.add(textField_12);
+			textAlturaCilindro = new JTextField();
+			textAlturaCilindro.setBounds(107, 77, 561, 20);
+			textAlturaCilindro.setColumns(10);
+			pnlCilindro.add(textAlturaCilindro);
 			
 			JButton btnRegistrar = new JButton("Crear");
+			btnRegistrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int color = 1;
+					if(btnColor.getBackground() == Color.RED) {
+						color = 1;
+					}
+					if(btnColor.getBackground() == Color.BLUE) {
+						color = 2;
+					}
+					if(btnColor.getBackground() == Color.GREEN) {
+						color = 3;
+					}
+					if(btnColor.getBackground() == Color.YELLOW) {
+						color = 4;
+					}
+					if(btnColor.getBackground() == Color.WHITE) {
+						color = 5;
+					}
+					Prisma aux = new Cilindro(Float.parseFloat(textAnchoCilindro.getText()),Float.parseFloat(textAlturaCilindro.getText()),color);
+					GestionFigura.getInstance().CrearPrisma(aux);
+					ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
+					prismasUser.add(aux);
+					GestionFigura.getInstance().CrearPrisma(aux);
+					if(!textCedula.getText().equalsIgnoreCase("")) {
+						  
+							if(GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText())!= null) {
+								Profesor au3 = GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText());
+								au3.setPrismas(prismasUser);
+							}
+						}
+					else if(!textMatricula.getText().equalsIgnoreCase("")) {
+						if (GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText())!= null) {
+							Estudiante au4 = GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText());
+							au4.setPrismas(prismasUser);
+						}
+					}
+				    Prisma3d dialog = new Prisma3d();
+				    dialog.setVisible(true);
+				}
+			});
 			btnRegistrar.setBounds(685, 198, 97, 23);
-			pnlRombo.add(btnRegistrar);
+			pnlCilindro.add(btnRegistrar);
 			
 			JLabel lblNewLabel_13 = new JLabel("");
 			lblNewLabel_13.setIcon(new ImageIcon("C:\\Users\\ronal\\Downloads\\Prisma-Logo-1 (1).png"));
 			lblNewLabel_13.setBounds(277, 38, 283, 88);
 			panel.add(lblNewLabel_13);
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JPanel buttonPane = new JPanel();
+				buttonPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				buttonPane.setBounds(-19, 667, 877, 46);
+				panel.add(buttonPane);
+				{
+					JButton cancelButton = new JButton("Cancel");
+					cancelButton.setBounds(753, 5, 101, 25);
+					cancelButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							dispose();
+						}
+					});
+					buttonPane.setLayout(null);
+					
+					btnColor = new JButton("Rojo");
+					btnColor.setBounds(357, 5, 131, 25);
+					buttonPane.add(btnColor);
+					btnColor.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(btnColor.getBackground()== Color.RED) {
+							btnColor.setBackground(Color.BLUE);
+							btnColor.setText("Azul");
+							}
+							else if(btnColor.getBackground() == Color.BLUE) {
+								btnColor.setBackground(Color.GREEN);
+								btnColor.setText("Verde");
+							}
+							else if(btnColor.getBackground() == Color.GREEN) {
+								btnColor.setBackground(Color.YELLOW);
+								btnColor.setText("Amarillo");
+							}
+							else if(btnColor.getBackground() == Color.YELLOW) {
+								btnColor.setBackground(Color.WHITE);
+								btnColor.setText("Blanco");
+							}
+							else if(btnColor.getBackground() == Color.WHITE) {
+								btnColor.setBackground(Color.RED);
+								btnColor.setText("Rojo");
+							}
+							
+						}
+					});
+					btnColor.setBackground(Color.RED);
+					cancelButton.setActionCommand("Cancel");
+					buttonPane.add(cancelButton);
+				}
 			}
 		}
 		pnlCuadrado.setLayout(null);
-		pnlRombo.setVisible(false);
+		pnlCilindro.setVisible(false);
 		pnlTriangulo.setVisible(false);
 		pnlRectangulo.setVisible(false);
-		pnlTrapecio.setVisible(false);
+		pnlEsfera.setVisible(false);
 		
 		if(GestionFigura.getLoginUser().getTipo().equalsIgnoreCase("Profesor")) {
 			panelEstudiante.setVisible(false);

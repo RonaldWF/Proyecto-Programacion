@@ -50,7 +50,8 @@ public class ListaEstudiantes extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaEstudiantes() {
-		setBounds(100, 100, 548, 486);
+		setBounds(100, 100, 548, 486); 
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

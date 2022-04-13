@@ -21,14 +21,16 @@ import javax.vecmath.Color3f;
 import com.sun.j3d.utils.geometry.Box;
 import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.geometry.Cone;
+import com.sun.j3d.utils.geometry.Cylinder;
+import com.sun.j3d.utils.geometry.Sphere;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
+import logico.Cilindro;
 import logico.Cuadrado;
+import logico.Esfera;
 import logico.GestionFigura;
 import logico.Prisma;
 import logico.Rectangulo;
-import logico.Rombo;
-import logico.Trapecio;
 import logico.Triangulo;
 
 import javax.swing.JButton;
@@ -38,6 +40,7 @@ import java.awt.CardLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
+import java.util.concurrent.CyclicBarrier;
 import java.awt.event.ActionEvent;
 
 public class Prisma3d extends JDialog {
@@ -94,34 +97,54 @@ public class Prisma3d extends JDialog {
 			Prisma aux = GestionFigura.getPrismaMomento();
 		objetogiro.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 		objetoRaiz.addChild(objetogiro);
-		Appearance AparienciaRoja = new Appearance();
-		Color3f rojo = new Color3f(Color.RED);
+		Appearance Apariencia = new Appearance();
+		Color3f color = new Color3f();
+		if(aux.getColor() == 1) {
+		color.set(Color.RED);
+		}
+		else if(aux.getColor() == 2) {
+			color.set(Color.BLUE);
+		}
+		else if(aux.getColor() == 3) {
+			color.set(Color.GREEN);
+		}
+		else if(aux.getColor() == 4) {
+			color.set(Color.YELLOW);
+		}
+		else if(aux.getColor() == 5) {
+			color.set(Color.WHITE);
+		}
 		ColoringAttributes ca = new ColoringAttributes();
-		ca.setColor(rojo);
-		AparienciaRoja.setColoringAttributes(ca);
+		ca.setColor(color);
+		Apariencia.setColoringAttributes(ca);
 		if(aux instanceof Cuadrado) {
-		float alto = GestionFigura.getPrismaMomento().getAltura();
+		float alto = ((Cuadrado) GestionFigura.getPrismaMomento()).getAltura();
 		float ancho = GestionFigura.getPrismaMomento().getBase();
 		float profundidad = ((Cuadrado) GestionFigura.getPrismaMomento()).getProfundidad();
-		Box cubo = new Box(alto,ancho,profundidad,AparienciaRoja);
+		Box cubo = new Box(alto,ancho,profundidad,Apariencia);
 		objetogiro.addChild(cubo);
 		}
 		else if(aux instanceof Rectangulo) {
-			float alto = aux.getAltura();
+			float alto = ((Rectangulo) aux).getAltura();
 			float ancho = aux.getBase();
 			float profundidad = ((Rectangulo) GestionFigura.getPrismaMomento()).getProfundidad();
-			Box cubo = new Box(alto,ancho,profundidad,AparienciaRoja);
+			Box cubo = new Box(alto,ancho,profundidad,Apariencia);
 			objetogiro.addChild(cubo);
 			
 		}
-		else if(aux instanceof Rombo) {
+		else if(aux instanceof Cilindro) {
+			float alto = ((Cilindro) aux).getAltura();
+			float ancho = aux.getBase();
+		Cylinder cilindro = new Cylinder(alto,ancho,Apariencia);
+		objetogiro.addChild(cilindro);
 			
 		}
-		else if(aux instanceof Trapecio) {
-			
+	else if(aux instanceof Esfera) {
+			Sphere esfera = new Sphere(aux.getBase(),Apariencia);
+			objetogiro.addChild(esfera);
 		}
 		else if(aux instanceof Triangulo) {
-			Cone cono = new Cone(aux.getBase(),aux.getAltura(),AparienciaRoja);
+			Cone cono = new Cone(aux.getBase(),((Triangulo) aux).getAltura(),Apariencia);
 			objetogiro.addChild(cono);
 			
 		}

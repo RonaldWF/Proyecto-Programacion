@@ -42,6 +42,7 @@ public class ListaProfesores extends JDialog {
 	 */
 	public ListaProfesores() {
 		setBounds(100, 100, 571, 489);
+		setLocationRelativeTo(null);;
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

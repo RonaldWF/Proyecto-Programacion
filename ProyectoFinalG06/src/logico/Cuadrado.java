@@ -3,9 +3,10 @@ package logico;
 public class Cuadrado extends Prisma {
 
 	private float profundidad;
-	
-	public Cuadrado(float base, float altura, float profundidad) {
-		super(base,altura);
+	private float altura;
+	public Cuadrado(float base, float altura, float profundidad,int color) {
+		super(base, color);
+		this.setAltura(altura);
 		
 	this.profundidad = profundidad;
 	}
@@ -16,6 +17,14 @@ public class Cuadrado extends Prisma {
 
 	public void setProfundidad(float profundidad) {
 		this.profundidad = profundidad;
+	}
+
+	public float getAltura() {
+		return altura;
+	}
+
+	public void setAltura(float altura) {
+		this.altura = altura;
 	}
 }
 

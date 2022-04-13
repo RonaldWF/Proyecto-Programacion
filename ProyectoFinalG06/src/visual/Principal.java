@@ -62,7 +62,7 @@ public class Principal extends JFrame {
 				FileOutputStream empresa2;
 				ObjectOutputStream empresaWrite;
 				try {
-					empresa2 = new  FileOutputStream("empresa.dat");
+					empresa2 = new  FileOutputStream("gestion.dat");
 					empresaWrite = new ObjectOutputStream(empresa2);
 					empresaWrite.writeObject(GestionFigura.getInstance());
 				} catch (FileNotFoundException e1) {
@@ -162,7 +162,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Lista de profesores");
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaProfesores dialog = new ListaProfesores();
+				ListaProfesores dialog = new ListaProfesores(); 
 				dialog.setVisible(true);
 			}
 		});

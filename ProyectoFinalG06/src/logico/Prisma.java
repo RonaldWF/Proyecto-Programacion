@@ -10,13 +10,13 @@ public abstract class Prisma implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	protected float base;
-	protected float altura;
+	protected int color;
 	
-	public Prisma(float base, float altura) {
+	public Prisma(float base, int color) {
 		super();
 		this.base = base;
-		this.altura = altura;
-		
+		this.color = color;
+
 	}
 
 	public float getBase() {
@@ -26,16 +26,13 @@ public abstract class Prisma implements Serializable {
 	public void setBase(float base) {
 		this.base = base;
 	}
-
-	public float getAltura() {
-		return altura;
+	public int getColor() {
+		return color;
 	}
 
-	public void setAltura(float altura) {
-		this.altura = altura;
+	public void setColor(int color) {
+		this.color = color;
 	}
-	
-	
-	
-	
+
+
 }
