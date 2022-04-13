@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logico.Estudiante;
 import logico.GestionFigura;
 
 import javax.swing.JScrollPane;
@@ -28,9 +29,9 @@ public class ListaEstudiantes extends JDialog {
 	private JTable table;
 	private DefaultTableModel model;
 	private Object row[];
-	private JButton EliminarButton;
 	private JButton ModificarButton;
-	//private  selected = null;
+	private JButton EliminarButton;
+	private Estudiante selected = null;
 
 	/**
 	 * Launch the application.
@@ -74,7 +75,9 @@ public class ListaEstudiantes extends JDialog {
 							public void mouseClicked(MouseEvent arg0) {
 								int selected = table.getSelectedColumn();
 								if(selected > -1) {
-									//okButton.setEnabled(true);
+									
+									ModificarButton.setEnabled(true);
+									EliminarButton.setEnabled(true);
 								}
 							}
 						});
@@ -91,18 +94,21 @@ public class ListaEstudiantes extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				ModificarButton = new JButton("Modificar");
+				ModificarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+					}
+				});
 				buttonPane.add(ModificarButton);
 			}
 			{
 				EliminarButton = new JButton("Eliminar");
 				EliminarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
-						 int option =	JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?","Confirmación",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
-						// if(option == JOptionPane.YES_OPTION ) {
-							//  Puerto.getInstance().eliminarAlquiler(selected);
-					//		  loadTable();
-						//  }	  
+						 int fila = -1;
+						 fila = table.getSelectedRow();
+						 JOptionPane.showConfirmDialog(EliminarButton, "Desea eliminar este figura?","Advertencia", 0,1);
+						 eliminar(fila); 
 					}
 				});
 				EliminarButton.setActionCommand("OK");
@@ -117,6 +123,17 @@ public class ListaEstudiantes extends JDialog {
 		}
 		loadTable();
 	}
+	
+	
+	private void eliminar(int fila) {
+		selected = GestionFigura.getInstance().BuscarEstudianteBymatricula(table.getValueAt(fila, 0).toString());
+		model.removeRow(fila);
+		if(selected != null) {
+			GestionFigura.getInstance().EliminarEstudiante(selected);
+		}
+	}
+	
+	
 	private void loadTable() {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];

@@ -76,11 +76,19 @@ public void RegistrarEstudiante(Usuario estudiante) {
 	cantEstudiantes++;
 	cantUsuarios++;
 }
+
+public void EliminarEstudiante(Usuario estudiante) {
+	estudiantes.remove((Estudiante)estudiante);  
+	cantEstudiantes--;
+	cantUsuarios--;
+}
+
 public void CrearPrisma(Prisma prisma) {
 	prismas.add(prisma);
 	prismaMomento = prisma;
 	cantPrismas++;
 }
+
 public static UsuarioGestion getLoginUser() {
 	return loginUser;
 }
