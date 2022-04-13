@@ -15,9 +15,9 @@ import javax.media.j3d.TransformGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.vecmath.Color3f;
+import javax.vecmath.Point3d;
 
-
-
+import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.geometry.Box;
 import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.geometry.Cone;
@@ -92,11 +92,12 @@ public class Prisma3d extends JDialog {
 	}
 	public BranchGroup crearGrafoEscena() {
 		BranchGroup objetoRaiz = new BranchGroup();
-		TransformGroup objetogiro = new TransformGroup();
+		TransformGroup mouseGr = new TransformGroup();
 		
 			Prisma aux = GestionFigura.getPrismaMomento();
-		objetogiro.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-		objetoRaiz.addChild(objetogiro);
+			mouseGr.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+			mouseGr.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+		objetoRaiz.addChild(mouseGr);
 		Appearance Apariencia = new Appearance();
 		Color3f color = new Color3f();
 		if(aux.getColor() == 1) {
@@ -122,51 +123,44 @@ public class Prisma3d extends JDialog {
 		float ancho = GestionFigura.getPrismaMomento().getBase();
 		float profundidad = ((Cuadrado) GestionFigura.getPrismaMomento()).getProfundidad();
 		Box cubo = new Box(alto,ancho,profundidad,Apariencia);
-		objetogiro.addChild(cubo);
+		mouseGr.addChild(cubo);
 		}
 		else if(aux instanceof Rectangulo) {
 			float alto = ((Rectangulo) aux).getAltura();
 			float ancho = aux.getBase();
 			float profundidad = ((Rectangulo) GestionFigura.getPrismaMomento()).getProfundidad();
 			Box cubo = new Box(alto,ancho,profundidad,Apariencia);
-			objetogiro.addChild(cubo);
+			mouseGr.addChild(cubo);
 			
 		}
 		else if(aux instanceof Cilindro) {
 			float alto = ((Cilindro) aux).getAltura();
 			float ancho = aux.getBase();
 		Cylinder cilindro = new Cylinder(alto,ancho,Apariencia);
-		objetogiro.addChild(cilindro);
+		mouseGr.addChild(cilindro);
 			
 		}
 	else if(aux instanceof Esfera) {
 			Sphere esfera = new Sphere(aux.getBase(),Apariencia);
-			objetogiro.addChild(esfera);
+			mouseGr.addChild(esfera);
 		}
 		else if(aux instanceof Triangulo) {
 			Cone cono = new Cone(aux.getBase(),((Triangulo) aux).getAltura(),Apariencia);
-			objetogiro.addChild(cono);
+			mouseGr.addChild(cono);
 			
 		}
-		Alpha rotacionAlpha = new Alpha(-1,4000);
-		RotationInterpolator rotacion =  new RotationInterpolator(rotacionAlpha, objetogiro);
-		rotacion.setSchedulingBounds(new BoundingSphere());
-		objetoRaiz.addChild(rotacion);
+		MouseRotate mr = new MouseRotate();
+		mr.setTransformGroup(mouseGr);
+		mr.setSchedulingBounds(new BoundingSphere(new Point3d(),1000f));
+		objetoRaiz.addChild(mr);
 		
 		return objetoRaiz;
 	}
 	public static void main(String [] args) {
 		System.setProperty("sun.awt.noerasebackground", "true");
-	//JFrame ventana = new JFrame("Pisma 3D");
-	//Prisma3d panel = new Prisma3d();
 	Prisma3d dialog = new Prisma3d();
 	dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	dialog.setVisible(true);
-	/*ventana.getContentPane().add(panel);
-	ventana.setSize(700,700);
-	ventana.setVisible(true);
-	ventana.setLocationRelativeTo(null);
-	ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 	
 
 	}
