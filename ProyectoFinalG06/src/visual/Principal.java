@@ -100,6 +100,12 @@ public class Principal extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem MenuItemListaPrismas = new JMenuItem("Lista de prismas");
+		MenuItemListaPrismas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListaPrimas dialog = new ListaPrimas();
+				dialog.setVisible(true);
+			}
+		});
 		mnNewMenu.add(MenuItemListaPrismas);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Crear Prisma");
@@ -130,6 +136,12 @@ public class Principal extends JFrame {
 		menuBar.add(MenuEstudiante);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Lista de Prismas");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaPrimas dialog = new ListaPrimas();
+				dialog.setVisible(true);
+			}
+		});
 		MenuEstudiante.add(mntmNewMenuItem_1);
 		
 		JMenuItem MenuItemEstudiantes = new JMenuItem("Lista de Estudiantes");
@@ -151,10 +163,11 @@ public class Principal extends JFrame {
 		menuBar.add(MenuProfesor);
 		
 		mntmNewMenuItem_2 = new JMenuItem("Lista de Prismas");
-		mntmNewMenuItem_2.addMouseListener(new MouseAdapter() {
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
+			public void actionPerformed(ActionEvent e) {
+				ListaPrimas dialog = new ListaPrimas();
+				dialog.setVisible(true);
 			}
 		});
 		MenuProfesor.add(mntmNewMenuItem_2);
