@@ -95,6 +95,10 @@ public class ListaProfesores extends JDialog {
 						 eliminar(fila);
 					}
 				});
+				{
+					JButton btnNewButton = new JButton("Modificar");
+					buttonPane.add(btnNewButton);
+				}
 				eliminarButton.setActionCommand("OK");
 				buttonPane.add(eliminarButton);
 				getRootPane().setDefaultButton(eliminarButton);
