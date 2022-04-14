@@ -95,6 +95,7 @@ public class ListaEstudiantes extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				ModificarButton = new JButton("Modificar");
+				ModificarButton.setEnabled(false);
 				ModificarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
@@ -104,6 +105,7 @@ public class ListaEstudiantes extends JDialog {
 			}
 			{
 				EliminarButton = new JButton("Eliminar");
+				EliminarButton.setEnabled(false);
 				EliminarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						 int fila = -1;

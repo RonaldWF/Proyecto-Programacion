@@ -29,8 +29,8 @@ public class ListaProfesores extends JDialog {
 	private DefaultTableModel model;
 	private Object row[];
 	private Profesor selected = null;
-	private JButton btnModificar;
 	private JButton btnEliminar;
+	private JButton btnModificar;
 
 	/**
 	 * Launch the application.
@@ -74,7 +74,7 @@ public class ListaProfesores extends JDialog {
 								if(table.getSelectedRow()>-1) {
 									int row = -1;
 									row = table.getSelectedRow();
-									if(row>-1){
+									if(row> -1){
 										btnModificar.setEnabled(true);
 										btnEliminar.setEnabled(true);
 										selected = GestionFigura.getInstance().BuscarProfesorByCedula(table.getValueAt(row, 0).toString());
@@ -96,22 +96,24 @@ public class ListaProfesores extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton eliminarButton = new JButton("Eliminar");
-				eliminarButton.addActionListener(new ActionListener() {
+				btnEliminar = new JButton("Eliminar");
+				btnEliminar.setEnabled(false);
+				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						 int fila = -1;
 						 fila = table.getSelectedRow();
-						 JOptionPane.showConfirmDialog(eliminarButton, "Está seguro que desea eliminar un profesor?","Advertencia",0,1);
+						 JOptionPane.showConfirmDialog(btnEliminar, "Está seguro que desea eliminar un profesor?","Advertencia",0,1);
 						 eliminar(fila);
 					}
 				});
 				{
-					JButton btnNewButton = new JButton("Modificar");
-					buttonPane.add(btnNewButton);
+					btnModificar = new JButton("Modificar");
+					btnModificar.setEnabled(false);
+					buttonPane.add(btnModificar);
 				}
-				eliminarButton.setActionCommand("OK");
-				buttonPane.add(eliminarButton);
-				getRootPane().setDefaultButton(eliminarButton);
+				btnEliminar.setActionCommand("OK");
+				buttonPane.add(btnEliminar);
+				getRootPane().setDefaultButton(btnEliminar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
@@ -139,7 +141,7 @@ public class ListaProfesores extends JDialog {
 	private void loadTable() {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
-		for(int i = 0; i < GestionFigura.getInstance().getCantEstudiantes();i++) {
+		for(int i = 0; i < GestionFigura.getInstance().getCantProfesores();i++) {
 		 row[0] = GestionFigura.getInstance().getProfesores().get(i).getCedula();
 		 row[1] = GestionFigura.getInstance().getProfesores().get(i).getNombre();
 		 row[2] = GestionFigura.getInstance().getProfesores().get(i).getApellido();
