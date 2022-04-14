@@ -83,6 +83,13 @@ public void EliminarEstudiante(Usuario estudiante) {
 	cantUsuarios--;
 }
 
+
+public void EliminarProfesor(Usuario profesor) {
+	profesores.remove((Profesor)profesor);  
+	cantProfesores--;
+	cantUsuarios--;
+}
+
 public void CrearPrisma(Prisma prisma) {
 	prismas.add(prisma);
 	prismaMomento = prisma;

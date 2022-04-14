@@ -7,15 +7,20 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logico.Estudiante;
 import logico.GestionFigura;
+import logico.Profesor;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListaProfesores extends JDialog {
 
@@ -23,6 +28,7 @@ public class ListaProfesores extends JDialog {
 	private JTable table;
 	private DefaultTableModel model;
 	private Object row[];
+	private Profesor selected = null;
 
 	/**
 	 * Launch the application.
@@ -80,19 +86,42 @@ public class ListaProfesores extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton eliminarButton = new JButton("Eliminar");
+				eliminarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						 int fila = -1;
+						 fila = table.getSelectedRow();
+						 JOptionPane.showConfirmDialog(eliminarButton, "Está seguro que desea eliminar un profesor?","Advertencia",0,1);
+						 eliminar(fila);
+					}
+				});
+				eliminarButton.setActionCommand("OK");
+				buttonPane.add(eliminarButton);
+				getRootPane().setDefaultButton(eliminarButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 		loadTable();
 	}
+	
+	private void eliminar(int fila) {
+		selected = GestionFigura.getInstance().BuscarProfesorByCedula(table.getValueAt(fila, 0).toString());
+		model.removeRow(fila);
+		if(selected != null) {
+			GestionFigura.getInstance().EliminarProfesor(selected);
+		}
+	}
+	
 	private void loadTable() {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
@@ -102,7 +131,7 @@ public class ListaProfesores extends JDialog {
 		 row[2] = GestionFigura.getInstance().getProfesores().get(i).getApellido();
 		 row[3] = GestionFigura.getInstance().getProfesores().get(i).getEdad();
 		 model.addRow(row);
-		}
+			}
 		}
 
 }

@@ -144,7 +144,7 @@ public class ListaEstudiantes extends JDialog {
 		 row[2] = GestionFigura.getInstance().getEstudiantes().get(i).getApellido();
 		 row[3] = GestionFigura.getInstance().getEstudiantes().get(i).getEdad();
 		 model.addRow(row);
-		}
+			}
 		}
 
 }
