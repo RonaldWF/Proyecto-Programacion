@@ -29,6 +29,8 @@ public class ListaProfesores extends JDialog {
 	private DefaultTableModel model;
 	private Object row[];
 	private Profesor selected = null;
+	private JButton btnModificar;
+	private JButton btnEliminar;
 
 	/**
 	 * Launch the application.
@@ -70,10 +72,18 @@ public class ListaProfesores extends JDialog {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
 								if(table.getSelectedRow()>-1) {
+									int row = -1;
+									row = table.getSelectedRow();
+									if(row>-1){
+										btnModificar.setEnabled(true);
+										btnEliminar.setEnabled(true);
+										selected = GestionFigura.getInstance().BuscarProfesorByCedula(table.getValueAt(row, 0).toString());
+									}
+								}
 									//okButton.setEnabled(true);
 								}
 							}
-						});
+						);
 						table.setModel(model);
 						scrollPane.setViewportView(table);
 					}
