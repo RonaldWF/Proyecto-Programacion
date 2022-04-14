@@ -62,7 +62,7 @@ public class Principal extends JFrame {
 				FileOutputStream empresa2;
 				ObjectOutputStream empresaWrite;
 				try {
-					empresa2 = new  FileOutputStream("gestion.dat");
+					empresa2 = new  FileOutputStream("gestion3.dat");
 					empresaWrite = new ObjectOutputStream(empresa2);
 					empresaWrite.writeObject(GestionFigura.getInstance());
 				} catch (FileNotFoundException e1) {

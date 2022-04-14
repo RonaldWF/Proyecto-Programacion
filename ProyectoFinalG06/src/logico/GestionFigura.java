@@ -20,10 +20,13 @@ private int cantGrupos;
 private int cantUsuariosGestion;
 private int cantEstudiantes;
 private int cantProfesores;
+private int cantEstudiantesDisp;
+private int cantProfesoresDisp;
 public static GestionFigura gestion;
 public static UsuarioGestion loginUser;
 private static Prisma prismaMomento;
 private static Usuario usuarioActual;
+private static int numeroGrupo;
 public GestionFigura() {
 	setPrismas(new ArrayList<Prisma>(100));
 	setUsuarios(new ArrayList<Usuario>(100));
@@ -36,6 +39,9 @@ public GestionFigura() {
 	setEstudiantes(new ArrayList<Estudiante>(100));
 	setProfesores(new ArrayList<Profesor>(100));
 	setCantEstudiantes(0);
+	setCantProfesoresDisp(0);
+	setCantEstudiantesDisp(0);
+	numeroGrupo = 1;
 }
 public int getCantGrupos() {
 	return cantGrupos;
@@ -71,12 +77,14 @@ public Estudiante BuscarEstudianteBymatricula(String matricula) {
 	}
 	return aux;
 }
+
 public void RegistrarEstudiante(Usuario estudiante) {
 	estudiantes.add((Estudiante) estudiante);
+	//estudiantesDisponibles.add((Estudiante) estudiante);
 	cantEstudiantes++;
 	cantUsuarios++;
+	//cantEstudiantesDisp++;
 }
-
 public void EliminarEstudiante(Usuario estudiante) {
 	estudiantes.remove((Estudiante)estudiante);  
 	cantEstudiantes--;
@@ -119,6 +127,10 @@ public void RegistrarProfesor(Usuario pro) {
 	cantProfesores++;
 	cantUsuarios++;
 }
+//public void RegistrarProfesorDisp(Usuario pro) {
+//	profesoresDisponibles.add((Profesor) pro);
+	//cantProfesoresDisp++;
+//}
 public ArrayList<Profesor> getProfesores() {
 	return profesores;
 }
@@ -215,5 +227,48 @@ public static Usuario getUsuarioActual() {
 }
 public static void setUsuarioActual(Usuario usuarioActual) {
 	GestionFigura.usuarioActual = usuarioActual;
+}
+
+public int getCantEstudiantesDisp() {
+	return cantEstudiantesDisp;
+}
+public void setCantEstudiantesDisp(int cantEstudiantesDisp) {
+	this.cantEstudiantesDisp = cantEstudiantesDisp;
+}
+public int getCantProfesoresDisp() {
+	return cantProfesoresDisp;
+}
+public void setCantProfesoresDisp(int cantProfesoresDisp) {
+	this.cantProfesoresDisp = cantProfesoresDisp;
+}
+public boolean ExisteEstudianteBymatricula(String b) {
+	boolean encontrado = false;
+	for(int i = 0; i < cantEstudiantes;i++) {
+		if(estudiantes.get(i).getMatricula().equalsIgnoreCase(b)) {
+			encontrado = true;
+		}
+	}
+		return encontrado;
+}
+public boolean ExisteProfesorByCedula(String b) {
+	boolean encontrado = false;
+	for(int i = 0; i < cantProfesores;i++) {
+		if(profesores.get(i).getCedula().equalsIgnoreCase(b)) {
+			encontrado = true;
+		}
+	}
+		return encontrado;
+	
+}
+public void CrearGrupo(Grupo grupo) {
+	grupos.add(grupo);
+	cantGrupos++;
+	numeroGrupo++;
+}
+public static int getNumeroGrupo() {
+	return numeroGrupo;
+}
+public static void setNumeroGrupo(int numeroGrupo) {
+	GestionFigura.numeroGrupo = numeroGrupo;
 }
 }

@@ -6,8 +6,8 @@ public class Profesor extends Usuario  {
 private ArrayList<Prisma>prismas;
 private String cedula;
 
-	public Profesor(String nombre, String apellido, int edad, String cedula) {
-		super(nombre, apellido, edad);
+	public Profesor(String nombre, String apellido, int edad, String cedula,boolean estado) {
+		super(nombre, apellido, edad, estado);
 		this.setPrismas(prismas);
 		this.setCedula(cedula);
 		// TODO Auto-generated constructor stub

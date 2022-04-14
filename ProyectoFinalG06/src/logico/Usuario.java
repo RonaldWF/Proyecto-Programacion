@@ -11,11 +11,13 @@ public class Usuario implements Serializable {
 protected String nombre;
 protected String apellido;
 protected int edad;
-public Usuario(String nombre, String apellido, int edad) {
+protected boolean estado;
+public Usuario(String nombre, String apellido, int edad, boolean estado) {
 	super();
 	this.nombre = nombre;
 	this.apellido = apellido;
 	this.edad = edad;
+	this.estado = estado;
 }
 public String getNombre() {
 	return nombre;
@@ -35,6 +37,11 @@ public int getEdad() {
 public void setEdad(int edad) {
 	this.edad = edad;
 }
-	
+public boolean isEstado() {
+	return estado;
+}
+public void setEstado(boolean estado) {
+	this.estado = estado;
+}	
 	
 }
