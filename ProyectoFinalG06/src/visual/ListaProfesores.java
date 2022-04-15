@@ -100,11 +100,17 @@ public class ListaProfesores extends JDialog {
 				btnEliminar.setEnabled(false);
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						if(selected!=null) {
 						 int fila = -1;
 						 fila = table.getSelectedRow();
-						 JOptionPane.showConfirmDialog(btnEliminar, "Está seguro que desea eliminar un profesor?","Advertencia",0,1);
-						 eliminar(fila);
+						 int option = JOptionPane.showConfirmDialog(btnEliminar, "Está seguro que desea eliminar un profesor?","Advertencia",0,1);
+						 if(option == JOptionPane.YES_OPTION) {
+							eliminar(fila);
+						 }
+						 
 					}
+						}
 				});
 				{
 					btnModificar = new JButton("Modificar");
