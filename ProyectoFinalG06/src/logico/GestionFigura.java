@@ -41,7 +41,7 @@ public GestionFigura() {
 	setCantEstudiantes(0);
 	setCantProfesoresDisp(0);
 	setCantEstudiantesDisp(0);
-	numeroGrupo = 1;
+	setNumeroGrupo(1);
 }
 public int getCantGrupos() {
 	return cantGrupos;

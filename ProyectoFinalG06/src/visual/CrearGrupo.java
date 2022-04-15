@@ -213,6 +213,7 @@ public class CrearGrupo extends JDialog {
 			scrollPane_1.setColumnHeaderView(lblNewLabel_1);
 			
 			textNumero = new JTextField();
+			textNumero.setEditable(false);
 			textNumero.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			textNumero.setBounds(337, 65, 56, 22);
 			panel_1.add(textNumero);
@@ -234,8 +235,12 @@ public class CrearGrupo extends JDialog {
 					public void actionPerformed(ActionEvent arg0) {
 						Grupo grupo = new Grupo(estudiantesGrupo,profesorUnicoGrupo,GestionFigura.getNumeroGrupo());
 						GestionFigura.getInstance().CrearGrupo(grupo);
+						textNumero.setText("GR-" + String.valueOf(GestionFigura.getNumeroGrupo()));
 						JOptionPane.showMessageDialog(contentPanel, "Grupo Creado Exitosamente.");
-						//pasarIzquierda =  LoadEstudiantes();
+						rdbEstudiantes.setSelected(true);
+						rdbProfesores.setSelected(false);
+						listModelDisp.removeAllElements();
+						pasarIzquierda =  LoadEstudiantes();
 						//pasarIzquierda = LoadProfesores();
 						listModelGrupo.removeAllElements();
 						
