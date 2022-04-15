@@ -48,7 +48,7 @@ public class CrearGrupo extends JDialog {
 	private ArrayList<Estudiante> estudiantesGrupo;
 	private JTextField textNumero;
 	private int hola = 2;
-
+ 
 	/**
 	 * Launch the application.
 	 */
