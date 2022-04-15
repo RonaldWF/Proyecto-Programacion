@@ -69,9 +69,87 @@ public abstract class Prisma implements Serializable {
 		}
 		
 		
-		return base;
+		return 0;
 		
 		
 	}
+	
+	
+	public float calcularAreasLaterales(){
+		
+		Prisma aux=null;
+		
+		float total = 0;
+		
+			for (Prisma prisma : misPrismas) {
+				
+				if(prisma instanceof Cuadrado) {
+					total+=((4) * Math.pow(((Cuadrado)aux).getBase(),2));	
+				}
+				
+				else if (prisma instanceof Rectangulo) {
+					total+=(2) * ((((Rectangulo)aux).getAltura() * (((Rectangulo)aux).getBase() + ((Rectangulo)aux).getProfundidad())));
+				}
+				
+				else if (prisma instanceof Triangulo) {
+					total+=((((Triangulo)aux).getAltura()) * (((Triangulo)aux).getBase()) * (Math.PI));
+				}
+				
+				else if (prisma instanceof Cilindro) {
+					total+=(2) * ((Math.PI) * ((Cilindro)aux).getBase() * ((Cilindro)aux).getAltura());
+					
+				}
+				
+				else if (prisma instanceof Esfera) {
+					total+=((4) * (Math.PI) * (((Esfera)aux).getBase()));
+					
+				}
+				
+			}
+			
+			
+			return 0;
+			
+			
+		}
+	
+public float calcularAreasTotales(){
+		
+		Prisma aux=null;
+		
+		float total = 0;
+		
+			for (Prisma prisma : misPrismas) {
+				
+				if(prisma instanceof Cuadrado) {
+					total+=((6) * Math.pow(((Cuadrado)aux).getBase(),2));	
+				}
+				
+				else if (prisma instanceof Rectangulo) {
+					total+=(2) * (((Rectangulo)aux).getBase() * ((Rectangulo)aux).getAltura() + ((Rectangulo)aux).getBase() * ((Rectangulo)aux).getProfundidad());
+				}
+				
+				else if (prisma instanceof Triangulo) {
+					total+=(((((Triangulo)aux).getAltura()) * (((Triangulo)aux).getBase()) * (Math.PI)) + ((Math.PI) * Math.pow(((Triangulo)aux).getBase(), 2)));
+				}
+				
+				else if (prisma instanceof Cilindro) {
+					total+=((2) * ((Math.PI) * ((Cilindro)aux).getBase() * ((Cilindro)aux).getAltura())) + (2) * ((Math.PI) * Math.pow(((Cilindro)aux).getBase(), 2));
+					
+				}
+				
+				else if (prisma instanceof Esfera) {
+					total+=((4) * (Math.PI) * (((Esfera)aux).getBase()));
+					
+				}
+				
+			}
+			
+			
+			return 0;
+			
+			
+		}
+
 
 }
