@@ -77,6 +77,7 @@ public class CrearPrisma extends JDialog {
 	private int hola=5000;
 	private JTextField textProfundidadCuadrado;
 	private JButton btnColor;
+	private JTextField textCodigo;
 
 	/**
 	 * Launch the application.
@@ -162,7 +163,7 @@ public class CrearPrisma extends JDialog {
 									color = 5;
 								}
 								
-							Prisma aux = new Cuadrado(ancho,altura,profundidad,color);
+							Prisma aux = new Cuadrado(ancho,altura,profundidad,color,textCodigo.getText());
 							ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
 							prismasUser.add(aux);
 							GestionFigura.getInstance().CrearPrisma(aux);
@@ -348,7 +349,8 @@ public class CrearPrisma extends JDialog {
 			lblCedula.setBounds(39, 13, 70, 16);
 			panelProfesor.add(lblCedula);
 			
-			JButton btnRegistrarProfesor = new JButton("Registrar");   //Se necesita agregar algo en el campo prismas, no se que meter ahi
+			JButton btnRegistrarProfesor = new JButton("");   //Se necesita agregar algo en el campo prismas, no se que meter ahi
+			btnRegistrarProfesor.setIcon(new ImageIcon(CrearPrisma.class.getResource("/imagenes/guardar-el-archivo.png")));
 			btnRegistrarProfesor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int edad = Integer.parseInt(textEdadProfesor.getText()); 
@@ -360,10 +362,11 @@ public class CrearPrisma extends JDialog {
 					clear();
 				}
 			});
-			btnRegistrarProfesor.setBounds(685, 142, 97, 25);
+			btnRegistrarProfesor.setBounds(685, 101, 78, 66);
 			panelProfesor.add(btnRegistrarProfesor);
 			
-			JButton btnBuscarProfesor = new JButton("Buscar");
+			JButton btnBuscarProfesor = new JButton("");
+			btnBuscarProfesor.setIcon(new ImageIcon(CrearPrisma.class.getResource("/imagenes/buscar (1).png")));
 			btnRegistrarProfesor.setEnabled(false);
 			btnBuscarProfesor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -380,7 +383,7 @@ public class CrearPrisma extends JDialog {
 					}
 				}
 			});
-			btnBuscarProfesor.setBounds(557, 142, 97, 25);
+			btnBuscarProfesor.setBounds(590, 101, 70, 66);
 			panelProfesor.add(btnBuscarProfesor);
 			
 			rdbtnCuadrado = new JRadioButton("Cuadrado");
@@ -399,6 +402,7 @@ public class CrearPrisma extends JDialog {
 					rdbtnRombo.setSelected(false);
 					rdbtnTrapecio.setSelected(false);
 					rdbtnTriangulo.setSelected(false);
+					textCodigo.setText("CD-"+ GestionFigura.getNumeroPrisma());
 					
 					
 					
@@ -425,6 +429,7 @@ public class CrearPrisma extends JDialog {
 					rdbtnRombo.setSelected(false);
 					rdbtnTrapecio.setSelected(false);
 					rdbtnTriangulo.setSelected(false);
+					textCodigo.setText("REC-"+ GestionFigura.getNumeroPrisma());
 					
 					
 				}
@@ -446,6 +451,7 @@ public class CrearPrisma extends JDialog {
 					rdbtnRombo.setSelected(false);
 					rdbtnTrapecio.setSelected(true);
 					rdbtnTriangulo.setSelected(false);
+					textCodigo.setText("ESF-"+ GestionFigura.getNumeroPrisma());
 					
 				}
 			});
@@ -466,6 +472,7 @@ public class CrearPrisma extends JDialog {
 					rdbtnRombo.setSelected(true);
 					rdbtnTrapecio.setSelected(false);
 					rdbtnTriangulo.setSelected(false);
+					textCodigo.setText("CL-"+ GestionFigura.getNumeroPrisma());
 					
 					
 				}
@@ -487,6 +494,7 @@ public class CrearPrisma extends JDialog {
 					rdbtnRombo.setSelected(false);
 					rdbtnTrapecio.setSelected(false);
 					rdbtnTriangulo.setSelected(true);
+					textCodigo.setText("TR-"+ GestionFigura.getNumeroPrisma());
 					
 				}
 			});
@@ -535,7 +543,7 @@ public class CrearPrisma extends JDialog {
 					float ancho =  Float.parseFloat(textAnchoRectangulo.getText());
 					float altura = Float.parseFloat(textAlturaRectangulo.getText());
 					float profundidad = Float.parseFloat(textProfundidadRectangulo.getText());
-					Prisma aux2 = new Rectangulo(ancho,altura,profundidad,color);
+					Prisma aux2 = new Rectangulo(ancho,altura,profundidad,color,textCodigo.getText());
 					GestionFigura.getInstance().CrearPrisma(aux2);
 					ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
 					prismasUser.add(aux2);
@@ -605,11 +613,10 @@ public class CrearPrisma extends JDialog {
 					if(btnColor.getBackground() == Color.WHITE) {
 						color = 5;
 					}
-					Prisma aux = new Esfera(Float.parseFloat(textEsfera.getText()),color);
+					Prisma aux = new Esfera(Float.parseFloat(textEsfera.getText()),color,textCodigo.getText());
 					GestionFigura.getInstance().CrearPrisma(aux);
 					ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
 					prismasUser.add(aux);
-					GestionFigura.getInstance().CrearPrisma(aux);
 					if(!textCedula.getText().equalsIgnoreCase("")) {
 						  
 							if(GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText())!= null) {
@@ -673,7 +680,7 @@ public class CrearPrisma extends JDialog {
 					if(btnColor.getBackground() == Color.WHITE) {
 						color = 5;
 					}
-					Prisma aux = new Triangulo(Float.parseFloat(textBaseTriangulo.getText()),Float.parseFloat(textAlturaTriangulo.getText()),color);
+					Prisma aux = new Triangulo(Float.parseFloat(textBaseTriangulo.getText()),Float.parseFloat(textAlturaTriangulo.getText()),color,textCodigo.getText());
 					GestionFigura.getInstance().CrearPrisma(aux);
 					Prisma3d dialog = new Prisma3d();
 					dialog.setVisible(true);
@@ -725,11 +732,10 @@ public class CrearPrisma extends JDialog {
 					if(btnColor.getBackground() == Color.WHITE) {
 						color = 5;
 					}
-					Prisma aux = new Cilindro(Float.parseFloat(textAnchoCilindro.getText()),Float.parseFloat(textAlturaCilindro.getText()),color);
+					Prisma aux = new Cilindro(Float.parseFloat(textAnchoCilindro.getText()),Float.parseFloat(textAlturaCilindro.getText()),color,textCodigo.getText());
 					GestionFigura.getInstance().CrearPrisma(aux);
 					ArrayList<Prisma> prismasUser = new ArrayList<Prisma>(100);
 					prismasUser.add(aux);
-					GestionFigura.getInstance().CrearPrisma(aux);
 					if(!textCedula.getText().equalsIgnoreCase("")) {
 						  
 							if(GestionFigura.getInstance().BuscarProfesorByCedula(textCedula.getText())!= null) {
@@ -803,6 +809,12 @@ public class CrearPrisma extends JDialog {
 					buttonPane.add(cancelButton);
 				}
 			}
+			
+			textCodigo = new JTextField();
+			textCodigo.setBounds(595, 404, 116, 22);
+			panel.add(textCodigo);
+			textCodigo.setEditable(false);
+			textCodigo.setColumns(10);
 		}
 		pnlCuadrado.setLayout(null);
 		pnlCilindro.setVisible(false);

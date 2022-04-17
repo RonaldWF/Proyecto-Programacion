@@ -23,6 +23,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.border.TitledBorder;
 
 public class ListaProfesores extends JDialog {
 
@@ -33,6 +37,11 @@ public class ListaProfesores extends JDialog {
 	private Profesor selected = null;
 	private JButton btnEliminar;
 	private JButton btnModificar;
+	private JTextField textCedulaModi;
+	private JTextField textNombreModi;
+	private JTextField textApellidoModi;
+	private JTextField textEdadModi;
+	private JPanel panelModificacion;
 
 	/**
 	 * Launch the application.
@@ -61,10 +70,11 @@ public class ListaProfesores extends JDialog {
 		{
 			JPanel panel = new JPanel();
 			contentPanel.add(panel, BorderLayout.CENTER);
-			panel.setLayout(new BorderLayout(0, 0));
+			panel.setLayout(null);
 			{
 				JScrollPane scrollPane = new JScrollPane();
-				panel.add(scrollPane, BorderLayout.CENTER);
+				scrollPane.setBounds(179, 0, 364, 381);
+				panel.add(scrollPane);
 				{
 					{
 						String headers[]= {"Cedula","Nombre","Apellido","Edad"};
@@ -93,6 +103,71 @@ public class ListaProfesores extends JDialog {
 					scrollPane.setViewportView(table);
 				}
 			}
+			{
+				panelModificacion = new JPanel();
+				panelModificacion.setVisible(false);
+				panelModificacion.setBorder(new TitledBorder(null, "Modificacion", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panelModificacion.setBounds(12, 29, 155, 318);
+				panel.add(panelModificacion);
+				panelModificacion.setLayout(null);
+				{
+					textCedulaModi = new JTextField();
+					textCedulaModi.setBounds(27, 55, 116, 22);
+					panelModificacion.add(textCedulaModi);
+					textCedulaModi.setColumns(10);
+				}
+				{
+					textNombreModi = new JTextField();
+					textNombreModi.setColumns(10);
+					textNombreModi.setBounds(27, 122, 116, 22);
+					panelModificacion.add(textNombreModi);
+				}
+				{
+					textApellidoModi = new JTextField();
+					textApellidoModi.setBounds(27, 185, 116, 22);
+					panelModificacion.add(textApellidoModi);
+					textApellidoModi.setColumns(10);
+				}
+				{
+					textEdadModi = new JTextField();
+					textEdadModi.setBounds(27, 242, 116, 22);
+					panelModificacion.add(textEdadModi);
+					textEdadModi.setColumns(10);
+				}
+				
+				JLabel lblNewLabel = new JLabel("Cedula:");
+				lblNewLabel.setBounds(53, 28, 56, 16);
+				panelModificacion.add(lblNewLabel);
+				
+				JLabel lblNombre = new JLabel("Nombre:");
+				lblNombre.setBounds(53, 93, 56, 16);
+				panelModificacion.add(lblNombre);
+				
+				JLabel lblApellido = new JLabel("Apellido:");
+				lblApellido.setBounds(53, 157, 56, 16);
+				panelModificacion.add(lblApellido);
+				
+				JLabel lblEdad = new JLabel("Edad:");
+				lblEdad.setBounds(63, 213, 56, 16);
+				panelModificacion.add(lblEdad);
+				{
+					JButton btnNewButton = new JButton("");
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							int  fila = table.getSelectedRow();
+							GestionFigura.getInstance().getProfesores().get(fila).setCedula(textCedulaModi.getText());
+							GestionFigura.getInstance().getProfesores().get(fila).setNombre(textNombreModi.getText());
+							GestionFigura.getInstance().getProfesores().get(fila).setApellido(textApellidoModi.getText());
+							GestionFigura.getInstance().getProfesores().get(fila).setEdad(Integer.parseInt(textEdadModi.getText()));
+							panelModificacion.setVisible(false);
+							loadTable();
+						}
+					});
+					btnNewButton.setIcon(new ImageIcon(ListaProfesores.class.getResource("/imagenes/guardar-el-archivo (1).png")));
+					btnNewButton.setBounds(47, 270, 62, 41);
+					panelModificacion.add(btnNewButton);
+				}
+			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -118,6 +193,12 @@ public class ListaProfesores extends JDialog {
 				});
 				{
 					btnModificar = new JButton("");
+					btnModificar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							panelModificacion.setVisible(true);
+							Modificar();
+						}
+					});
 					btnModificar.setIcon(new ImageIcon(ListaProfesores.class.getResource("/imagenes/editar.png")));
 					btnModificar.setEnabled(false);
 					buttonPane.add(btnModificar);
@@ -149,6 +230,13 @@ public class ListaProfesores extends JDialog {
 			GestionFigura.getInstance().EliminarProfesor(selected);
 		}
 	}
+	private void Modificar() {
+		int fila = table.getSelectedRow();
+		textCedulaModi.setText(GestionFigura.getInstance().getProfesores().get(fila).getCedula());
+		textNombreModi.setText(GestionFigura.getInstance().getProfesores().get(fila).getNombre());
+		textApellidoModi.setText(GestionFigura.getInstance().getProfesores().get(fila).getApellido());
+		textEdadModi.setText(Integer.toString(GestionFigura.getInstance().getProfesores().get(fila).getEdad()));
+	}
 	
 	private void loadTable() {
 		model.setRowCount(0);
@@ -161,5 +249,4 @@ public class ListaProfesores extends JDialog {
 		 model.addRow(row);
 			}
 		}
-
 }

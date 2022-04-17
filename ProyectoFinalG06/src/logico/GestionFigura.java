@@ -26,7 +26,8 @@ public static GestionFigura gestion;
 public static UsuarioGestion loginUser;
 private static Prisma prismaMomento;
 private static Usuario usuarioActual;
-private static int numeroGrupo;
+private static int numeroGrupo = 1;
+private static int numeroPrisma = 1;
 public GestionFigura() {
 	setPrismas(new ArrayList<Prisma>(100));
 	setUsuarios(new ArrayList<Usuario>(100));
@@ -41,7 +42,6 @@ public GestionFigura() {
 	setCantEstudiantes(0);
 	setCantProfesoresDisp(0);
 	setCantEstudiantesDisp(0);
-	setNumeroGrupo(1);
 }
 public int getCantGrupos() {
 	return cantGrupos;
@@ -102,6 +102,27 @@ public void CrearPrisma(Prisma prisma) {
 	prismas.add(prisma);
 	prismaMomento = prisma;
 	cantPrismas++;
+	numeroPrisma++;
+}
+public Grupo BuscarGrupo(Usuario usuario) {
+	Grupo aux = null;
+	
+	for(int i = 0; i < cantGrupos; i++) {
+		if(usuario instanceof Estudiante) {
+		if(grupos.get(i).getEstudiantes().get(i) == usuario) {
+			aux = grupos.get(i);
+			
+		}
+		else 
+		{
+			if(grupos.get(i).getProfesor() == usuario) {
+				aux = grupos.get(i);
+			}
+		}
+		}
+	}
+	
+	return aux;
 }
 
 public static UsuarioGestion getLoginUser() {
@@ -270,5 +291,11 @@ public static int getNumeroGrupo() {
 }
 public static void setNumeroGrupo(int numeroGrupo) {
 	GestionFigura.numeroGrupo = numeroGrupo;
+}
+public static int getNumeroPrisma() {
+	return numeroPrisma;
+}
+public static void setNumeroPrisma(int numeroPrisma) {
+	GestionFigura.numeroPrisma = numeroPrisma;
 }
 }
