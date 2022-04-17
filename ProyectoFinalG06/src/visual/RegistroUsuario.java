@@ -17,6 +17,8 @@ import logico.UsuarioGestion;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class RegistroUsuario extends JDialog {
 
@@ -45,6 +47,7 @@ public class RegistroUsuario extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistroUsuario() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistroUsuario.class.getResource("/imagenes/registros-medicos.png")));
 		setBounds(100, 100, 513, 401);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -106,34 +109,42 @@ public class RegistroUsuario extends JDialog {
 		rdbProfesor.setBounds(197, 193, 127, 25);
 		panel.add(rdbProfesor);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("Registrar");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						
-						if(rdbEstudiante.isSelected()) {
-							 tipo = "Estudiante";
-						}
-						else if(rdbProfesor.isSelected()) {
-							 tipo = "Profesor";
-						}
-						UsuarioGestion aux2 = new UsuarioGestion(textUsuario.getText(),textContra.getText(),tipo);
-						GestionFigura.getInstance().CrearUsuarioGestion(aux2);
-						dispose();
-					}
-				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			JButton cancelButton = new JButton("");
+			cancelButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+			cancelButton.setBounds(444, 318, 51, 36);
+			contentPanel.add(cancelButton);
+			cancelButton.setIcon(new ImageIcon(RegistroUsuario.class.getResource("/imagenes/flecha-hacia-atras (2).png")));
+			cancelButton.setActionCommand("Cancel");
 		}
+		{
+			JButton okButton = new JButton("");
+			okButton.setIcon(new ImageIcon(RegistroUsuario.class.getResource("/imagenes/guardar-el-archivo (1).png")));
+			okButton.setBounds(396, 318, 51, 36);
+			contentPanel.add(okButton);
+			okButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					if(rdbEstudiante.isSelected()) {
+						 tipo = "Estudiante";
+					}
+					else if(rdbProfesor.isSelected()) {
+						 tipo = "Profesor";
+					}
+					UsuarioGestion aux2 = new UsuarioGestion(textUsuario.getText(),textContra.getText(),tipo);
+					GestionFigura.getInstance().CrearUsuarioGestion(aux2);
+					dispose();
+				}
+			});
+			okButton.setActionCommand("OK");
+			getRootPane().setDefaultButton(okButton);
+		}
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 316, 495, 38);
+		contentPanel.add(panel_1);
 	}
 }

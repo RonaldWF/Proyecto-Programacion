@@ -22,6 +22,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class ListaEstudiantes extends JDialog {
 
@@ -50,6 +52,7 @@ public class ListaEstudiantes extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaEstudiantes() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaEstudiantes.class.getResource("/imagenes/tarea-completada.png")));
 		setBounds(100, 100, 548, 486); 
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -94,7 +97,8 @@ public class ListaEstudiantes extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				ModificarButton = new JButton("Modificar");
+				ModificarButton = new JButton("");
+				ModificarButton.setIcon(new ImageIcon(ListaEstudiantes.class.getResource("/imagenes/editar.png")));
 				ModificarButton.setEnabled(false);
 				ModificarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -104,7 +108,8 @@ public class ListaEstudiantes extends JDialog {
 				buttonPane.add(ModificarButton);
 			}
 			{
-				EliminarButton = new JButton("Eliminar");
+				EliminarButton = new JButton("\r\n");
+				EliminarButton.setIcon(new ImageIcon(ListaEstudiantes.class.getResource("/imagenes/eliminar.png")));
 				EliminarButton.setEnabled(false);
 				EliminarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -119,7 +124,8 @@ public class ListaEstudiantes extends JDialog {
 				getRootPane().setDefaultButton(EliminarButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancelar");
+				JButton cancelButton = new JButton("");
+				cancelButton.setIcon(new ImageIcon(ListaEstudiantes.class.getResource("/imagenes/flecha-hacia-atras (2).png")));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

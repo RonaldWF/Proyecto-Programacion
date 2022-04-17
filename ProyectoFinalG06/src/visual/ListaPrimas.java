@@ -14,6 +14,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class ListaPrimas extends JDialog {
 
@@ -40,6 +42,7 @@ public class ListaPrimas extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaPrimas() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaPrimas.class.getResource("/imagenes/prisma.png")));
 		setTitle("Lista de Prismas");
 		setBounds(100, 100, 506, 378);
 		setLocationRelativeTo(null);
@@ -85,17 +88,20 @@ public class ListaPrimas extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				EliminarButton = new JButton("Eliminar");
+				EliminarButton = new JButton("");
+				EliminarButton.setIcon(new ImageIcon(ListaPrimas.class.getResource("/imagenes/eliminar.png")));
 				buttonPane.add(EliminarButton);
 			}
 			{
-				ModificarButton = new JButton("Modificar");
+				ModificarButton = new JButton("");
+				ModificarButton.setIcon(new ImageIcon(ListaPrimas.class.getResource("/imagenes/editar.png")));
 				ModificarButton.setActionCommand("OK");
 				buttonPane.add(ModificarButton);
 				getRootPane().setDefaultButton(ModificarButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancelar");
+				JButton cancelButton = new JButton("");
+				cancelButton.setIcon(new ImageIcon(ListaPrimas.class.getResource("/imagenes/flecha-hacia-atras (2).png")));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

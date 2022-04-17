@@ -42,8 +42,9 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
 import java.util.concurrent.CyclicBarrier;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
-public class Prisma3d extends JDialog {
+public class Prisma3d extends JDialog { 
 	private Canvas3D canvas3D;
 
 	/**
@@ -52,6 +53,7 @@ public class Prisma3d extends JDialog {
 	  * 
 	  */
 	public Prisma3d() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Prisma3d.class.getResource("/imagenes/prisma.png")));
 		setBounds(100,100,866,759);
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
@@ -59,13 +61,13 @@ public class Prisma3d extends JDialog {
 		
 		canvas3D = new Canvas3D(config);
 		
-		setLayout(new BorderLayout());
-		add(canvas3D);
+		getContentPane().setLayout(new BorderLayout());
+		getContentPane().add(canvas3D);
 		
 		SimpleUniverse universo = new SimpleUniverse(canvas3D);
 		
 		JPanel panel = new JPanel();
-		add(panel, BorderLayout.SOUTH);
+		getContentPane().add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnNewButton = new JButton("New button");

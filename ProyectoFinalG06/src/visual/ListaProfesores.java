@@ -21,6 +21,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class ListaProfesores extends JDialog {
 
@@ -49,6 +51,7 @@ public class ListaProfesores extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaProfesores() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaProfesores.class.getResource("/imagenes/tarea-completada.png")));
 		setBounds(100, 100, 571, 489);
 		setLocationRelativeTo(null);;
 		getContentPane().setLayout(new BorderLayout());
@@ -96,7 +99,8 @@ public class ListaProfesores extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnEliminar = new JButton("Eliminar");
+				btnEliminar = new JButton("");
+				btnEliminar.setIcon(new ImageIcon(ListaProfesores.class.getResource("/imagenes/eliminar.png")));
 				btnEliminar.setEnabled(false);
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -113,7 +117,8 @@ public class ListaProfesores extends JDialog {
 						}
 				});
 				{
-					btnModificar = new JButton("Modificar");
+					btnModificar = new JButton("");
+					btnModificar.setIcon(new ImageIcon(ListaProfesores.class.getResource("/imagenes/editar.png")));
 					btnModificar.setEnabled(false);
 					buttonPane.add(btnModificar);
 				}
@@ -122,7 +127,8 @@ public class ListaProfesores extends JDialog {
 				getRootPane().setDefaultButton(btnEliminar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("");
+				cancelButton.setIcon(new ImageIcon(ListaProfesores.class.getResource("/imagenes/flecha-hacia-atras (2).png")));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						

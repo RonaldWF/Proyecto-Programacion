@@ -37,6 +37,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.border.MatteBorder;
 import javax.swing.ImageIcon;
 import javax.swing.border.BevelBorder;
+import java.awt.Toolkit;
 
 public class CrearPrisma extends JDialog {
 
@@ -94,6 +95,7 @@ public class CrearPrisma extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearPrisma() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearPrisma.class.getResource("/imagenes/prisma.png")));
 		setBounds(100, 100, 866, 759);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -129,7 +131,8 @@ public class CrearPrisma extends JDialog {
 				pnlCuadrado.add(textAlturaCuadrado);
 				textAlturaCuadrado.setColumns(10);
 				
-				JButton btnNewButton_1 = new JButton("Crear");
+				JButton btnNewButton_1 = new JButton("");
+				btnNewButton_1.setIcon(new ImageIcon(CrearPrisma.class.getResource("/imagenes/agregar.png")));
 				btnNewButton_1.addActionListener(new ActionListener() {
 					 public void actionPerformed(ActionEvent arg0) {
 						if(!textAnchoCuadrado.getText().equalsIgnoreCase("")&& !textAlturaCuadrado.getText().equalsIgnoreCase("") && !textProfundidadCuadrado.getText().equalsIgnoreCase("")) {
@@ -189,7 +192,7 @@ public class CrearPrisma extends JDialog {
 							
 					}
 				});
-				btnNewButton_1.setBounds(685, 198, 97, 23);
+				btnNewButton_1.setBounds(685, 188, 97, 33);
 				pnlCuadrado.add(btnNewButton_1);
 				
 				JLabel lblProdunfidad = new JLabel("Produnfidad:");
@@ -252,7 +255,8 @@ public class CrearPrisma extends JDialog {
 					panelEstudiante.add(lblNewLabel_2);
 				}
 				{
-					btnRegistrarEstudiante = new JButton("Registrar");
+					btnRegistrarEstudiante = new JButton("");
+					btnRegistrarEstudiante.setIcon(new ImageIcon(CrearPrisma.class.getResource("/imagenes/guardar-el-archivo.png")));
 					btnRegistrarEstudiante.setEnabled(false);
 					btnRegistrarEstudiante.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -276,11 +280,12 @@ public class CrearPrisma extends JDialog {
 					btnRegistrarEstudiante.addMouseListener(new MouseAdapter() {
 						
 					});
-					btnRegistrarEstudiante.setBounds(685, 142, 97, 25);
+					btnRegistrarEstudiante.setBounds(685, 101, 78, 66);
 					panelEstudiante.add(btnRegistrarEstudiante);
 				}
 				{
-					JButton btnBuscarEstudiante = new JButton("Buscar");
+					JButton btnBuscarEstudiante = new JButton("");
+					btnBuscarEstudiante.setIcon(new ImageIcon(CrearPrisma.class.getResource("/imagenes/buscar (1).png")));
 					btnBuscarEstudiante.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 							if (GestionFigura.getInstance().BuscarEstudianteBymatricula(textMatricula.getText())!= null) {
@@ -296,7 +301,7 @@ public class CrearPrisma extends JDialog {
 							}
 						}
 					});
-					btnBuscarEstudiante.setBounds(557, 142, 97, 25);
+					btnBuscarEstudiante.setBounds(590, 101, 70, 66);
 					panelEstudiante.add(btnBuscarEstudiante);
 				}
 			}
@@ -755,8 +760,9 @@ public class CrearPrisma extends JDialog {
 				buttonPane.setBounds(-19, 667, 877, 46);
 				panel.add(buttonPane);
 				{
-					JButton cancelButton = new JButton("Cancel");
-					cancelButton.setBounds(753, 5, 101, 25);
+					JButton cancelButton = new JButton("");
+					cancelButton.setIcon(new ImageIcon(CrearPrisma.class.getResource("/imagenes/flecha-hacia-atras (2).png")));
+					cancelButton.setBounds(780, 5, 74, 33);
 					cancelButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							dispose();
