@@ -4,8 +4,8 @@ public class Cuadrado extends Prisma {
 
 	private float profundidad;
 	private float altura;
-	public Cuadrado(float base, float altura, float profundidad,int color) {
-		super(base, color);
+	public Cuadrado(float base, float altura, float profundidad,int color,String codigo) {
+		super(base, color, codigo);
 		this.setAltura(altura);
 		
 	this.profundidad = profundidad;
