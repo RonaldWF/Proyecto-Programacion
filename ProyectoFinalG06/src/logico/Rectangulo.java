@@ -33,6 +33,41 @@ public class Rectangulo extends Prisma {
 		this.altura = altura;
 	}
 
+
+	@Override
+	public float calcularVolumenes() {
+		Prisma aux = null;
+		float total=0;
+		
+		total+=(((Rectangulo)aux).getBase() * ((Rectangulo)aux).getAltura() * ((Rectangulo)aux).getProfundidad());
+		
+		
+		return total;
+	}
+
+
+	@Override
+	public float calcularAreasLaterales() {
+		Prisma aux = null;
+		float total=0;
+		
+		total+=(2) * ((((Rectangulo)aux).getAltura() * (((Rectangulo)aux).getBase() + ((Rectangulo)aux).getProfundidad())));
+		
+		
+		return total;
+	}
+
+
+	@Override
+	public float calcularAreasTotales() {
+		Prisma aux = null;
+		float total=0;
+		
+		total+=(2) * (((Rectangulo)aux).getBase() * ((Rectangulo)aux).getAltura() + ((Rectangulo)aux).getBase() * ((Rectangulo)aux).getProfundidad());
+		
+		return total;
+	}
+
 	
 	
 	
