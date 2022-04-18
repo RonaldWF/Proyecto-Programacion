@@ -42,7 +42,7 @@ public class Inicio extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textUsuario;
-	private JButton btnNewButton_1;
+	private JButton IniciarButton;
 	private JPasswordField textContra;
 	private JPanel panelExit;
 	private JLabel lblFoto;
@@ -159,11 +159,22 @@ public class Inicio extends JDialog {
 			panel_1.add(textUsuario);
 			textUsuario.setColumns(10);
 			
-			btnNewButton_1 = new JButton("");
-			btnNewButton_1.setBackground(Color.WHITE);
-			btnNewButton_1.setIcon(new ImageIcon(Inicio.class.getResource("/imagenes/iniciar-sesion (1).png")));
-			btnNewButton_1.setBounds(214, 322, 94, 73);
-			panel_1.add(btnNewButton_1);
+			IniciarButton = new JButton("");
+			IniciarButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					IniciarButton.setBackground(Color.LIGHT_GRAY);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					IniciarButton.setBackground(Color.WHITE);
+				}
+			});
+			IniciarButton.setBorder(null);
+			IniciarButton.setBackground(Color.WHITE);
+			IniciarButton.setIcon(new ImageIcon(Inicio.class.getResource("/imagenes/iniciar-sesion (1).png")));
+			IniciarButton.setBounds(226, 322, 82, 73);
+			panel_1.add(IniciarButton);
 			
 			textContra = new JPasswordField();
 			textContra.setEchoChar('*');
@@ -274,7 +285,7 @@ public class Inicio extends JDialog {
 			lblNewLabel_3.setFont(new Font("Myanmar Text", Font.BOLD, 25));
 			lblNewLabel_3.setBounds(149, 40, 276, 35);
 			panel.add(lblNewLabel_3);
-			btnNewButton_1.addActionListener(new ActionListener() {
+			IniciarButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String aux = textUsuario.getText();
 					if(GestionFigura.getInstance().buscarUsuarioGestion(aux)!= null) {
