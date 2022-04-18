@@ -112,6 +112,7 @@ public class CrearPrisma extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearPrisma() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearPrisma.class.getResource("/imagenes/prisma.png")));
 		setBounds(100, 100, 866, 759);
 		getContentPane().setLayout(new BorderLayout());

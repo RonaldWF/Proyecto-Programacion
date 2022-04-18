@@ -212,6 +212,7 @@ public class ListaPrimas extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadTable();
 	}
 
 	private void eliminar(int fila) {
