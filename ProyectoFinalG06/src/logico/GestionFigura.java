@@ -84,6 +84,7 @@ public Prisma BuscarPrismabyCodigo(String codigo) {
 	{
 		if(prismas.get(i).getCodigo().equalsIgnoreCase(codigo)) {
 			aux = prismas.get(i);
+			prismaMomento = prismas.get(i);
 		}
 	}
 	return aux;

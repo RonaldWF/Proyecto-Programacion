@@ -40,6 +40,7 @@ public class ListaPrimas extends JDialog {
 	private JPanel panelModificacion;
 	private JTextField textBase;
 	private JTextField textColor;
+	private JButton MostrarButton;
 
 	/**
 	 * Launch the application.
@@ -92,6 +93,8 @@ public class ListaPrimas extends JDialog {
 										
 										ModificarButton.setEnabled(true);
 										EliminarButton.setEnabled(true);
+										MostrarButton.setEnabled(true);
+										
 										selected = GestionFigura.getInstance().BuscarPrismabyCodigo(table.getValueAt(row, 0).toString());
 									}
 								}
@@ -110,6 +113,7 @@ public class ListaPrimas extends JDialog {
 			panelModificacion.setBounds(10, 11, 189, 311);
 			panel.add(panelModificacion);
 			panelModificacion.setLayout(null);
+			panelModificacion.setVisible(false);
 			
 			JLabel lblNewLabel = new JLabel("Base: ");
 			lblNewLabel.setBounds(62, 30, 46, 14);
@@ -171,6 +175,20 @@ public class ListaPrimas extends JDialog {
 					}
 
 				});
+				
+				MostrarButton = new JButton("");
+				MostrarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						int fila = -1;
+						 fila = table.getSelectedRow();
+						String codigo = GestionFigura.getInstance().getPrismas().get(fila).getCodigo();
+						GestionFigura.getInstance().BuscarPrismabyCodigo(codigo);
+						Prisma3d dialog = new Prisma3d();
+						dialog.setVisible(true);
+					}
+				});
+				MostrarButton.setIcon(new ImageIcon(ListaPrimas.class.getResource("/imagenes/show.png")));
+				buttonPane.add(MostrarButton);
 				EliminarButton.setIcon(new ImageIcon(ListaPrimas.class.getResource("/imagenes/eliminar.png")));
 				buttonPane.add(EliminarButton);
 			}
