@@ -41,6 +41,7 @@ public class ListaEstudiantes extends JDialog {
 	private JTextField TextoMatricula;
 	private JTextField TextoNombre;
 	private JTextField TextoEdad;
+	private JPanel panelModificacion;
 
 	/**
 	 * Launch the application.
@@ -104,7 +105,7 @@ public class ListaEstudiantes extends JDialog {
 				}
 			}
 			
-			JPanel panelModificacion = new JPanel();
+			panelModificacion = new JPanel();
 			panelModificacion.setBorder(new TitledBorder(null, "Modificar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelModificacion.setBounds(10, 21, 155, 354);
 			panel.add(panelModificacion);
@@ -174,6 +175,7 @@ public class ListaEstudiantes extends JDialog {
 				ModificarButton.setEnabled(false);
 				ModificarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						panelModificacion.setVisible(true);
 						modificar();
 					}
 

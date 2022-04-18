@@ -115,6 +115,14 @@ public void CrearPrisma(Prisma prisma) {
 	cantPrismas++;
 	numeroPrisma++;
 }
+
+public void EliminarPrisma(Prisma prisma) {
+	prismas.remove(prisma);
+	prismaMomento = prisma;
+	cantPrismas--;
+	numeroPrisma--;
+}
+
 public Grupo BuscarGrupo(Usuario usuario) {
 	Grupo aux = null;
 	
