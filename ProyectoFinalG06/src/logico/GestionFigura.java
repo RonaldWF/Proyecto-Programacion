@@ -78,6 +78,17 @@ public Estudiante BuscarEstudianteBymatricula(String matricula) {
 	return aux;
 }
 
+public Prisma BuscarPrismabyCodigo(String codigo) {
+	Prisma aux = null;
+	for(int i = 0; i < cantPrismas;i++)
+	{
+		if(prismas.get(i).getCodigo().equalsIgnoreCase(codigo)) {
+			aux = prismas.get(i);
+		}
+	}
+	return aux;
+}
+
 public void RegistrarEstudiante(Usuario estudiante) {
 	estudiantes.add((Estudiante) estudiante);
 	//estudiantesDisponibles.add((Estudiante) estudiante);

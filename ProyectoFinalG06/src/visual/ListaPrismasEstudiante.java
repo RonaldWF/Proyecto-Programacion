@@ -2,18 +2,35 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import logico.Estudiante;
+import logico.GestionFigura;
+import logico.Prisma;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListaPrismasEstudiante extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
+	private DefaultTableModel model;
+	private JButton EliminarButton;
+	private JButton ModificarButton;
+	private JButton cancelButton;
+	private Prisma selected = null;
 
 	/**
 	 * Launch the application.
@@ -43,26 +60,58 @@ public class ListaPrismasEstudiante extends JDialog {
 			panel.setLayout(null);
 			{
 				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				scrollPane.setBounds(415, 284, -200, -270);
 				panel.add(scrollPane);
+				{
+
+					String headers[]= {"Base","Color","Usuario","Edad"};
+				    model = new DefaultTableModel();
+					model.setColumnIdentifiers(headers);
+					table = new JTable();
+					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					table.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+							if(table.getSelectedRow()>-1) {
+							int row = -1;
+							row = table.getSelectedRow();
+							if(row > -1) {
+								
+								ModificarButton.setEnabled(true);
+								EliminarButton.setEnabled(true);
+								selected = GestionFigura.getInstance().BuscarPrismabyCodigo(table.getValueAt(row, 0).toString());
+							}
+						}}
+							
+					});
+					table.setModel(model);
+					scrollPane.setViewportView(table);
+				}
+				scrollPane.setViewportView(table);
 			}
-			
-			table = new JTable();
-			table.setBounds(0, 0, 1, 1);
-			panel.add(table);
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				EliminarButton = new JButton("Eliminar");
+				EliminarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
+				{
+					ModificarButton = new JButton("Modificar");
+					buttonPane.add(ModificarButton);
+				}
+				EliminarButton.setActionCommand("OK");
+				buttonPane.add(EliminarButton);
+				getRootPane().setDefaultButton(EliminarButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
