@@ -144,6 +144,28 @@ public Grupo BuscarGrupo(Usuario usuario) {
 	return aux;
 }
 
+public ArrayList<Prisma> BuscarPrismabyMatricula(String matricula) {
+	ArrayList<Prisma> aux = null;
+	for(int i = 0; i < cantEstudiantes;i++)
+	{
+		if(estudiantes.get(i).getMatricula().equalsIgnoreCase(matricula)) {
+			aux = estudiantes.get(i).getPrismas();
+		}
+	}
+	return aux;
+}
+
+public ArrayList<Prisma> BuscarPrismabyCedula(String cedula) {
+	ArrayList<Prisma> aux = null;
+	for(int i = 0; i < cantEstudiantes;i++)
+	{
+		if(profesores.get(i).getCedula().equalsIgnoreCase(cedula)) {
+			aux = profesores.get(i).getPrismas();
+		}
+	}
+	return aux;
+}
+
 public static UsuarioGestion getLoginUser() {
 	return loginUser;
 }
