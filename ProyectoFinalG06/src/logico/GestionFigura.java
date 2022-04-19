@@ -63,6 +63,14 @@ public UsuarioGestion buscarUsuarioGestion(String user) {
 	return usuario;
 }
 
+public Usuario eliminarUsuario(Usuario usuario) {
+	usuarios.remove((Usuario)usuario);  
+	cantUsuarios--;
+	
+	return usuario;
+	
+}
+
 public void CrearUsuarioGestion(UsuarioGestion usuario) {
 	usuariosGest.add(usuario);
 	cantUsuariosGestion++;
