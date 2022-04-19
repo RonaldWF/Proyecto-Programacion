@@ -96,11 +96,13 @@ public class CrearGrupo extends JDialog {
 						int indiceChart = aux.indexOf("-");
 						String substring = aux.substring(indiceChart);
 						 if(GestionFigura.getInstance().ExisteEstudianteBymatricula(substring)== true){
+					        GestionFigura.getInstance().getEstudiantes().get(o).setEstado(false);
 					        Estudiante aux3 = GestionFigura.getInstance().BuscarEstudianteBymatricula(substring);
 					        estudiantesGrupo.add(aux3);
-					        aux3.setEstado(false);
+					      
 						 }
 						 else if(GestionFigura.getInstance().ExisteProfesorByCedula(substring)== true){
+							 GestionFigura.getInstance().getProfesores().get(o).setEstado(false);
 						        Profesor aux3 = GestionFigura.getInstance().BuscarProfesorByCedula(substring);
 						        aux3.setEstado(false);
 						        if(profesoresGrupo.size()<1) {
@@ -131,11 +133,13 @@ public class CrearGrupo extends JDialog {
 						String substring = aux.substring(indiceChart);
 						 if(GestionFigura.getInstance().ExisteEstudianteBymatricula(substring)== true){
 					        Estudiante aux3 = GestionFigura.getInstance().BuscarEstudianteBymatricula(substring);
+					        GestionFigura.getInstance().getEstudiantes().get(o).setEstado(true);
 					        aux3.setEstado(true);
 					        estudiantesGrupo.remove(aux3);
 						 }
 						 else if(GestionFigura.getInstance().ExisteProfesorByCedula(substring)== true){
 						        Profesor aux3 = GestionFigura.getInstance().BuscarProfesorByCedula(substring);
+						        GestionFigura.getInstance().getProfesores().get(o).setEstado(true);
 						        aux3.setEstado(true);
 						        profesoresGrupo.remove(aux3);
 							 } 
@@ -241,8 +245,6 @@ public class CrearGrupo extends JDialog {
 						rdbEstudiantes.setSelected(true);
 						rdbProfesores.setSelected(false);
 						listModelDisp.removeAllElements();
-						pasarIzquierda =  LoadEstudiantes();
-						//pasarIzquierda = LoadProfesores();
 						listModelGrupo.removeAllElements();
 						
 					}

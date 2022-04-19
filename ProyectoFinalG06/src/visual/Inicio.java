@@ -60,7 +60,7 @@ public class Inicio extends JDialog {
 				ObjectInputStream empresaRead;
 				ObjectOutputStream empresaWrite;
 				try {
-					empresa = new FileInputStream ("gestion03.dat");
+					empresa = new FileInputStream ("gestion07.dat");
 					empresaRead = new ObjectInputStream(empresa);
 					GestionFigura temp = (GestionFigura)empresaRead.readObject();
 					GestionFigura.setGestion(temp);
@@ -68,7 +68,7 @@ public class Inicio extends JDialog {
 					empresaRead.close();
 				} catch (FileNotFoundException e) {
 					try {
-						empresa2 = new  FileOutputStream("gestion03.dat");
+						empresa2 = new  FileOutputStream("gestion07.dat");
 						empresaWrite = new ObjectOutputStream(empresa2);
 						UsuarioGestion aux = new UsuarioGestion("admin", "admin", "Profesor");
 						GestionFigura.getInstance().CrearUsuarioGestion(aux);
