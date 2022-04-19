@@ -35,7 +35,6 @@ public class ListaGrupos extends JDialog {
 	private JButton ModificarButton;
 	private JButton cancelButton;
 	private Grupo selected = null;
-	private JTextField textField;
 	private JPanel panelModificacion;
 	private JTextField textMatricula;
 	private JTextField textNombre;
@@ -106,26 +105,9 @@ public class ListaGrupos extends JDialog {
 				}
 			}
 			{
-				JPanel panel_1 = new JPanel();
-				panel_1.setBounds(10, 11, 230, 42);
-				panel.add(panel_1);
-				panel_1.setLayout(null);
-				{
-					JLabel lblNewLabel = new JLabel("Profesor:  ");
-					lblNewLabel.setBounds(10, 11, 61, 14);
-					panel_1.add(lblNewLabel);
-				}
-				{
-					textField = new JTextField();
-					textField.setBounds(81, 8, 139, 20);
-					panel_1.add(textField);
-					textField.setColumns(10);
-				}
-			}
-			{
 				panelModificacion = new JPanel();
 				panelModificacion.setBorder(new TitledBorder(null, "Modificar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panelModificacion.setBounds(10, 64, 230, 343);
+				panelModificacion.setBounds(10, 37, 230, 343);
 				panel.add(panelModificacion);
 				panelModificacion.setLayout(null);
 				{
