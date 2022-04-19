@@ -131,33 +131,33 @@ public class Prisma3d extends JDialog {
 		ca.setColor(color);
 		Apariencia.setColoringAttributes(ca);
 		if(aux instanceof Cuadrado) {
-		float alto = ((Cuadrado) GestionFigura.getPrismaMomento()).getAltura();
-		float ancho = GestionFigura.getPrismaMomento().getBase();
-		float profundidad = ((Cuadrado) GestionFigura.getPrismaMomento()).getProfundidad();
+		float alto = ((Cuadrado) GestionFigura.getPrismaMomento()).getAltura()/10;
+		float ancho = GestionFigura.getPrismaMomento().getBase()/10;
+		float profundidad = ((Cuadrado) GestionFigura.getPrismaMomento()).getProfundidad()/10;
 		Box cubo = new Box(alto,ancho,profundidad,Apariencia);
 		mouseGr.addChild(cubo);
 		}
 		else if(aux instanceof Rectangulo) {
-			float alto = ((Rectangulo) aux).getAltura();
-			float ancho = aux.getBase();
-			float profundidad = ((Rectangulo) GestionFigura.getPrismaMomento()).getProfundidad();
+			float alto = ((Rectangulo) aux).getAltura()/10;
+			float ancho = aux.getBase()/10;
+			float profundidad = ((Rectangulo) GestionFigura.getPrismaMomento()).getProfundidad()/10;
 			Box cubo = new Box(alto,ancho,profundidad,Apariencia);
 			mouseGr.addChild(cubo);
 			
 		}
 		else if(aux instanceof Cilindro) {
-			float alto = ((Cilindro) aux).getAltura();
-			float ancho = aux.getBase();
+			float alto = ((Cilindro) aux).getAltura()/10;
+			float ancho = aux.getBase()/10;
 		Cylinder cilindro = new Cylinder(alto,ancho,Apariencia);
 		mouseGr.addChild(cilindro);
 			
 		}
 	else if(aux instanceof Esfera) {
-			Sphere esfera = new Sphere(aux.getBase(),Apariencia);
+			Sphere esfera = new Sphere(aux.getBase()/10,Apariencia);
 			mouseGr.addChild(esfera);
 		}
 		else if(aux instanceof Triangulo) {
-			Cone cono = new Cone(aux.getBase(),((Triangulo) aux).getAltura(),Apariencia);
+			Cone cono = new Cone(aux.getBase()/10,((Triangulo) aux).getAltura()/10,Apariencia);
 			mouseGr.addChild(cono);
 			
 		}

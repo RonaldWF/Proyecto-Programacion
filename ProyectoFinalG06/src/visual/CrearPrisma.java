@@ -251,6 +251,7 @@ public class CrearPrisma extends JDialog {
 				}
 				{
 					textNombreEstudiante = new JTextField();
+					textNombreEstudiante.setForeground(Color.WHITE);
 					textNombreEstudiante.setBackground(Color.BLUE);
 					textNombreEstudiante.setBorder(null);
 					textNombreEstudiante.setBounds(125, 66, 241, 22);
@@ -259,6 +260,7 @@ public class CrearPrisma extends JDialog {
 				}
 				{
 					textApellidoEstudiante = new JTextField();
+					textApellidoEstudiante.setForeground(Color.WHITE);
 					textApellidoEstudiante.setBackground(Color.BLUE);
 					textApellidoEstudiante.setBorder(null);
 					textApellidoEstudiante.setBounds(125, 114, 241, 22);
@@ -267,6 +269,7 @@ public class CrearPrisma extends JDialog {
 				}
 				{
 					textEdadEstudiante = new JTextField();
+					textEdadEstudiante.setForeground(Color.WHITE);
 					textEdadEstudiante.setBackground(Color.BLUE);
 					textEdadEstudiante.setBorder(null);
 					textEdadEstudiante.setColumns(10);
@@ -287,6 +290,7 @@ public class CrearPrisma extends JDialog {
 				}
 				{
 					textMatricula = new JTextField();
+					textMatricula.setForeground(Color.WHITE);
 					textMatricula.setBackground(Color.BLUE);
 					textMatricula.setBorder(null);
 					textMatricula.setBounds(125, 10, 241, 22);
@@ -418,6 +422,7 @@ public class CrearPrisma extends JDialog {
 			panelProfesor.add(separator_7);
 			
 			textNombreProfesor = new JTextField();
+			textNombreProfesor.setForeground(Color.WHITE);
 			textNombreProfesor.setBorder(null);
 			textNombreProfesor.setBackground(Color.BLUE);
 			textNombreProfesor.setColumns(10);
@@ -425,6 +430,7 @@ public class CrearPrisma extends JDialog {
 			panelProfesor.add(textNombreProfesor);
 			
 			textApellidoProfesor = new JTextField();
+			textApellidoProfesor.setForeground(Color.WHITE);
 			textApellidoProfesor.setBorder(null);
 			textApellidoProfesor.setBackground(Color.BLUE);
 			textApellidoProfesor.setColumns(10);
@@ -432,6 +438,7 @@ public class CrearPrisma extends JDialog {
 			panelProfesor.add(textApellidoProfesor);
 			
 			textEdadProfesor = new JTextField();
+			textEdadProfesor.setForeground(Color.WHITE);
 			textEdadProfesor.setBorder(null);
 			textEdadProfesor.setBackground(Color.BLUE);
 			textEdadProfesor.setColumns(10);
@@ -449,6 +456,7 @@ public class CrearPrisma extends JDialog {
 			panelProfesor.add(label_2);
 			
 			textCedula = new JTextField();
+			textCedula.setForeground(Color.WHITE);
 			textCedula.setBorder(null);
 			textCedula.setBackground(Color.BLUE);
 			textCedula.setColumns(10);
