@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +32,7 @@ public class ListaPrismasEstudiante extends JDialog {
 	private JButton ModificarButton;
 	private JButton cancelButton;
 	private Prisma selected = null;
+	
 
 	/**
 	 * Launch the application.
@@ -104,6 +106,20 @@ public class ListaPrismasEstudiante extends JDialog {
 				});
 				{
 					ModificarButton = new JButton("Modificar");
+					ModificarButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(selected!=null) {
+								 int fila = -1;
+								 fila = table.getSelectedRow();
+								 int option = JOptionPane.showConfirmDialog(EliminarButton, "Está seguro que desea eliminar un profesor?","Advertencia",0,1);
+								 if(option == JOptionPane.YES_OPTION) {
+									eliminar(fila);
+								 }
+								 
+							}
+							
+						}
+					});
 					buttonPane.add(ModificarButton);
 				}
 				EliminarButton.setActionCommand("OK");
@@ -115,6 +131,15 @@ public class ListaPrismasEstudiante extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+		}
+	}
+	
+	
+	private void eliminar(int fila) {
+		selected = GestionFigura.getInstance().BuscarPrismabyCodigo(table.getValueAt(fila, 0).toString());
+		model.removeRow(fila);
+		if(selected != null) {
+			GestionFigura.getInstance().EliminarPrisma(selected);
 		}
 	}
 }

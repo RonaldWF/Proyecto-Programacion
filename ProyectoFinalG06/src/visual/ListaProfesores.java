@@ -230,6 +230,7 @@ public class ListaProfesores extends JDialog {
 			GestionFigura.getInstance().EliminarProfesor(selected);
 		}
 	}
+	
 	private void Modificar() {
 		int fila = table.getSelectedRow();
 		textCedulaModi.setText(GestionFigura.getInstance().getProfesores().get(fila).getCedula());

@@ -1,19 +1,30 @@
 package visual;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logico.GestionFigura;
+import logico.Prisma;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListasPrismasProfesor extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private JButton btnEliminar;
 	private JTable table;
+	private JButton btnCancel;
+	private JButton btnModificar;
+	private Prisma selected = null;
 
 	/**
 	 * Launch the application.
@@ -32,7 +43,7 @@ public class ListasPrismasProfesor extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListasPrismasProfesor() {
-		setBounds(100, 100, 450, 360);
+		setBounds(100, 100, 450, 443);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -43,31 +54,63 @@ public class ListasPrismasProfesor extends JDialog {
 			panel.setLayout(null);
 			{
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(155, 5, 246, 202);
+				scrollPane.setBounds(178, 11, 246, 256);
 				panel.add(scrollPane);
-			}
-			{
+				
 				table = new JTable();
-				table.setBounds(0, 0, 1, 1);
-				panel.add(table);
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if(table.getSelectedRow()>-1) {
+							int row = -1;
+							row = table.getSelectedRow();
+							if(row > -1) {
+								
+								btnModificar.setEnabled(true);
+								btnEliminar.setEnabled(true);
+								selected = GestionFigura.getInstance().BuscarPrismabyCodigo(table.getValueAt(row, 0).toString());
+							}
+						
+					}
+					
+					
+					}});
+				scrollPane.setViewportView(table);
 			}
+			
+			JPanel pnlModificar = new JPanel();
+			pnlModificar.setBounds(0, 0, 170, 304);
+			panel.add(pnlModificar);
+			pnlModificar.setLayout(null);
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnModificar = new JButton("Modificar");
+				buttonPane.add(btnModificar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				btnEliminar = new JButton("Eliminar");
+				btnEliminar.setActionCommand("OK");
+				buttonPane.add(btnEliminar);
+				getRootPane().setDefaultButton(btnEliminar);
+			}
+			{
+				btnCancel = new JButton("Cancel");
+				btnCancel.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						
+						dispose();
+					}
+					
+					
+				});
+				btnCancel.setActionCommand("Cancel");
+				buttonPane.add(btnCancel);
 			}
 		}
 	}
-
 }
