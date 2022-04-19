@@ -30,9 +30,9 @@ public  class Cuadrado extends Prisma {
 	
 	@Override
 	public float calcularVolumenes() {
-		Prisma aux = null;
+		
 		float total=0;
-		total+=(((Cuadrado)aux).getBase() * ((Cuadrado)aux).getAltura() * ((Cuadrado)aux).getProfundidad());	
+		total += base * altura * profundidad;	
 		
 		
 		return total;
@@ -43,7 +43,7 @@ public  class Cuadrado extends Prisma {
 		Prisma aux = null;
 		float total=0;
 		
-		total+=((4) * Math.pow(((Cuadrado)aux).getBase(),2));
+		total+=((4) * Math.pow(base,2));
 		
 		return total;
 	}
@@ -53,7 +53,7 @@ public  class Cuadrado extends Prisma {
 		Prisma aux = null;
 		float total=0;
 		
-		total+=((6) * Math.pow(((Cuadrado)aux).getBase(),2));
+		total+=((6) * Math.pow(base,2));
 
 
 		return total;

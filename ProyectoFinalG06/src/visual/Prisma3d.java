@@ -43,9 +43,13 @@ import java.awt.event.ActionListener;
 import java.util.concurrent.CyclicBarrier;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class Prisma3d extends JDialog { 
 	private Canvas3D canvas3D;
+	private JLabel lblVolumen;
+	private JLabel lblBase;
 
 	/**
 	 * Create the panel.
@@ -55,41 +59,47 @@ public class Prisma3d extends JDialog {
 	public Prisma3d() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Prisma3d.class.getResource("/imagenes/prisma.png")));
 		setBounds(100,100,866,759);
-		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		GraphicsConfiguration config = SimpleUniverse.getPreferredConfiguration();
 		
 		canvas3D = new Canvas3D(config);
+		canvas3D.setBounds(165, 0, 683, 800);
+		getContentPane().setLayout(null);
 		
-		getContentPane().setLayout(new BorderLayout());
+		getContentPane().setLayout(null);
 		getContentPane().add(canvas3D);
 		
 		SimpleUniverse universo = new SimpleUniverse(canvas3D);
 		
-		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.SOUTH);
-		panel.setLayout(new BorderLayout(0, 0));
+		JLabel lblNewLabel = new JLabel("AREA:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblNewLabel.setBounds(37, 43, 95, 65);
+		getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("New button");
-		panel.add(btnNewButton);
+		lblBase = new JLabel("");
+		lblBase.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblBase.setForeground(Color.RED);
+		lblBase.setBounds(23, 101, 109, 58);
+		getContentPane().add(lblBase);
 		
-		JButton btnNewButton_1 = new JButton("Cerrar");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				
-			}
-		});
-		panel.add(btnNewButton_1, BorderLayout.EAST);
+		JLabel lblVolumentext = new JLabel("VOLUMEN:");
+		lblVolumentext.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblVolumentext.setBounds(12, 159, 153, 65);
+		getContentPane().add(lblVolumentext);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		panel.add(btnNewButton_2, BorderLayout.WEST);
+		lblVolumen = new JLabel("");
+		lblVolumen.setForeground(Color.RED);
+		lblVolumen.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblVolumen.setBounds(23, 220, 109, 58);
+		getContentPane().add(lblVolumen);
 		universo.getViewingPlatform().setNominalViewingTransform();
 		
 		BranchGroup escena = crearGrafoEscena();
 		escena.compile();
 		
 		universo.addBranchGraph(escena);
+		lblBase.setText(Float.toString(GestionFigura.getPrismaMomento().calcularAreasTotales()));
+		lblVolumen.setText(Float.toString(GestionFigura.getPrismaMomento().calcularVolumenes()));
 
 	}
 	public BranchGroup crearGrafoEscena() {

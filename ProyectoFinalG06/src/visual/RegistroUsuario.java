@@ -228,7 +228,19 @@ public class RegistroUsuario extends JDialog {
 		panel.add(separator_2);
 		{
 			JButton okButton = new JButton("");
-			okButton.setBounds(186, 243, 98, 36);
+			okButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent arg0) {
+					okButton.setBackground(Color.LIGHT_GRAY);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					okButton.setBackground(Color.WHITE);
+				}
+			});
+			okButton.setBorder(null);
+			okButton.setBackground(Color.WHITE);
+			okButton.setBounds(211, 243, 49, 36);
 			panel.add(okButton);
 			okButton.setIcon(new ImageIcon(RegistroUsuario.class.getResource("/imagenes/guardar-el-archivo (1).png")));
 			okButton.addActionListener(new ActionListener() {
