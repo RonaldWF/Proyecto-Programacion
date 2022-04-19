@@ -200,7 +200,8 @@ public class ListasPrismasProfesor extends JDialog {
 	
 	
 	private void loadTable() {
-		Usuario aux = GestionFigura.getInstance().BuscarUsuariobyLogin(GestionFigura.getLoginUser());
+		UsuarioGestion aux2 = GestionFigura.getLoginUser();
+		Usuario aux = GestionFigura.getInstance().BuscarUsuariobyLogin(aux2);
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
 		for(int i = 0; i < aux.getMisprismas().size();i++) {

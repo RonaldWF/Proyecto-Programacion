@@ -4,16 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logico.GestionFigura;
 
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+
 import javax.swing.JMenuBar;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+
 import java.awt.CardLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.GridBagLayout;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
@@ -25,6 +31,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.URL;
 import java.awt.GridBagConstraints;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.border.BevelBorder;
@@ -36,6 +43,8 @@ public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private JMenuItem mntmNewMenuItem_2;
+	public Image imagenFondo;
+	public URL fondo;
 
 	/**
 	 * Launch the application.
@@ -57,7 +66,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/pagina-principal.png")));
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/pngtree-cheese-cartoon-illustration-png-image_2386175.jpg")));
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -79,6 +88,8 @@ public class Principal extends JFrame {
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 965, 677);
+		fondo = this.getClass().getResource("/imagenes/FondoPrisma.jpeg");
+		imagenFondo = new ImageIcon(fondo).getImage();
 		this.setExtendedState(this.MAXIMIZED_BOTH);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -199,7 +210,16 @@ public class Principal extends JFrame {
 				dialog.setVisible(true);
 				
 			}
+			
+			
 		});
 		MenuUsuario.add(mntmNewMenuItem_8);
+		
+		JPanel panel_2 = new JPanel(){
+			public void paintComponent(Graphics g) {
+				g.drawImage(imagenFondo, 0,0, getWidth(), getHeight(), this);
+			}
+	};
+		panel.add(panel_2, BorderLayout.CENTER);
 	}
 }

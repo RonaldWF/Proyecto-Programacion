@@ -316,7 +316,6 @@ public class CrearPrisma extends JDialog {
 							int edad = Integer.parseInt(textEdadEstudiante.getText());
 							boolean estado = true;
 							Usuario est = new Estudiante(textNombreEstudiante.getText(),textApellidoEstudiante.getText(),edad,textMatricula.getText(),estado,GestionFigura.getLoginUser());
-						//	UsuarioActual = est;
 							GestionFigura.getInstance().RegistrarEstudiante(est);
 							JOptionPane.showMessageDialog(panel, "Registro con Exito");
 							clear();
@@ -488,7 +487,6 @@ public class CrearPrisma extends JDialog {
 					boolean estado = true;
 					Usuario pro = new Profesor(textNombreProfesor.getText(), textApellidoProfesor.getText(), edad, textCedula.getText(),estado,GestionFigura.getLoginUser());
 					GestionFigura.getInstance().RegistrarProfesor(pro);
-					//GestionFigura.getInstance().RegistrarProfesorDisp(pro);
 					JOptionPane.showMessageDialog(panel, "Registro con Exito");
 					clear();
 				}
