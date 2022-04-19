@@ -48,6 +48,10 @@ public class CrearGrupo extends JDialog {
 	private ArrayList<Estudiante> estudiantesGrupo;
 	private JTextField textNumero;
 	private int hola = 2;
+	private JButton cancelButton;
+	private JButton okButton;
+	private JButton MayorButton;
+	private JButton MenorButton;
  
 	/**
 	 * Launch the application.
@@ -66,6 +70,7 @@ public class CrearGrupo extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearGrupo() {
+		setResizable(false);
 		setBounds(100, 100, 827, 662);
 		pasarIzquierda = new ArrayList<>();
 		setLocationRelativeTo(null);
@@ -75,19 +80,34 @@ public class CrearGrupo extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(Color.WHITE);
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBorder(new TitledBorder(null, "Creacion de Grupo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_1.setBounds(34, 188, 731, 369);
+			panel_1.setBackground(Color.YELLOW);
+			panel_1.setBorder(null);
+			panel_1.setBounds(34, 225, 731, 341);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 			profesoresGrupo = new ArrayList<Profesor>(100);
 			estudiantesGrupo = new ArrayList<Estudiante>(100);
 			
-			JButton btnNewButton = new JButton(">>");
-			btnNewButton.addActionListener(new ActionListener() {
+			MayorButton = new JButton("");
+			MayorButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					MayorButton.setBackground(Color.ORANGE);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					MayorButton.setBackground(Color.YELLOW);
+				}
+			});
+			MayorButton.setBorder(null);
+			MayorButton.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/mayor-que-el-simbolo.png")));
+			MayorButton.setBackground(Color.YELLOW);
+			MayorButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					listModelGrupo.addElement(selectedIzquierda);
 					int o = listModelDisp.indexOf(selectedIzquierda);
@@ -96,11 +116,13 @@ public class CrearGrupo extends JDialog {
 						int indiceChart = aux.indexOf("-");
 						String substring = aux.substring(indiceChart);
 						 if(GestionFigura.getInstance().ExisteEstudianteBymatricula(substring)== true){
+					        GestionFigura.getInstance().getEstudiantes().get(o).setEstado(false);
 					        Estudiante aux3 = GestionFigura.getInstance().BuscarEstudianteBymatricula(substring);
 					        estudiantesGrupo.add(aux3);
-					        aux3.setEstado(false);
+					      
 						 }
 						 else if(GestionFigura.getInstance().ExisteProfesorByCedula(substring)== true){
+							 GestionFigura.getInstance().getProfesores().get(o).setEstado(false);
 						        Profesor aux3 = GestionFigura.getInstance().BuscarProfesorByCedula(substring);
 						        aux3.setEstado(false);
 						        if(profesoresGrupo.size()<1) {
@@ -117,11 +139,24 @@ public class CrearGrupo extends JDialog {
 				
 				}
 			});
-			btnNewButton.setBounds(327, 150, 78, 25);
-			panel_1.add(btnNewButton);
+			MayorButton.setBounds(327, 115, 78, 68);
+			panel_1.add(MayorButton);
 			
-			JButton button = new JButton("<<");
-			button.addActionListener(new ActionListener() {
+			MenorButton = new JButton("");
+			MenorButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					MenorButton.setBackground(Color.ORANGE);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					MenorButton.setBackground(Color.YELLOW);
+				}
+			});
+			MenorButton.setBorder(null);
+			MenorButton.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/simbolo-menor-que.png")));
+			MenorButton.setBackground(Color.YELLOW);
+			MenorButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					listModelDisp.addElement(selectedDerecha);
 					int o = listModelGrupo.indexOf(selectedDerecha);
@@ -131,11 +166,13 @@ public class CrearGrupo extends JDialog {
 						String substring = aux.substring(indiceChart);
 						 if(GestionFigura.getInstance().ExisteEstudianteBymatricula(substring)== true){
 					        Estudiante aux3 = GestionFigura.getInstance().BuscarEstudianteBymatricula(substring);
+					        GestionFigura.getInstance().getEstudiantes().get(o).setEstado(true);
 					        aux3.setEstado(true);
 					        estudiantesGrupo.remove(aux3);
 						 }
 						 else if(GestionFigura.getInstance().ExisteProfesorByCedula(substring)== true){
 						        Profesor aux3 = GestionFigura.getInstance().BuscarProfesorByCedula(substring);
+						        GestionFigura.getInstance().getProfesores().get(o).setEstado(true);
 						        aux3.setEstado(true);
 						        profesoresGrupo.remove(aux3);
 							 } 
@@ -143,10 +180,11 @@ public class CrearGrupo extends JDialog {
 					}
 				}
 			});
-			button.setBounds(327, 219, 78, 25);
-			panel_1.add(button);
+			MenorButton.setBounds(327, 219, 78, 68);
+			panel_1.add(MenorButton);
 			
 			rdbEstudiantes = new JRadioButton("Estudiantes");
+			rdbEstudiantes.setBackground(Color.YELLOW);
 			rdbEstudiantes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbProfesores.setSelected(false);
@@ -159,6 +197,7 @@ public class CrearGrupo extends JDialog {
 			panel_1.add(rdbEstudiantes);
 			
 			rdbProfesores = new JRadioButton("Profesores");
+			rdbProfesores.setBackground(Color.YELLOW);
 			rdbProfesores.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbEstudiantes.setSelected(false);
@@ -222,16 +261,26 @@ public class CrearGrupo extends JDialog {
 			textNumero.setText("GR-"+String.valueOf(GestionFigura.getNumeroGrupo()));
 			
 			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon("C:\\Users\\ronal\\Downloads\\material-Ucar7PHU-thumb.png"));
-			label.setBounds(258, 0, 282, 188);
+			label.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/trabajo-en-equipo (1).png")));
+			label.setBounds(34, 0, 267, 224);
 			panel.add(label);
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Crear");
+				okButton = new JButton("");
+				okButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						okButton.setBackground(Color.LIGHT_GRAY);
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						okButton.setBackground(Color.WHITE);
+					}
+				});
+				okButton.setBorder(null);
+				okButton.setBackground(Color.WHITE);
+				okButton.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/agregar.png")));
+				okButton.setBounds(671, 568, 63, 38);
+				panel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						Grupo grupo = new Grupo(estudiantesGrupo,profesorUnicoGrupo,GestionFigura.getNumeroGrupo());
@@ -241,26 +290,42 @@ public class CrearGrupo extends JDialog {
 						rdbEstudiantes.setSelected(true);
 						rdbProfesores.setSelected(false);
 						listModelDisp.removeAllElements();
-						pasarIzquierda =  LoadEstudiantes();
-						//pasarIzquierda = LoadProfesores();
 						listModelGrupo.removeAllElements();
 						
 					}
 				});
 				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancelar");
+				cancelButton = new JButton("\r\n");
+				cancelButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						cancelButton.setBackground(Color.LIGHT_GRAY);
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						cancelButton.setBackground(Color.WHITE);
+					}
+				});
+				cancelButton.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/flecha-hacia-atras (2).png")));
+				cancelButton.setBackground(Color.WHITE);
+				cancelButton.setBorder(null);
+				cancelButton.setBounds(736, 568, 63, 38);
+				panel.add(cancelButton);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
 			}
+			
+			JLabel lblNewLabel_2 = new JLabel("CREACION DEL GRUPO");
+			lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 35));
+			lblNewLabel_2.setBounds(298, 61, 419, 114);
+			panel.add(lblNewLabel_2);
 		}
 		pasarIzquierda = LoadEstudiantes();
 	}
