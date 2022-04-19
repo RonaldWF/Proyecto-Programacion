@@ -66,6 +66,7 @@ public class CrearGrupo extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearGrupo() {
+		setResizable(false);
 		setBounds(100, 100, 827, 662);
 		pasarIzquierda = new ArrayList<>();
 		setLocationRelativeTo(null);
@@ -75,18 +76,21 @@ public class CrearGrupo extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(Color.WHITE);
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBorder(new TitledBorder(null, "Creacion de Grupo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_1.setBounds(34, 188, 731, 369);
+			panel_1.setBackground(Color.YELLOW);
+			panel_1.setBorder(null);
+			panel_1.setBounds(34, 225, 731, 341);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 			profesoresGrupo = new ArrayList<Profesor>(100);
 			estudiantesGrupo = new ArrayList<Estudiante>(100);
 			
 			JButton btnNewButton = new JButton(">>");
+			btnNewButton.setBackground(Color.BLUE);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					listModelGrupo.addElement(selectedIzquierda);
@@ -123,6 +127,7 @@ public class CrearGrupo extends JDialog {
 			panel_1.add(btnNewButton);
 			
 			JButton button = new JButton("<<");
+			button.setBackground(Color.BLUE);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					listModelDisp.addElement(selectedDerecha);
@@ -151,6 +156,7 @@ public class CrearGrupo extends JDialog {
 			panel_1.add(button);
 			
 			rdbEstudiantes = new JRadioButton("Estudiantes");
+			rdbEstudiantes.setBackground(Color.YELLOW);
 			rdbEstudiantes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbProfesores.setSelected(false);
@@ -163,6 +169,7 @@ public class CrearGrupo extends JDialog {
 			panel_1.add(rdbEstudiantes);
 			
 			rdbProfesores = new JRadioButton("Profesores");
+			rdbProfesores.setBackground(Color.YELLOW);
 			rdbProfesores.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbEstudiantes.setSelected(false);
@@ -226,16 +233,13 @@ public class CrearGrupo extends JDialog {
 			textNumero.setText("GR-"+String.valueOf(GestionFigura.getNumeroGrupo()));
 			
 			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon("C:\\Users\\ronal\\Downloads\\material-Ucar7PHU-thumb.png"));
-			label.setBounds(258, 0, 282, 188);
+			label.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/trabajo-en-equipo (1).png")));
+			label.setBounds(34, 0, 267, 224);
 			panel.add(label);
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Crear");
+				okButton.setBounds(631, 568, 74, 38);
+				panel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						Grupo grupo = new Grupo(estudiantesGrupo,profesorUnicoGrupo,GestionFigura.getNumeroGrupo());
@@ -250,19 +254,24 @@ public class CrearGrupo extends JDialog {
 					}
 				});
 				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBounds(704, 568, 95, 38);
+				panel.add(cancelButton);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
 			}
+			
+			JLabel lblNewLabel_2 = new JLabel("CREACION DEL GRUPO");
+			lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 35));
+			lblNewLabel_2.setBounds(298, 61, 419, 114);
+			panel.add(lblNewLabel_2);
 		}
 		pasarIzquierda = LoadEstudiantes();
 	}
