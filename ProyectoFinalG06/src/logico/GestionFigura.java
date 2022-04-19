@@ -323,6 +323,15 @@ public boolean ExisteProfesorByCedula(String b) {
 		return encontrado;
 	
 }
+public Usuario BuscarUsuariobyLogin(UsuarioGestion usuario) {
+	Usuario aux = null;
+	for(int i = 0;i < cantUsuarios;i++) {
+		if(usuarios.get(i).getUsuario().equals(usuario)){
+			aux = usuarios.get(i);
+		}
+	}
+	return aux;
+}
 public void CrearGrupo(Grupo grupo) {
 	grupos.add(grupo);
 	cantGrupos++;
