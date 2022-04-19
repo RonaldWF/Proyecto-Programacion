@@ -204,6 +204,7 @@ public class ListaGrupos extends JDialog {
 	}
 
 	private void eliminar(int fila) {
+		Estudiante aux =  GestionFigura.getInstance().BuscarEstudianteBymatricula(table.getValueAt(fila, 0).toString());
 		selected = GestionFigura.getInstance().BuscarGrupo(aux);
 		model.removeRow(fila);
 		if(selected != null) {
