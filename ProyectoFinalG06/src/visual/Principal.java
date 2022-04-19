@@ -123,6 +123,12 @@ public class Principal extends JFrame {
 		menuBar.add(MenuGrupo);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Lista de Prismas");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaGrupos dialog = new ListaGrupos();
+				dialog.setVisible(true);
+			}
+		});
 		MenuGrupo.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Crear Grupo");
@@ -140,7 +146,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Lista de Prismas");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaPrimas dialog = new ListaPrimas();
+				ListaPrismasEstudiante dialog = new ListaPrismasEstudiante();
 				dialog.setVisible(true);
 			}
 		});
@@ -168,7 +174,7 @@ public class Principal extends JFrame {
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ListaPrimas dialog = new ListaPrimas();
+				ListasPrismasProfesor dialog = new ListasPrismasProfesor();
 				dialog.setVisible(true);
 			}
 		});

@@ -19,8 +19,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListaGrupos extends JDialog {
 
@@ -33,6 +36,11 @@ public class ListaGrupos extends JDialog {
 	private JButton cancelButton;
 	private Grupo selected = null;
 	private JTextField textField;
+	private JPanel panelModificacion;
+	private JTextField textMatricula;
+	private JTextField textNombre;
+	private JTextField textApellido;
+	private JTextField textEdad;
 
 	/**
 	 * Launch the application.
@@ -67,7 +75,7 @@ public class ListaGrupos extends JDialog {
 				{
 					
 					{
-						String headers[] = {"Matricula", "Nombre", "Apellido","Edad"};
+						String headers[] = {"Codigo" };
 						model = new DefaultTableModel();
 						model.setColumnIdentifiers(headers);
 						table = new JTable();
@@ -115,59 +123,59 @@ public class ListaGrupos extends JDialog {
 				}
 			}
 			{
-				JPanel paneModificacion = new JPanel();
-				paneModificacion.setBorder(new TitledBorder(null, "Modificar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				paneModificacion.setBounds(10, 64, 230, 343);
-				panel.add(paneModificacion);
-				paneModificacion.setLayout(null);
+				panelModificacion = new JPanel();
+				panelModificacion.setBorder(new TitledBorder(null, "Modificar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panelModificacion.setBounds(10, 64, 230, 343);
+				panel.add(panelModificacion);
+				panelModificacion.setLayout(null);
 				{
 					JLabel lblNewLabel_1 = new JLabel("Matricula: ");
 					lblNewLabel_1.setBounds(82, 31, 89, 14);
-					paneModificacion.add(lblNewLabel_1);
+					panelModificacion.add(lblNewLabel_1);
 				}
 				{
-					JTextField textMatricula = new JTextField();
+					textMatricula = new JTextField();
 					textMatricula.setBounds(59, 56, 101, 20);
-					paneModificacion.add(textMatricula);
+					panelModificacion.add(textMatricula);
 					textMatricula.setColumns(10);
 				}
 				{
 					JLabel lblNewLabel_2 = new JLabel("Nombre:  ");
 					lblNewLabel_2.setBounds(82, 103, 89, 14);
-					paneModificacion.add(lblNewLabel_2);
+					panelModificacion.add(lblNewLabel_2);
 				}
 				{
-					JTextField textNombre = new JTextField();
+					textNombre = new JTextField();
 					textNombre.setBounds(59, 128, 101, 20);
-					paneModificacion.add(textNombre);
+					panelModificacion.add(textNombre);
 					textNombre.setColumns(10);
 				}
 				{
 					JLabel lblNewLabel_3 = new JLabel("Apellido: ");
 					lblNewLabel_3.setBounds(82, 169, 89, 14);
-					paneModificacion.add(lblNewLabel_3);
+					panelModificacion.add(lblNewLabel_3);
 				}
 				{
-					JTextField textApellido = new JTextField();
+					textApellido = new JTextField();
 					textApellido.setBounds(59, 194, 101, 20);
-					paneModificacion.add(textApellido);
+					panelModificacion.add(textApellido);
 					textApellido.setColumns(10);
 				}
 				{
 					JLabel lblNewLabel_4 = new JLabel("Edad: ");
 					lblNewLabel_4.setBounds(82, 225, 55, 14);
-					paneModificacion.add(lblNewLabel_4);
+					panelModificacion.add(lblNewLabel_4);
 				}
 				{
-					JTextField textEdad = new JTextField();
+					textEdad = new JTextField();
 					textEdad.setBounds(59, 250, 101, 20);
-					paneModificacion.add(textEdad);
+					panelModificacion.add(textEdad);
 					textEdad.setColumns(10);
 				}
 				{
 					JButton NewModificarButton = new JButton("Modificar");
 					NewModificarButton.setBounds(69, 288, 89, 23);
-					paneModificacion.add(NewModificarButton);
+					panelModificacion.add(NewModificarButton);
 				}
 			}
 		}
@@ -177,10 +185,29 @@ public class ListaGrupos extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				ModificarButton = new JButton("Modificar");
+				ModificarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						panelModificacion.setVisible(true);
+						Modificar();
+					}
+				});
 				buttonPane.add(ModificarButton);
 			}
 			{
 				EliminarButton = new JButton("Eliminar");
+				EliminarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if(selected!=null) {
+							 int fila = -1;
+							 fila = table.getSelectedRow();
+							 int option = JOptionPane.showConfirmDialog(EliminarButton, "Está seguro que desea eliminar un profesor?","Advertencia",0,1);
+							 if(option == JOptionPane.YES_OPTION) {
+								eliminar(fila);
+							 }
+							 
+						}
+					}
+				});
 				EliminarButton.setActionCommand("OK");
 				buttonPane.add(EliminarButton);
 				getRootPane().setDefaultButton(EliminarButton);
@@ -191,6 +218,30 @@ public class ListaGrupos extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadTable();
 	}
 
+	private void eliminar(int fila) {
+		selected = GestionFigura.getInstance().BuscarGrupo(aux);
+		model.removeRow(fila);
+		if(selected != null) {
+			GestionFigura.getInstance().EliminarGrupo(selected);
+		}
+	}
+	
+	private void Modificar() {
+		int fila = table.getSelectedRow();
+		textMatricula.setText("GR-" + Integer.toString(GestionFigura.getInstance().getGrupos().get(fila).getNumGrupo()));
+
+	}
+	
+	private void loadTable() {
+		model.setRowCount(0);
+		row = new Object[model.getColumnCount()];
+		for(int i = 0; i < GestionFigura.getInstance().getCantGrupos();i++) {
+		 row[0] = GestionFigura.getInstance().getGrupos().get(i).getNumGrupo();
+		 model.addRow(row);
+			}
+		}
+	
 }

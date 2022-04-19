@@ -145,6 +145,12 @@ public Grupo BuscarGrupo(Usuario usuario) {
 	return aux;
 }
 
+public void EliminarGrupo(Grupo grupo) {
+	grupos.remove(grupo);
+	cantGrupos--;
+	numeroGrupo--;
+}
+
 public ArrayList<Prisma> BuscarPrismabyMatricula(String matricula) {
 	ArrayList<Prisma> aux = null;
 	for(int i = 0; i < cantEstudiantes;i++)
