@@ -15,10 +15,9 @@ private float altura;
 	}
 	@Override
 	public float calcularVolumenes() {
-		Prisma aux = null;
 		float total=0;
 		
-		total+=((Math.PI) * (((Cilindro)aux).getBase()) * (((Cilindro)aux).getAltura()));
+		total+=(Math.PI) * base * altura;
 		
 		
 		return total;
@@ -26,19 +25,17 @@ private float altura;
 	
 	@Override
 	public float calcularAreasLaterales() {
-		Prisma aux = null;
 		float total=0;
 		
-		total+=(2) * ((Math.PI) * ((Cilindro)aux).getBase() * ((Cilindro)aux).getAltura());
+		total+=(2) * (Math.PI) * base * altura;
 		
 		return total;
 	}
 	@Override
 	public float calcularAreasTotales() {
-		Prisma aux = null;
 		float total=0;
 		
-		total+=((2) * ((Math.PI) * ((Cilindro)aux).getBase() * ((Cilindro)aux).getAltura())) + (2) * ((Math.PI) * Math.pow(((Cilindro)aux).getBase(), 2));
+		total+=(2) * ((Math.PI) * base * altura + (2) * ((Math.PI) * Math.pow(base, 2)));
 		
 		return total;
 	}

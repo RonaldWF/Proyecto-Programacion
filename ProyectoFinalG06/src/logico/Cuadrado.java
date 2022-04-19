@@ -40,7 +40,6 @@ public  class Cuadrado extends Prisma {
 	
 	@Override
 	public float calcularAreasLaterales() {
-		Prisma aux = null;
 		float total=0;
 		
 		total+=((4) * Math.pow(base,2));
@@ -50,7 +49,6 @@ public  class Cuadrado extends Prisma {
 	
 	@Override
 	public float calcularAreasTotales() {
-		Prisma aux = null;
 		float total=0;
 		
 		total+=((6) * Math.pow(base,2));
