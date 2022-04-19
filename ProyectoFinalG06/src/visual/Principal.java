@@ -45,6 +45,7 @@ public class Principal extends JFrame {
 	private JMenuItem mntmNewMenuItem_2;
 	public Image imagenFondo;
 	public URL fondo;
+	private JMenuItem listaDePrismasEstudiante;
 
 	/**
 	 * Launch the application.
@@ -133,7 +134,7 @@ public class Principal extends JFrame {
 		JMenu MenuGrupo = new JMenu("Grupo");
 		menuBar.add(MenuGrupo);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Lista de Prismas");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Lista de Grupos");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListaGrupos dialog = new ListaGrupos();
@@ -154,14 +155,15 @@ public class Principal extends JFrame {
 		JMenu MenuEstudiante = new JMenu("Estudiante");
 		menuBar.add(MenuEstudiante);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Lista de Prismas");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		listaDePrismasEstudiante = new JMenuItem("Lista de Prismas");
+		listaDePrismasEstudiante.setEnabled(false);
+		listaDePrismasEstudiante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListaPrismasEstudiante dialog = new ListaPrismasEstudiante();
 				dialog.setVisible(true);
 			}
 		});
-		MenuEstudiante.add(mntmNewMenuItem_1);
+		MenuEstudiante.add(listaDePrismasEstudiante);
 		
 		JMenuItem MenuItemEstudiantes = new JMenuItem("Lista de Estudiantes");
 		MenuItemEstudiantes.addActionListener(new ActionListener() {
@@ -178,10 +180,12 @@ public class Principal extends JFrame {
 			MenuGrupo.setEnabled(false);
 			MenuItemEstudiantes.setEnabled(false);
 			MenuItemListaPrismas.setEnabled(false);
+			listaDePrismasEstudiante.setEnabled(false);
 		}
 		menuBar.add(MenuProfesor);
 		
 		mntmNewMenuItem_2 = new JMenuItem("Lista de Prismas");
+		mntmNewMenuItem_2.setEnabled(false);
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -221,5 +225,7 @@ public class Principal extends JFrame {
 			}
 	};
 		panel.add(panel_2, BorderLayout.CENTER);
+		
 	}
+	
 }
