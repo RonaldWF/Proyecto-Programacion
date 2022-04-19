@@ -315,7 +315,7 @@ public class CrearPrisma extends JDialog {
 									&& !textEdadEstudiante.getText().equalsIgnoreCase("")) {
 							int edad = Integer.parseInt(textEdadEstudiante.getText());
 							boolean estado = true;
-							Usuario est = new Estudiante(textNombreEstudiante.getText(),textApellidoEstudiante.getText(),edad,textMatricula.getText(),estado);
+							Usuario est = new Estudiante(textNombreEstudiante.getText(),textApellidoEstudiante.getText(),edad,textMatricula.getText(),estado,GestionFigura.getLoginUser());
 						//	UsuarioActual = est;
 							GestionFigura.getInstance().RegistrarEstudiante(est);
 							JOptionPane.showMessageDialog(panel, "Registro con Exito");
@@ -486,7 +486,7 @@ public class CrearPrisma extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					int edad = Integer.parseInt(textEdadProfesor.getText()); 
 					boolean estado = true;
-					Usuario pro = new Profesor(textNombreProfesor.getText(), textApellidoProfesor.getText(), edad, textCedula.getText(),estado);
+					Usuario pro = new Profesor(textNombreProfesor.getText(), textApellidoProfesor.getText(), edad, textCedula.getText(),estado,GestionFigura.getLoginUser());
 					GestionFigura.getInstance().RegistrarProfesor(pro);
 					//GestionFigura.getInstance().RegistrarProfesorDisp(pro);
 					JOptionPane.showMessageDialog(panel, "Registro con Exito");

@@ -12,12 +12,14 @@ protected String nombre;
 protected String apellido;
 protected int edad;
 protected boolean estado;
-public Usuario(String nombre, String apellido, int edad, boolean estado) {
+protected UsuarioGestion usuario;
+public Usuario(String nombre, String apellido, int edad, boolean estado, UsuarioGestion usuario) {
 	super();
 	this.nombre = nombre;
 	this.apellido = apellido;
 	this.edad = edad;
 	this.estado = estado;
+	this.usuario = usuario;
 }
 public String getNombre() {
 	return nombre;
