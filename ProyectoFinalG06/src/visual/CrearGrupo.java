@@ -48,6 +48,10 @@ public class CrearGrupo extends JDialog {
 	private ArrayList<Estudiante> estudiantesGrupo;
 	private JTextField textNumero;
 	private int hola = 2;
+	private JButton cancelButton;
+	private JButton okButton;
+	private JButton MayorButton;
+	private JButton MenorButton;
  
 	/**
 	 * Launch the application.
@@ -89,9 +93,21 @@ public class CrearGrupo extends JDialog {
 			profesoresGrupo = new ArrayList<Profesor>(100);
 			estudiantesGrupo = new ArrayList<Estudiante>(100);
 			
-			JButton btnNewButton = new JButton(">>");
-			btnNewButton.setBackground(Color.BLUE);
-			btnNewButton.addActionListener(new ActionListener() {
+			MayorButton = new JButton("");
+			MayorButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					MayorButton.setBackground(Color.ORANGE);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					MayorButton.setBackground(Color.YELLOW);
+				}
+			});
+			MayorButton.setBorder(null);
+			MayorButton.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/mayor-que-el-simbolo.png")));
+			MayorButton.setBackground(Color.YELLOW);
+			MayorButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					listModelGrupo.addElement(selectedIzquierda);
 					int o = listModelDisp.indexOf(selectedIzquierda);
@@ -123,12 +139,24 @@ public class CrearGrupo extends JDialog {
 				
 				}
 			});
-			btnNewButton.setBounds(327, 150, 78, 25);
-			panel_1.add(btnNewButton);
+			MayorButton.setBounds(327, 115, 78, 68);
+			panel_1.add(MayorButton);
 			
-			JButton button = new JButton("<<");
-			button.setBackground(Color.BLUE);
-			button.addActionListener(new ActionListener() {
+			MenorButton = new JButton("");
+			MenorButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					MenorButton.setBackground(Color.ORANGE);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					MenorButton.setBackground(Color.YELLOW);
+				}
+			});
+			MenorButton.setBorder(null);
+			MenorButton.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/simbolo-menor-que.png")));
+			MenorButton.setBackground(Color.YELLOW);
+			MenorButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					listModelDisp.addElement(selectedDerecha);
 					int o = listModelGrupo.indexOf(selectedDerecha);
@@ -152,8 +180,8 @@ public class CrearGrupo extends JDialog {
 					}
 				}
 			});
-			button.setBounds(327, 219, 78, 25);
-			panel_1.add(button);
+			MenorButton.setBounds(327, 219, 78, 68);
+			panel_1.add(MenorButton);
 			
 			rdbEstudiantes = new JRadioButton("Estudiantes");
 			rdbEstudiantes.setBackground(Color.YELLOW);
@@ -237,8 +265,21 @@ public class CrearGrupo extends JDialog {
 			label.setBounds(34, 0, 267, 224);
 			panel.add(label);
 			{
-				JButton okButton = new JButton("Crear");
-				okButton.setBounds(631, 568, 74, 38);
+				okButton = new JButton("");
+				okButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						okButton.setBackground(Color.LIGHT_GRAY);
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						okButton.setBackground(Color.WHITE);
+					}
+				});
+				okButton.setBorder(null);
+				okButton.setBackground(Color.WHITE);
+				okButton.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/agregar.png")));
+				okButton.setBounds(671, 568, 63, 38);
 				panel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -257,8 +298,21 @@ public class CrearGrupo extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancelar");
-				cancelButton.setBounds(704, 568, 95, 38);
+				cancelButton = new JButton("\r\n");
+				cancelButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						cancelButton.setBackground(Color.LIGHT_GRAY);
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						cancelButton.setBackground(Color.WHITE);
+					}
+				});
+				cancelButton.setIcon(new ImageIcon(CrearGrupo.class.getResource("/imagenes/flecha-hacia-atras (2).png")));
+				cancelButton.setBackground(Color.WHITE);
+				cancelButton.setBorder(null);
+				cancelButton.setBounds(736, 568, 63, 38);
 				panel.add(cancelButton);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
