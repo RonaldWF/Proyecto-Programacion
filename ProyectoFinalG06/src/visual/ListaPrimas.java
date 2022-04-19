@@ -207,6 +207,12 @@ public class ListaPrimas extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("");
+				cancelButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setIcon(new ImageIcon(ListaPrimas.class.getResource("/imagenes/flecha-hacia-atras (2).png")));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);

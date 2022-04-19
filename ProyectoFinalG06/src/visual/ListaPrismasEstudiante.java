@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -149,6 +150,12 @@ public class ListaPrismasEstudiante extends JDialog {
 				}
 				{
 					btnModificar = new JButton("Modificar");
+					btnModificar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							
+						}
+					});
 					btnModificar.setBounds(53, 219, 107, 23);
 					panel_1.add(btnModificar);
 				}
@@ -170,6 +177,15 @@ public class ListaPrismasEstudiante extends JDialog {
 				EliminarButton = new JButton("Eliminar");
 				EliminarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						if(selected!=null) {
+							 int fila = -1;
+							 fila = table.getSelectedRow();
+							 int option = JOptionPane.showConfirmDialog(EliminarButton, "Está seguro que desea eliminar un profesor?","Advertencia",0,1);
+							 if(option == JOptionPane.YES_OPTION) {
+								eliminar(fila);
+							 }
+							 
+						}
 						
 					}
 				});
