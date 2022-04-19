@@ -2,6 +2,7 @@ package visual;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -11,24 +12,28 @@ import javax.swing.border.EmptyBorder;
 
 import logico.GestionFigura;
 import logico.Prisma;
+import logico.Usuario;
+import logico.UsuarioGestion;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class ListasPrismasProfesor extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private DefaultTableModel model;
 	private JButton btnEliminar;
 	private JTable table;
 	private JButton btnCancel;
 	private JButton btnModificar;
 	private Prisma selected = null;
-	private JTextField textField;
+	private Object[] row;
 
 	/**
 	 * Launch the application.
@@ -81,21 +86,6 @@ public class ListasPrismasProfesor extends JDialog {
 					}});
 				scrollPane.setViewportView(table);
 			}
-			
-			JPanel pnlModificar = new JPanel();
-			pnlModificar.setBorder(new TitledBorder(null, "Modificar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			pnlModificar.setBounds(0, 11, 170, 304);
-			panel.add(pnlModificar);
-			pnlModificar.setLayout(null);
-			
-			JLabel lblNewLabel = new JLabel("Base:");
-			lblNewLabel.setBounds(57, 22, 46, 14);
-			pnlModificar.add(lblNewLabel);
-			
-			textField = new JTextField();
-			textField.setBounds(38, 47, 86, 20);
-			pnlModificar.add(textField);
-			textField.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -126,5 +116,20 @@ public class ListasPrismasProfesor extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+		loadTable();
 	}
+	
+	
+	private void loadTable() {
+		Usuario aux = GestionFigura.getInstance().BuscarUsuariobyLogin(GestionFigura.getLoginUser());
+		model.setRowCount(0);
+		row = new Object[model.getColumnCount()];
+		for(int i = 0; i < aux.getMisprismas().size();i++) {
+		 row[0] = aux.getMisprismas().get(i).getCodigo();
+		 row[1] = aux.getMisprismas().get(i).getBase();
+		 row[2] = aux.getMisprismas().get(i).getColor();
+		
+		 model.addRow(row);
+			}
+		}
 }

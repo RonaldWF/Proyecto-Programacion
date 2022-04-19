@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import logico.Estudiante;
 import logico.GestionFigura;
 import logico.Prisma;
+import logico.Usuario;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,12 +27,13 @@ import java.awt.event.ActionEvent;
 public class ListaPrismasEstudiante extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTable table;
 	private DefaultTableModel model;
 	private JButton EliminarButton;
 	private JButton ModificarButton;
 	private JButton cancelButton;
 	private Prisma selected = null;
+	private JTable table;
+	private Object[] row;
 	
 
 	/**
@@ -51,7 +53,7 @@ public class ListaPrismasEstudiante extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaPrismasEstudiante() {
-		setBounds(100, 100, 450, 384);
+		setBounds(100, 100, 509, 427);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -60,37 +62,41 @@ public class ListaPrismasEstudiante extends JDialog {
 			JPanel panel = new JPanel();
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
+			
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(229, 31, 221, 238);
+			panel.add(scrollPane);
 			{
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-				scrollPane.setBounds(415, 284, -200, -270);
-				panel.add(scrollPane);
+				table = new JTable();
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if(table.getSelectedRow()>-1) {
+							int row = -1;
+						    row = table.getSelectedRow();
+							if(row > -1) {
+								
+								ModificarButton.setEnabled(true);
+								EliminarButton.setEnabled(true);
+								//MostrarButton.setEnabled(true);
+								
+								selected = GestionFigura.getInstance().BuscarPrismabyCodigo(table.getValueAt(row, 0).toString());
+							}
+						}
+						
+						
+						
+					}
+				});
+				scrollPane.setViewportView(table);
+			}
+			{
 				{
 
 					String headers[]= {"Base","Color","Usuario","Edad"};
 				    model = new DefaultTableModel();
 					model.setColumnIdentifiers(headers);
-					table = new JTable();
-					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-					table.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent arg0) {
-							if(table.getSelectedRow()>-1) {
-							int row = -1;
-							row = table.getSelectedRow();
-							if(row > -1) {
-								
-								ModificarButton.setEnabled(true);
-								EliminarButton.setEnabled(true);
-								selected = GestionFigura.getInstance().BuscarPrismabyCodigo(table.getValueAt(row, 0).toString());
-							}
-						}}
-							
-					});
-					table.setModel(model);
-					scrollPane.setViewportView(table);
 				}
-				scrollPane.setViewportView(table);
 			}
 		}
 		{
@@ -128,10 +134,18 @@ public class ListaPrismasEstudiante extends JDialog {
 			}
 			{
 				cancelButton = new JButton("Cancelar");
+				cancelButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadTable();
 	}
 	
 	
@@ -142,4 +156,17 @@ public class ListaPrismasEstudiante extends JDialog {
 			GestionFigura.getInstance().EliminarPrisma(selected);
 		}
 	}
+	
+	private void loadTable() {
+		Usuario aux = GestionFigura.getInstance().BuscarUsuariobyLogin(GestionFigura.getLoginUser());
+		model.setRowCount(0);
+		row = new Object[model.getColumnCount()];
+		for(int i = 0; i < aux.getMisprismas().size();i++) {
+		 row[0] = aux.getMisprismas().get(i).getCodigo();
+		 row[1] = aux.getMisprismas().get(i).getBase();
+		 row[2] = aux.getMisprismas().get(i).getColor();
+		
+		 model.addRow(row);
+			}
+		}
 }
